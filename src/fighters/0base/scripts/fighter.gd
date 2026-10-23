@@ -75,3 +75,6 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	stateMachine.process_input(event)
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	print("OOOOOOWWWWWWW!!!!!!!!!!!!")

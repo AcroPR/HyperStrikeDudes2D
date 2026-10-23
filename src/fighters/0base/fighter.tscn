@@ -11,6 +11,13 @@
 [ext_resource type="Script" uid="uid://b3x2chrb218dd" path="res://src/fighters/0base/states/ground_movement/state_skid.gd" id="7_m5eah"]
 [ext_resource type="Script" uid="uid://dlnlnnyamxl86" path="res://src/fighters/0base/states/ground_movement/state_run.gd" id="7_sbl3l"]
 [ext_resource type="Script" uid="uid://btcekulraylpp" path="res://src/fighters/0base/states/ground_movement/state_jumpsquat.gd" id="10_3f8t4"]
+[ext_resource type="PackedScene" uid="uid://8gbje8je4cx4" path="res://src/hitbox_and_hurtbox/hitbox.tscn" id="12_j1xik"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8qh6"]
+radius = 143.01399
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
+size = Vector2(150, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(98, 138)
@@ -75,6 +82,24 @@ airState = NodePath("../../AirMovement/Air")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oew5a")
 
+[node name="Hitboxes" type="Node2D" parent="Model" unique_id=1486285204]
+
+[node name="Hitbox" parent="Model/Hitboxes" unique_id=63774565 instance=ExtResource("12_j1xik")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Model/Hitboxes/Hitbox" unique_id=32487352]
+shape = SubResource("CircleShape2D_p8qh6")
+debug_color = Color(1, 0, 0, 0.42)
+
+[node name="Hurtboxes" type="Node2D" parent="Model" unique_id=1479151901]
+
+[node name="Hurtbox" type="Area2D" parent="Model/Hurtboxes" unique_id=1489190511]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Model/Hurtboxes/Hurtbox" unique_id=1557493030]
+shape = SubResource("RectangleShape2D_j5tfj")
+debug_color = Color(0, 0.6465699, 0.24130636, 0.41960785)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928045644]
 shape = SubResource("RectangleShape2D_s7spp")
 debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
@@ -93,3 +118,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "State: Idle"
 horizontal_alignment = 1
+
+[connection signal="area_entered" from="Model/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
