@@ -32,10 +32,6 @@ startingState = NodePath("GroundMovement/Idle")
 script = ExtResource("5_j2vvu")
 landing_state = NodePath("../../GroundMovement/Idle")
 
-[node name="AirDodge" type="Node" parent="FighterStateMachine/AirMovement" unique_id=1417087997 node_paths=PackedStringArray("landing_state")]
-script = ExtResource("5_j2vvu")
-landing_state = NodePath("../../GroundMovement/Idle")
-
 [node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
 
 [node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "jumpSquatState", "idleState", "runState")]
