@@ -33,10 +33,7 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if inputComponent._just_pressed("jump"):
-		if inputComponent._pressed("move_down"):
-			parent.set_collision_mask_value(3,false)
-		else:
-			return jumpSquatState
+		return jumpSquatState
 	
 	#if inputComponent._just_pressed("guard"):
 		#return guardState
@@ -46,6 +43,9 @@ func process_physics(delta: float) -> State:
 	#
 	#if inputComponent._just_pressed("shoot"):
 		#parent._set_shoot_state()
+	
+	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
+		parent.set_collision_mask_value(3,false)
 	
 	if !parent.is_on_floor():
 		return airState

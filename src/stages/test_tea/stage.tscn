@@ -22,6 +22,8 @@ shape = SubResource("RectangleShape2D_s7spp")
 
 [node name="Platform" type="StaticBody2D" parent="Stage" unique_id=1445505944]
 position = Vector2(-571, 4)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Platform" unique_id=13433915]
 shape = SubResource("RectangleShape2D_ow34k")

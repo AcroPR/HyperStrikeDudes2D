@@ -25,16 +25,16 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if inputComponent._just_pressed("jump"):
-		if inputComponent._pressed("down"):
-			parent.set_collision_mask_value(3,false)
-		else:
-			return jumpSquatState
+		return jumpSquatState
 	
 	if inputComponent._just_pressed("block"):
 		return blockState
 	
 	if inputComponent._just_pressed("emote"):
 		return emoteState
+	
+	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
+		parent.set_collision_mask_value(3,false)
 	
 	if !parent.is_on_floor():
 		return airState

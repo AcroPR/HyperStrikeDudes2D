@@ -31,7 +31,7 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if inputComponent._just_pressed("jump"):
-		if inputComponent._pressed("down"):
+		if inputComponent._pressed("move_down"):
 			parent.set_collision_mask_value(3,false)
 		else:
 			return jumpSquatState
