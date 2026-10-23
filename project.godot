@@ -11,13 +11,31 @@ config_version=5
 [application]
 
 config/name="Hyper Strike Dudes"
+run/main_scene="uid://m8ufo6g8l4wv"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Controls="*uid://csr5tiec3wjck"
+
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="platform"
+2d_physics/layer_4="hitbox"
+2d_physics/layer_5="hurtbox"
+2d_physics/layer_6="shieldbox"
+2d_physics/layer_7="death"
 
 [physics]
 

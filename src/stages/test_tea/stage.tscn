@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://m8ufo6g8l4wv"]
+
+[ext_resource type="PackedScene" uid="uid://bo6fwwvivas0j" path="res://src/fighters/0base/fighter.tscn" id="1_ioypq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
+size = Vector2(1372, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow34k"]
+size = Vector2(630, 40)
+
+[node name="TestTea" type="Node2D" unique_id=1771569870]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1656270395]
+
+[node name="Stage" type="Node2D" parent="." unique_id=1583683138]
+
+[node name="MainStage" type="StaticBody2D" parent="Stage" unique_id=1638512175]
+position = Vector2(0, 282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/MainStage" unique_id=959838015]
+shape = SubResource("RectangleShape2D_s7spp")
+
+[node name="Platform" type="StaticBody2D" parent="Stage" unique_id=1445505944]
+position = Vector2(-571, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Platform" unique_id=13433915]
+shape = SubResource("RectangleShape2D_ow34k")
+debug_color = Color(0.85490197, 0.7882353, 0, 0.41960785)
+
+[node name="Pillow" type="CharacterBody2D" parent="." unique_id=715632402]
+
+[node name="Fighter" parent="." unique_id=166561770 instance=ExtResource("1_ioypq")]
+position = Vector2(136, 14)

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cg4epv03l4r2l"]
+
+[ext_resource type="Script" uid="uid://dxu8secfd54f6" path="res://src/state_machines/state_machine.gd" id="1_sgis2"]
+
+[node name="StateMachine" type="Node" unique_id=1929851875]
+script = ExtResource("1_sgis2")
