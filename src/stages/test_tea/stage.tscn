@@ -25,6 +25,7 @@ position = Vector2(-571, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Platform" unique_id=13433915]
 shape = SubResource("RectangleShape2D_ow34k")
+one_way_collision = true
 debug_color = Color(0.85490197, 0.7882353, 0, 0.41960785)
 
 [node name="Pillow" type="CharacterBody2D" parent="." unique_id=715632402]

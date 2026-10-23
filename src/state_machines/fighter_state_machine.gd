@@ -2,8 +2,7 @@ extends StateMachine
 
 # Sets state params if the node is a state
 # Does recursion if not
-#func set_states(_node: Node, parent: Player, model: Node2D, inputComponent: InputComponent):
-func set_states(_node: Node, parent: Node, model: Node2D, inputComponent: Node):
+func set_states(_node: Node, parent: Fighter, model: Node2D, inputComponent: InputComponent):
 	if _node is State:
 		_node.parent = parent
 		_node.model = model

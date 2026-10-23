@@ -9,8 +9,10 @@ const RUN_THRESHOLD: float = 0.8
 
 @export_category("Fighter Attributes")
 @export_range(4, 10) var jumpSquatFrames: int = 4
+@export_range(0, 30) var dashFrames: int = 15
 @export var walkSpeed: float = 4.80
-@export var runSpeed: float = 8.25
+@export var dashSpeed: float = 8.25
+@export var runSpeed: float = 6.75
 @export var airSpeed: float = 7.4
 @export var airDrift: float = 3.75
 @export var hopHeight: float = 7.45
@@ -38,6 +40,13 @@ func _can_move() -> bool:
 
 func _get_velocity(_float: float) -> float:
 	return _float * 100
+
+func _is_dashing_correctly() -> bool:
+	if inputComponent._pressed("move_left") and !facingRight:
+		return true
+	elif inputComponent._pressed("move_right") and facingRight:
+		return true
+	return false
 
 func _set_face(moveDir):
 	match moveDir:

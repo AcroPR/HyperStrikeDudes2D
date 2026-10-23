@@ -5,7 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dmaq2uqrdw6tm" path="res://src/input_component/input_component.tscn" id="2_jslxv"]
 [ext_resource type="Texture2D" uid="uid://cqts77y8ka3qg" path="res://assets/fighters/0base/Bot_Naked.png" id="2_oew5a"]
 [ext_resource type="Script" uid="uid://bx4b84r5vuyil" path="res://src/fighters/0base/states/ground_movement/state_idle.gd" id="4_rmkpu"]
+[ext_resource type="Script" uid="uid://cbmdajejhd2ef" path="res://src/fighters/0base/states/ground_movement/state_dash.gd" id="5_bn4rd"]
 [ext_resource type="Script" uid="uid://dy20tb5nf8pu0" path="res://src/fighters/0base/states/air_movement/state_air.gd" id="5_j2vvu"]
+[ext_resource type="Script" uid="uid://b3t8173xmtsxd" path="res://src/fighters/0base/states/ground_movement/state_walk.gd" id="6_xu1qu"]
+[ext_resource type="Script" uid="uid://b3x2chrb218dd" path="res://src/fighters/0base/states/ground_movement/state_skid.gd" id="7_m5eah"]
+[ext_resource type="Script" uid="uid://dlnlnnyamxl86" path="res://src/fighters/0base/states/ground_movement/state_run.gd" id="7_sbl3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(98, 138)
@@ -21,17 +25,39 @@ stateMachine = NodePath("FighterStateMachine")
 [node name="FighterStateMachine" parent="." unique_id=829114942 node_paths=PackedStringArray("startingState") instance=ExtResource("1_oew5a")]
 startingState = NodePath("GroundMovement/Idle")
 
-[node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
-
-[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState")]
-script = ExtResource("4_rmkpu")
-airState = NodePath("../../AirMovement/Air")
-
 [node name="AirMovement" type="Node" parent="FighterStateMachine" unique_id=1954974873]
 
 [node name="Air" type="Node" parent="FighterStateMachine/AirMovement" unique_id=2051739540 node_paths=PackedStringArray("landing_state")]
 script = ExtResource("5_j2vvu")
 landing_state = NodePath("../../GroundMovement/Idle")
+
+[node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
+
+[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "idleState", "runState")]
+script = ExtResource("5_bn4rd")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../Idle")
+runState = NodePath("../Run")
+
+[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "walkState")]
+script = ExtResource("4_rmkpu")
+airState = NodePath("../../AirMovement/Air")
+walkState = NodePath("../Walk")
+
+[node name="Skid" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1121431532 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("7_m5eah")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../Idle")
+
+[node name="Run" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1448795772 node_paths=PackedStringArray("skidState")]
+script = ExtResource("7_sbl3l")
+skidState = NodePath("../Skid")
+
+[node name="Walk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=140797622 node_paths=PackedStringArray("airState", "dashState", "idleState")]
+script = ExtResource("6_xu1qu")
+airState = NodePath("../../AirMovement/Air")
+dashState = NodePath("../Dash")
+idleState = NodePath("../Idle")
 
 [node name="Model" type="Node2D" parent="." unique_id=240743938]
 

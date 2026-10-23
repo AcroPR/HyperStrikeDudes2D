@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 # Parent Node
-var parent: Node #Player
+var parent: Fighter
 var model: Node2D
 var inputComponent: Node #InputComponent
 

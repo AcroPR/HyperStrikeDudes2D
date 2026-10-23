@@ -3,10 +3,10 @@ extends State
 @export_category("States")
 @export var airState: State
 @export var blockState: State
+@export var dashState: State
 @export var emoteState: State
 @export var grabState: State
 @export var jumpSquatState: State
-@export var runState: State
 @export var walkState: State
 
 func enter() -> void:
