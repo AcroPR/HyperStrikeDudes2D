@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cmrxdvaryyov1"]
+
+[ext_resource type="Script" uid="uid://ba3j4joo5g1eq" path="res://src/stage_nodes/scripts/fighter_spawner.gd" id="1_0st34"]
+[ext_resource type="Texture2D" uid="uid://dy7g1lamkru3t" path="res://icon.svg" id="1_k41ix"]
+
+[node name="FighterSpawner" type="Node2D" unique_id=1296158006]
+script = ExtResource("1_0st34")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428437990]
+texture = ExtResource("1_k41ix")

@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://m8ufo6g8l4wv"]
+
+[ext_resource type="Script" uid="uid://grnnlm6acnfl" path="res://src/stages/0base/script/stage.gd" id="1_onwow"]
+[ext_resource type="PackedScene" uid="uid://culor3dapbonn" path="res://src/stage_nodes/ledge.tscn" id="1_tg4du"]
+[ext_resource type="PackedScene" uid="uid://cmrxdvaryyov1" path="res://src/stage_nodes/fighter_spawner.tscn" id="2_onwow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
+size = Vector2(1372, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow34k"]
+size = Vector2(630, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
+size = Vector2(708, 2760)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc0mv"]
+size = Vector2(4362, 414)
+
+[node name="TestTea" type="Node2D" unique_id=1771569870]
+script = ExtResource("1_onwow")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1656270395]
+
+[node name="Stage" type="Node2D" parent="." unique_id=1583683138]
+
+[node name="MainStage" type="StaticBody2D" parent="Stage" unique_id=1638512175]
+position = Vector2(0, 282)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/MainStage" unique_id=959838015]
+shape = SubResource("RectangleShape2D_s7spp")
+
+[node name="ColorRect" type="ColorRect" parent="Stage/MainStage" unique_id=906999943]
+offset_left = -687.0
+offset_top = -119.0
+offset_right = 686.0
+offset_bottom = 121.0
+color = Color(0.41568628, 1, 1, 1)
+
+[node name="Platform" type="StaticBody2D" parent="Stage" unique_id=1445505944]
+position = Vector2(-571, 4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Platform" unique_id=13433915]
+shape = SubResource("RectangleShape2D_ow34k")
+one_way_collision = true
+debug_color = Color(0.85490197, 0.7882353, 0, 0.41960785)
+
+[node name="ColorRect" type="ColorRect" parent="Stage/Platform" unique_id=157202164]
+offset_left = -317.0
+offset_top = -18.0
+offset_right = 316.0
+offset_bottom = 20.0
+color = Color(0.79988927, 0.9820984, 2.3102762e-06, 1)
+
+[node name="LedgeRight" parent="Stage" unique_id=940562255 instance=ExtResource("1_tg4du")]
+position = Vector2(686, 162)
+
+[node name="LedgeLeft" parent="Stage" unique_id=169432444 instance=ExtResource("1_tg4du")]
+position = Vector2(-686, 162)
+
+[node name="FighterSpawners" type="Node2D" parent="." unique_id=1461162809]
+
+[node name="-1" parent="FighterSpawners" unique_id=1296158006 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
+stage = NodePath("../..")
+
+[node name="0" parent="FighterSpawners" unique_id=1334782252 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
+position = Vector2(-543, -142)
+stage = NodePath("../..")
+playerID = 0
+
+[node name="DeathZone" type="Node2D" parent="." unique_id=389067667]
+
+[node name="Left" type="Area2D" parent="DeathZone" unique_id=581965215]
+position = Vector2(-1754, 0)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone/Left" unique_id=1424694363]
+shape = SubResource("RectangleShape2D_j5tfj")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Right" type="Area2D" parent="DeathZone" unique_id=551808009]
+position = Vector2(1754, 0)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone/Right" unique_id=1793532152]
+shape = SubResource("RectangleShape2D_j5tfj")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Top" type="Area2D" parent="DeathZone" unique_id=329809562]
+position = Vector2(0, -1169)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone/Top" unique_id=2012956242]
+shape = SubResource("RectangleShape2D_dc0mv")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Bottom" type="Area2D" parent="DeathZone" unique_id=740227810]
+position = Vector2(0, 1169)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone/Bottom" unique_id=1388296877]
+shape = SubResource("RectangleShape2D_dc0mv")
+debug_color = Color(1, 0, 0, 0.41960785)

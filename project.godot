@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Controls="*uid://csr5tiec3wjck"
 GameModifiers="*uid://co5kyxwpssqh1"
+MatchGlobal="*uid://bvjqcqbgyj8ac"
 
 [display]
 

@@ -13,7 +13,7 @@ func _ready() -> void:
 	camera = get_viewport().get_camera_2d()
 	sprite.texture = parent.get_node("SubViewportContainer/SubViewport").get_texture()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var targetGlobalPosition: Vector2 = parent.global_position
 	var viewportDimensions: Vector2 = get_viewport().get_visible_rect().size
 	var screenCoordinates: Vector2 = (targetGlobalPosition - camera.global_position) * camera.zoom + viewportDimensions * 0.5

@@ -1,6 +1,8 @@
 class_name Fighter
 extends CharacterBody2D
 
+signal dead_fighter
+
 const WALK_THRESHOLD: float = 0.25
 const RUN_THRESHOLD: float = 0.8
 
@@ -65,9 +67,8 @@ func _set_face(moveDir):
 			modelCollisions.scale.x = 1
 
 func _ready() -> void:
-	inputComponent.controllerID = playerID
 	ledgeHeld = null
-	#inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
+	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	match facingRight:
 		true:
@@ -88,7 +89,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	stateMachine.process_input(event)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("OOOOOOWWWWWWW!!!!!!!!!!!!")
+	if area.collision_layer & (1 << 6):
+		emit_signal("dead_fighter",playerID)
+		queue_free()
 
 func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:

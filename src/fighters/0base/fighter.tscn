@@ -166,7 +166,7 @@ debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
 
 [node name="Hurtbox" type="Area2D" parent="ModelCollisions/Hurtboxes" unique_id=1949043395]
 collision_layer = 16
-collision_mask = 8
+collision_mask = 72
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModelCollisions/Hurtboxes/Hurtbox" unique_id=1134511638]
 shape = SubResource("RectangleShape2D_j5tfj")
