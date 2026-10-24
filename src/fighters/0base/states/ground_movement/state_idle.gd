@@ -12,6 +12,7 @@ extends State
 func enter() -> void:
 	super()
 	parent.airJumpCount = 0
+	parent.ledgeGrabCount = 0
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta

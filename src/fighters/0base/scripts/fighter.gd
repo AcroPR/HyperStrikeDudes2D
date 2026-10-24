@@ -33,6 +33,7 @@ const RUN_THRESHOLD: float = 0.8
 
 var airJumpCount: int = 0
 var landingFrames: int = 0
+var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
 
 func _can_move() -> bool:
@@ -85,13 +86,15 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("OOOOOOWWWWWWW!!!!!!!!!!!!")
 
 func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
-	ledgeHeld = ledge
-	ledgeHeld._set_ledge_grab(self)
-	_set_ledge_position()
-	stateMachine.change_state($FighterStateMachine/AirMovement/Ledge)
+	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:
+		ledgeGrabCount += 1
+		ledgeHeld = ledge
+		ledgeHeld._set_ledge_grab(self)
+		_set_ledge_position()
+		stateMachine.change_state($FighterStateMachine/AirMovement/Ledge)
 
 func _off_ledge():
-	print("OWCH")
+	ledgeGrabCount = 0
 	ledgeHeld = null
 	velocity.y = -1250
 	stateMachine.change_state($FighterStateMachine/AirMovement/Air)
