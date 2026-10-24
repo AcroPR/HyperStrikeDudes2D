@@ -33,16 +33,19 @@ func _physics_process(_delta: float) -> void:
 		if inputBuffer[action] > 0:
 			inputBuffer[action] -= 1
 
+func  _hard_release(action: String) -> void:
+	inputBuffer[action] = 0
+
 func _just_pressed(action: String) -> bool:
 	return inputBuffer[action] > 0
-
-func _pressed(action: String) -> bool:
-	var inputAction = action+"_"+str(controllerID)
-	return Input.is_action_pressed(inputAction)
 
 func _just_released(action: String) -> bool:
 	var inputAction = action+"_"+str(controllerID)
 	return Input.is_action_just_released(inputAction)
+
+func _pressed(action: String) -> bool:
+	var inputAction = action+"_"+str(controllerID)
+	return Input.is_action_pressed(inputAction)
 
 func _get_strength(action: String) -> float:
 	var inputAction = action+"_"+str(controllerID)

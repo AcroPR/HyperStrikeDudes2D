@@ -10,6 +10,7 @@ const RUN_THRESHOLD: float = 0.8
 @export_category("Fighter Attributes")
 @export var airDrift: float = 3.75
 @export_range(1, 99) var airJumps: int = 1
+@export var airJumpHeight: float = 12.25
 @export var airSpeed: float = 7.4
 @export_range(0, 30) var dashFrames: int = 15
 @export var dashSpeed: float = 8.25

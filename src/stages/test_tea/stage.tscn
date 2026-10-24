@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(1372, 240)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioypq"]
+size = Vector2(2930, 240)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ow34k"]
 size = Vector2(630, 40)
 
@@ -20,6 +23,12 @@ position = Vector2(0, 282)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/MainStage" unique_id=959838015]
 shape = SubResource("RectangleShape2D_s7spp")
 
+[node name="MainStage2" type="StaticBody2D" parent="Stage" unique_id=339645551]
+position = Vector2(23, -688)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/MainStage2" unique_id=860838220]
+shape = SubResource("RectangleShape2D_ioypq")
+
 [node name="Platform" type="StaticBody2D" parent="Stage" unique_id=1445505944]
 position = Vector2(-571, 4)
 collision_layer = 4
@@ -30,7 +39,6 @@ shape = SubResource("RectangleShape2D_ow34k")
 one_way_collision = true
 debug_color = Color(0.85490197, 0.7882353, 0, 0.41960785)
 
-[node name="Pillow" type="CharacterBody2D" parent="." unique_id=715632402]
-
 [node name="Fighter" parent="." unique_id=166561770 instance=ExtResource("1_ioypq")]
 position = Vector2(136, 14)
+airJumps = 3

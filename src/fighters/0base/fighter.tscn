@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://btcekulraylpp" path="res://src/fighters/0base/states/ground_movement/state_jumpsquat.gd" id="10_3f8t4"]
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
+[ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
 size = Vector2(150, 64)
@@ -42,9 +43,10 @@ startingState = NodePath("GroundMovement/Idle")
 
 [node name="AirMovement" type="Node" parent="FighterStateMachine" unique_id=1954974873]
 
-[node name="Air" type="Node" parent="FighterStateMachine/AirMovement" unique_id=2051739540 node_paths=PackedStringArray("landing_state")]
+[node name="Air" type="Node" parent="FighterStateMachine/AirMovement" unique_id=2051739540 node_paths=PackedStringArray("airDodgeState", "landingState")]
 script = ExtResource("5_j2vvu")
-landing_state = NodePath("../../GroundMovement/Landing")
+airDodgeState = NodePath("../../DefensiveOptions/AirDodge")
+landingState = NodePath("../../GroundMovement/Landing")
 
 [node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
 
@@ -106,6 +108,11 @@ rollState = NodePath("../Roll")
 script = ExtResource("13_ggk8k")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="AirDodge" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=1942714709 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("14_ffpro")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
 
 [node name="Model" type="Node2D" parent="." unique_id=240743938]
 
