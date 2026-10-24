@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c22hdvtllxe2d"]
+
+[ext_resource type="Script" uid="uid://kr3kxqr2r1gg" path="res://src/fighters/0base/scripts/off_screen_marker.gd" id="1_e2vcb"]
+[ext_resource type="Texture2D" uid="uid://dy7g1lamkru3t" path="res://icon.svg" id="1_ulu1s"]
+
+[node name="OffScreenMarker" type="Node2D" unique_id=1581201541]
+script = ExtResource("1_e2vcb")
+
+[node name="SpriteBG" type="Sprite2D" parent="." unique_id=1283008723]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ulu1s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1817361776]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ulu1s")

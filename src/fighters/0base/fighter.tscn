@@ -16,6 +16,10 @@
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
 [ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
+[ext_resource type="PackedScene" uid="uid://c22hdvtllxe2d" path="res://src/fighters/0base/off_screen_marker.tscn" id="17_kg1nh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
+size = Vector2(98, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
 size = Vector2(150, 64)
@@ -23,8 +27,8 @@ size = Vector2(150, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(132, 54)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
-size = Vector2(98, 138)
+[sub_resource type="ViewportTexture" id="ViewportTexture_kg1nh"]
+viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_3f8t4"]
 resource_name = "Idle"
@@ -122,38 +126,70 @@ script = ExtResource("14_ffpro")
 airState = NodePath("../../AirMovement/Air")
 landingState = NodePath("../../GroundMovement/Landing")
 
-[node name="Model" type="Node2D" parent="." unique_id=240743938]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1731486011]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Model" unique_id=1124190998]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=602887235]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 4
+render_target_update_mode = 4
+
+[node name="OffScreenCamera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=868070237]
+position = Vector2(256, 256)
+
+[node name="Model" type="Node2D" parent="SubViewportContainer/SubViewport/OffScreenCamera2D" unique_id=240743938]
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/OffScreenCamera2D/Model" unique_id=1124190998]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oew5a")
-
-[node name="Hitboxes" type="Node2D" parent="Model" unique_id=1486285204]
-
-[node name="Hurtboxes" type="Node2D" parent="Model" unique_id=1479151901]
-
-[node name="Hurtbox" type="Area2D" parent="Model/Hurtboxes" unique_id=1489190511]
-collision_layer = 16
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Model/Hurtboxes/Hurtbox" unique_id=1557493030]
-shape = SubResource("RectangleShape2D_j5tfj")
-debug_color = Color(0, 0.6465699, 0.24130636, 0.41960785)
-
-[node name="LedgeGrabBox" type="Area2D" parent="Model" unique_id=666063738]
-position = Vector2(66, -59)
-collision_layer = 0
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Model/LedgeGrabBox" unique_id=1932363277]
-shape = SubResource("RectangleShape2D_p8qh6")
-
-[node name="LedgePosition" type="Marker2D" parent="Model" unique_id=365776031]
-position = Vector2(66, -59)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928045644]
 shape = SubResource("RectangleShape2D_s7spp")
 debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
+
+[node name="ModelCollisions" type="Node2D" parent="." unique_id=1051216412]
+
+[node name="Hitboxes" type="Node2D" parent="ModelCollisions" unique_id=1893075805]
+
+[node name="Hurtboxes" type="Node2D" parent="ModelCollisions" unique_id=859993842]
+
+[node name="Hurtbox" type="Area2D" parent="ModelCollisions/Hurtboxes" unique_id=1949043395]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModelCollisions/Hurtboxes/Hurtbox" unique_id=1134511638]
+shape = SubResource("RectangleShape2D_j5tfj")
+debug_color = Color(0, 0.6465699, 0.24130636, 0.41960785)
+
+[node name="LedgeGrabBox" type="Area2D" parent="ModelCollisions" unique_id=587669210]
+position = Vector2(66, -59)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ModelCollisions/LedgeGrabBox" unique_id=537149702]
+shape = SubResource("RectangleShape2D_p8qh6")
+
+[node name="LedgePosition" type="Marker2D" parent="ModelCollisions" unique_id=69393433]
+position = Vector2(66, -59)
+
+[node name="OffScreenMarker" parent="." unique_id=1581201541 node_paths=PackedStringArray("parent") instance=ExtResource("17_kg1nh")]
+position = Vector2(0, -134)
+onScreenOffset = Vector2(0.5, -134)
+parent = NodePath("..")
+
+[node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
+texture = SubResource("ViewportTexture_kg1nh")
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
 anchors_preset = 8
@@ -173,5 +209,7 @@ horizontal_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=221741732]
 libraries/ = SubResource("AnimationLibrary_j1xik")
 
-[connection signal="area_entered" from="Model/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="Model/LedgeGrabBox" to="." method="_on_ledge_grab_box_area_entered"]
+[connection signal="area_entered" from="ModelCollisions/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="ModelCollisions/LedgeGrabBox" to="." method="_on_ledge_grab_box_area_entered"]
+
+[editable path="OffScreenMarker"]

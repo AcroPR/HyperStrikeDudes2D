@@ -27,8 +27,9 @@ const RUN_THRESHOLD: float = 0.8
 @export_range(0, 3) var playerID: int = 0
 
 @onready var inputComponent = $InputComponent
-@onready var ledgePosition: Marker2D = $Model/LedgePosition
-@onready var model = $Model
+@onready var ledgePosition: Marker2D = $ModelCollisions/LedgePosition
+@onready var model = $SubViewportContainer/SubViewport/OffScreenCamera2D/Model
+@onready var modelCollisions: Node2D = $ModelCollisions
 @onready var stateLabel = $StateLabel
 
 var airJumpCount: int = 0
@@ -57,9 +58,11 @@ func _set_face(moveDir):
 		[true,false]:
 			facingRight = false
 			model.scale.x = -1
+			modelCollisions.scale.x = -1
 		[false,true]:
 			facingRight = true
 			model.scale.x = 1
+			modelCollisions.scale.x = 1
 
 func _ready() -> void:
 	inputComponent.controllerID = playerID
@@ -69,8 +72,10 @@ func _ready() -> void:
 	match facingRight:
 		true:
 			model.scale.x = 1
+			modelCollisions.scale.x = 1
 		false:
 			model.scale.x = -1
+			modelCollisions.scale.x = -1
 
 func _process(delta: float) -> void:
 	stateMachine.process_frame(delta)
