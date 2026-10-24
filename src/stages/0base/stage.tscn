@@ -58,6 +58,7 @@ position = Vector2(686, 162)
 
 [node name="LedgeLeft" parent="Stage" unique_id=169432444 instance=ExtResource("1_tg4du")]
 position = Vector2(-686, 162)
+facingRight = false
 
 [node name="FighterSpawners" type="Node2D" parent="." unique_id=1461162809]
 

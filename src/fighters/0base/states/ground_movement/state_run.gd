@@ -13,7 +13,7 @@ var moveDir
 func enter() -> void:
 	super()
 	moveDir = [inputComponent._pressed("move_left"),inputComponent._pressed("move_right")]
-	parent._set_face(moveDir)
+	parent._set_face_with_move_dir(moveDir)
 
 func process_physics(delta: float) -> State:
 	

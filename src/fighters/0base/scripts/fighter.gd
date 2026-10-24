@@ -55,7 +55,16 @@ func _is_dashing_correctly() -> bool:
 		return true
 	return false
 
-func _set_face(moveDir):
+func _set_face():
+	match facingRight:
+		true:
+			model.scale.x = 1
+			modelCollisions.scale.x = 1
+		false:
+			model.scale.x = -1
+			modelCollisions.scale.x = -1
+
+func _set_face_with_move_dir(moveDir):
 	match moveDir:
 		[true,false]:
 			facingRight = false
@@ -70,13 +79,7 @@ func _ready() -> void:
 	ledgeHeld = null
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
-	match facingRight:
-		true:
-			model.scale.x = 1
-			modelCollisions.scale.x = 1
-		false:
-			model.scale.x = -1
-			modelCollisions.scale.x = -1
+	_set_face()
 
 func _process(delta: float) -> void:
 	stateMachine.process_frame(delta)
@@ -97,6 +100,8 @@ func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:
 		ledgeGrabCount += 1
 		ledgeHeld = ledge
+		facingRight = !ledgeHeld.facingRight
+		_set_face()
 		ledgeHeld._set_ledge_grab(self)
 		_set_ledge_position()
 		stateMachine.change_state($FighterStateMachine/AirMovement/Ledge)

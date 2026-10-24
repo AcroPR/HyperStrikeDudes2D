@@ -12,7 +12,7 @@ func enter() -> void:
 
 func _get_x_dir() -> int:
 	var moveDir = [inputComponent._pressed("move_left"),inputComponent._pressed("move_right")]
-	#parent._set_face(moveDir)
+	#parent._set_face_with_move_dir(moveDir)
 	match moveDir:
 		[true,false]:
 			return -1
