@@ -36,6 +36,7 @@ window/stretch/mode="viewport"
 2d_physics/layer_5="hurtbox"
 2d_physics/layer_6="shieldbox"
 2d_physics/layer_7="death"
+2d_physics/layer_8="ledge"
 
 [physics]
 

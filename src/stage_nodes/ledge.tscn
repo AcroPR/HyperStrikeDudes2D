@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://culor3dapbonn"]
+
+[ext_resource type="Script" uid="uid://06had6vqnmxb" path="res://src/stage_nodes/scripts/ledge.gd" id="1_bh3v6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7spp"]
+
+[node name="LedgeRight" type="Area2D" unique_id=940562255]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_bh3v6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=358039975]
+shape = SubResource("CircleShape2D_s7spp")

@@ -28,9 +28,9 @@ func process_frame(_delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if inputComponent._just_pressed("jump") and parent.airJumpCount < parent.airJumps and check_jump:
+	if inputComponent._just_pressed("jump") and parent.airJumpCount < parent.maxAirJumps and check_jump:
 		check_jump = false
-		var midAirMultiplier = 1.15 - (float(parent.airJumpCount) / float(parent.airJumps))
+		var midAirMultiplier = 1.15 - (float(parent.airJumpCount) / float(parent.maxAirJumps))
 		if midAirMultiplier > 1.0: midAirMultiplier = 1.0
 		var midAirJumpHeight = parent.airJumpHeight * midAirMultiplier
 		parent.airJumpCount += 1

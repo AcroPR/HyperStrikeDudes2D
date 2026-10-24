@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://m8ufo6g8l4wv"]
 
+[ext_resource type="PackedScene" uid="uid://culor3dapbonn" path="res://src/stage_nodes/ledge.tscn" id="1_dc0mv"]
 [ext_resource type="PackedScene" uid="uid://bo6fwwvivas0j" path="res://src/fighters/0base/fighter.tscn" id="1_ioypq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
@@ -39,6 +40,15 @@ shape = SubResource("RectangleShape2D_ow34k")
 one_way_collision = true
 debug_color = Color(0.85490197, 0.7882353, 0, 0.41960785)
 
+[node name="LedgeRight" parent="Stage" unique_id=940562255 instance=ExtResource("1_dc0mv")]
+position = Vector2(686, 162)
+
+[node name="LedgeLeft" parent="Stage" unique_id=169432444 instance=ExtResource("1_dc0mv")]
+position = Vector2(-686, 162)
+
 [node name="Fighter" parent="." unique_id=166561770 instance=ExtResource("1_ioypq")]
 position = Vector2(136, 14)
-airJumps = 3
+
+[node name="Fighter2" parent="." unique_id=78937163 instance=ExtResource("1_ioypq")]
+position = Vector2(-136, -78)
+playerID = 1

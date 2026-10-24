@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bx4b84r5vuyil" path="res://src/fighters/0base/states/ground_movement/state_idle.gd" id="4_rmkpu"]
 [ext_resource type="Script" uid="uid://cbmdajejhd2ef" path="res://src/fighters/0base/states/ground_movement/state_dash.gd" id="5_bn4rd"]
 [ext_resource type="Script" uid="uid://dy20tb5nf8pu0" path="res://src/fighters/0base/states/air_movement/state_air.gd" id="5_j2vvu"]
+[ext_resource type="Script" uid="uid://dthq6p85ik0wp" path="res://src/fighters/0base/states/air_movement/state_ledge.gd" id="5_wi5nl"]
 [ext_resource type="Script" uid="uid://b3t8173xmtsxd" path="res://src/fighters/0base/states/ground_movement/state_walk.gd" id="6_xu1qu"]
 [ext_resource type="Script" uid="uid://byvmyfkscs7sy" path="res://src/fighters/0base/states/ground_movement/state_landing.gd" id="7_j1xik"]
 [ext_resource type="Script" uid="uid://b3x2chrb218dd" path="res://src/fighters/0base/states/ground_movement/state_skid.gd" id="7_m5eah"]
@@ -18,6 +19,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
 size = Vector2(150, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
+size = Vector2(132, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(98, 138)
@@ -47,6 +51,10 @@ startingState = NodePath("GroundMovement/Idle")
 script = ExtResource("5_j2vvu")
 airDodgeState = NodePath("../../DefensiveOptions/AirDodge")
 landingState = NodePath("../../GroundMovement/Landing")
+
+[node name="Ledge" type="Node" parent="FighterStateMachine/AirMovement" unique_id=1313268952 node_paths=PackedStringArray("airState")]
+script = ExtResource("5_wi5nl")
+airState = NodePath("../Air")
 
 [node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
 
@@ -132,6 +140,17 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_j5tfj")
 debug_color = Color(0, 0.6465699, 0.24130636, 0.41960785)
 
+[node name="LedgeGrabBox" type="Area2D" parent="Model" unique_id=666063738]
+position = Vector2(66, -59)
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Model/LedgeGrabBox" unique_id=1932363277]
+shape = SubResource("RectangleShape2D_p8qh6")
+
+[node name="LedgePosition" type="Marker2D" parent="Model" unique_id=365776031]
+position = Vector2(66, -59)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928045644]
 shape = SubResource("RectangleShape2D_s7spp")
 debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
@@ -155,3 +174,4 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_j1xik")
 
 [connection signal="area_entered" from="Model/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Model/LedgeGrabBox" to="." method="_on_ledge_grab_box_area_entered"]

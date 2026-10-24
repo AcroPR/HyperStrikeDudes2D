@@ -9,7 +9,6 @@ const RUN_THRESHOLD: float = 0.8
 
 @export_category("Fighter Attributes")
 @export var airDrift: float = 3.75
-@export_range(1, 99) var airJumps: int = 1
 @export var airJumpHeight: float = 12.25
 @export var airSpeed: float = 7.4
 @export_range(0, 30) var dashFrames: int = 15
@@ -18,6 +17,7 @@ const RUN_THRESHOLD: float = 0.8
 @export var hopHeight: float = 7.45
 @export var jumpHeight: float = 12.25
 @export_range(4, 10) var jumpSquatFrames: int = 4
+@export_range(1, 99) var maxAirJumps: int = 1
 @export var runSpeed: float = 6.75
 @export var weight: float = 27
 @export var walkSpeed: float = 4.80
@@ -27,11 +27,13 @@ const RUN_THRESHOLD: float = 0.8
 @export_range(0, 3) var playerID: int = 0
 
 @onready var inputComponent = $InputComponent
+@onready var ledgePosition: Marker2D = $Model/LedgePosition
 @onready var model = $Model
 @onready var stateLabel = $StateLabel
 
 var airJumpCount: int = 0
 var landingFrames: int = 0
+var ledgeHeld: Ledge
 
 func _can_move() -> bool:
 	# Move Direction (Horizontal)
@@ -59,6 +61,8 @@ func _set_face(moveDir):
 			model.scale.x = 1
 
 func _ready() -> void:
+	inputComponent.controllerID = playerID
+	ledgeHeld = null
 	#inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	match facingRight:
@@ -79,3 +83,19 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	print("OOOOOOWWWWWWW!!!!!!!!!!!!")
+
+func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
+	ledgeHeld = ledge
+	ledgeHeld._set_ledge_grab(self)
+	_set_ledge_position()
+	stateMachine.change_state($FighterStateMachine/AirMovement/Ledge)
+
+func _off_ledge():
+	print("OWCH")
+	ledgeHeld = null
+	velocity.y = -1250
+	stateMachine.change_state($FighterStateMachine/AirMovement/Air)
+
+func _set_ledge_position():
+	var newPosition = ledgeHeld.global_position - ledgePosition.position
+	global_position = newPosition
