@@ -27,7 +27,7 @@ func process_physics(delta: float) -> State:
 	if inputComponent._just_pressed("jump"):
 		return jumpSquatState
 	
-	if inputComponent._just_pressed("block"):
+	if inputComponent._pressed("block"):
 		return blockState
 	
 	if inputComponent._just_pressed("emote"):

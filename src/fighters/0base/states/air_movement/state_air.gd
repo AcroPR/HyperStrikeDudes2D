@@ -35,7 +35,7 @@ func process_physics(delta: float) -> State:
 		#parent._set_shoot_state()
 	
 	if parent.is_on_floor():
-		parent.landingFrames = 2
+		parent.landingFrames = 4
 		return landing_state
 	
 	return null

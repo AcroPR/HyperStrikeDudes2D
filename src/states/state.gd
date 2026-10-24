@@ -4,7 +4,7 @@ extends Node
 # Parent Node
 var parent: Fighter
 var model: Node2D
-var inputComponent: Node #InputComponent
+var inputComponent: InputComponent
 
 var frames = 0
 
