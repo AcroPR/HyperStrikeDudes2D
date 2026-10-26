@@ -18,9 +18,11 @@ var paused: bool
 func _add_selected_animations():
 	var itemNum = 0
 	animationList = fighterNode.animationPlayer.get_animation_list()
+	selectedAnimation.clear()
 	for animation in animationList:
 		selectedAnimation.add_item(animation, itemNum)
 		itemNum += 1
+	_on_selected_animation_item_selected(0)
 
 func _add_selected_fighters():
 	var allFighters = DirAccess.open(fighterDir)
@@ -37,7 +39,6 @@ func _add_selected_fighters():
 func _ready() -> void:
 	_add_selected_fighters()
 	_on_selected_fighter_item_selected(0)
-	_on_selected_animation_item_selected(0)
 
 func _process(_delta):
 	match paused:
@@ -71,6 +72,8 @@ func _on_selected_animation_item_selected(index: int) -> void:
 	_on_play_button_pressed()
 
 func _on_selected_fighter_item_selected(index: int) -> void:
+	for child in fighterSpawn.get_children():
+		child.queue_free()
 	var fighterPath = fighterDir + fighterNames[index] + "/fighter.tscn"
 	var fighter = load(fighterPath)
 	var fighterInstance: Fighter = fighter.instantiate()
