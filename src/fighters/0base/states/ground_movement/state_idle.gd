@@ -10,10 +10,14 @@ extends State
 @export var jumpSquatState: State
 @export var walkState: State
 
+@export_category("Attack States")
+@export var attackNState: State
+
 func enter() -> void:
 	super()
 	parent.airJumpCount = 0
 	parent.ledgeGrabCount = 0
+	parent.animationPlayer.play("Idle")
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta
@@ -26,6 +30,9 @@ func process_physics(delta: float) -> State:
 		return walkState
 	
 	parent.move_and_slide()
+	
+	if inputComponent._just_pressed("attack"):
+		return attackNState
 	
 	if inputComponent._just_pressed("jump"):
 		return jumpSquatState

@@ -10,13 +10,13 @@ func _on_dead_fighter(_playerID: int):
 
 func _spawn_fighter(_playerID: int = 0):
 	var fighter = preload("res://src/fighters/0base/fighter.tscn")
-	var fighter_instance: Fighter = fighter.instantiate()
-	fighter_instance.dead_fighter.connect(_on_dead_fighter)
+	var fighterInstance: Fighter = fighter.instantiate()
+	fighterInstance.dead_fighter.connect(_on_dead_fighter)
 	if playerID == -1:
-		fighter_instance.playerID = _playerID
+		fighterInstance.playerID = _playerID
 	else:
-		fighter_instance.playerID = playerID
-	add_child(fighter_instance)
+		fighterInstance.playerID = playerID
+	add_child(fighterInstance)
 
 func _ready() -> void:
 	$Sprite2D.visible = false

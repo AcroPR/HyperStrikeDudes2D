@@ -28,11 +28,13 @@ const RUN_THRESHOLD: float = 0.8
 @export var facingRight = true
 @export_range(0, 3) var playerID: int = 0
 
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var inputComponent = $InputComponent
 @onready var ledgeGrabBox: Area2D = $ModelCollisions/LedgeGrabBox
 @onready var ledgePosition: Marker2D = $ModelCollisions/LedgePosition
 @onready var model = $SubViewportContainer/SubViewport/OffScreenCamera2D/Model
 @onready var modelCollisions: Node2D = $ModelCollisions
+@onready var offScreenMarker: OffScreenMarker = $OffScreenMarker
 @onready var stateLabel = $StateLabel
 
 var airJumpCount: int = 0

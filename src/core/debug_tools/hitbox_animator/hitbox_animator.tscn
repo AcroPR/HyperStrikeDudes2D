@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://dsvwuivoeji62"]
+
+[ext_resource type="Script" uid="uid://by78hrwgq80km" path="res://src/core/debug_tools/hitbox_animator/scripts/hitbox_animator.gd" id="1_16gd2"]
+
+[node name="HitboxAnimator" type="Control" unique_id=1410462686]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_16gd2")
+
+[node name="FighterSpawn" type="Node2D" parent="." unique_id=1352176360]
+position = Vector2(960, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531057587]
+
+[node name="SelectedFighter" type="OptionButton" parent="CanvasLayer" unique_id=429266096]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -906.0
+offset_top = 38.0
+offset_right = -595.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="SelectedAnimation" type="OptionButton" parent="CanvasLayer" unique_id=1420274889]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -345.0
+offset_top = 38.0
+offset_right = 345.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="PlayAndHitboxSelect" type="VBoxContainer" parent="CanvasLayer" unique_id=1123431672]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 44.0
+offset_right = 385.0
+grow_vertical = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=1675502618]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Paused"
+
+[node name="CreateHitbox" type="Button" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=1050457713]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = " Create Hitbox "
+
+[node name="Hitboxes" type="OptionButton" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=595867887]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+
+[node name="Frames" type="VBoxContainer" parent="CanvasLayer" unique_id=1846555047]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 301.0
+offset_top = -192.0
+offset_right = -301.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="FrameLabel" type="Label" parent="CanvasLayer/Frames" unique_id=1929501143]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Frame: 60"
+horizontal_alignment = 1
+
+[node name="FrameSlider" type="HSlider" parent="CanvasLayer/Frames" unique_id=290284153]
+layout_mode = 2
+
+[connection signal="item_selected" from="CanvasLayer/SelectedFighter" to="." method="_on_selected_fighter_item_selected"]
+[connection signal="item_selected" from="CanvasLayer/SelectedAnimation" to="." method="_on_selected_animation_item_selected"]
+[connection signal="pressed" from="CanvasLayer/PlayAndHitboxSelect/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/Frames/FrameSlider" to="." method="_on_frame_slider_value_changed"]

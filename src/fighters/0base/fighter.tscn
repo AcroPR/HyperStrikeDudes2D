@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://byvmyfkscs7sy" path="res://src/fighters/0base/states/ground_movement/state_landing.gd" id="7_j1xik"]
 [ext_resource type="Script" uid="uid://b3x2chrb218dd" path="res://src/fighters/0base/states/ground_movement/state_skid.gd" id="7_m5eah"]
 [ext_resource type="Script" uid="uid://dlnlnnyamxl86" path="res://src/fighters/0base/states/ground_movement/state_run.gd" id="7_sbl3l"]
+[ext_resource type="Script" uid="uid://bl525lpc5sfy0" path="res://src/fighters/0base/states/ground_attacks/state_attack_n.gd" id="9_oluc5"]
 [ext_resource type="Script" uid="uid://btcekulraylpp" path="res://src/fighters/0base/states/ground_movement/state_jumpsquat.gd" id="10_3f8t4"]
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
@@ -31,12 +32,56 @@ size = Vector2(132, 54)
 [sub_resource type="ViewportTexture" id="ViewportTexture_oluc5"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
+[sub_resource type="Animation" id="Animation_xp0b5"]
+resource_name = "AttackN"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_3f8t4"]
 resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oluc5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1xik"]
 _data = {
-&"Idle": SubResource("Animation_3f8t4")
+&"AttackN": SubResource("Animation_xp0b5"),
+&"Idle": SubResource("Animation_3f8t4"),
+&"RESET": SubResource("Animation_oluc5")
 }
 
 [node name="Fighter" type="CharacterBody2D" unique_id=166561770 node_paths=PackedStringArray("stateMachine")]
@@ -61,6 +106,32 @@ landingState = NodePath("../../GroundMovement/Landing")
 script = ExtResource("5_wi5nl")
 airState = NodePath("../Air")
 
+[node name="DefensiveOptions" type="Node" parent="FighterStateMachine" unique_id=1502868391]
+
+[node name="Block" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=277868469 node_paths=PackedStringArray("airState", "idleState", "jumpSquatState", "rollState")]
+script = ExtResource("12_5xqg6")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+jumpSquatState = NodePath("../../GroundMovement/JumpSquat")
+rollState = NodePath("../Roll")
+
+[node name="Roll" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=652385952 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("13_ggk8k")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="AirDodge" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=1942714709 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("14_ffpro")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
+
+[node name="GroundAttacks" type="Node" parent="FighterStateMachine" unique_id=497291418]
+
+[node name="AttackN" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=363982879 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
 [node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
 
 [node name="Crouch" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=813207645 node_paths=PackedStringArray("airState", "blockState", "idleState", "jumpSquatState", "walkState")]
@@ -80,7 +151,7 @@ jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
 runState = NodePath("../Run")
 
-[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState")]
+[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState", "attackNState")]
 script = ExtResource("4_rmkpu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
@@ -88,6 +159,7 @@ crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
+attackNState = NodePath("../../GroundAttacks/AttackN")
 
 [node name="Landing" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1716248050 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("7_j1xik")
@@ -120,25 +192,6 @@ jumpSquatState = NodePath("../JumpSquat")
 [node name="JumpSquat" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1342271518 node_paths=PackedStringArray("airState")]
 script = ExtResource("10_3f8t4")
 airState = NodePath("../../AirMovement/Air")
-
-[node name="DefensiveOptions" type="Node" parent="FighterStateMachine" unique_id=1502868391]
-
-[node name="Block" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=277868469 node_paths=PackedStringArray("airState", "idleState", "jumpSquatState", "rollState")]
-script = ExtResource("12_5xqg6")
-airState = NodePath("../../AirMovement/Air")
-idleState = NodePath("../../GroundMovement/Idle")
-jumpSquatState = NodePath("../../GroundMovement/JumpSquat")
-rollState = NodePath("../Roll")
-
-[node name="Roll" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=652385952 node_paths=PackedStringArray("airState", "idleState")]
-script = ExtResource("13_ggk8k")
-airState = NodePath("../../AirMovement/Air")
-idleState = NodePath("../../GroundMovement/Idle")
-
-[node name="AirDodge" type="Node" parent="FighterStateMachine/DefensiveOptions" unique_id=1942714709 node_paths=PackedStringArray("airState", "landingState")]
-script = ExtResource("14_ffpro")
-airState = NodePath("../../AirMovement/Air")
-landingState = NodePath("../../GroundMovement/Landing")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1731486011]
 anchors_preset = 8
