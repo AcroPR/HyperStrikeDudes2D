@@ -3,6 +3,7 @@ extends State
 @export_category("States")
 @export var airState: State
 @export var blockState: State
+@export var crouchState: State
 @export var emoteState: State
 @export var grabState: State
 @export var jumpSquatState: State
@@ -51,6 +52,9 @@ func process_physics(delta: float) -> State:
 	
 	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
 		parent.set_collision_mask_value(3,false)
+	
+	if inputComponent._just_pressed("move_down"):
+		return crouchState
 	
 	if !parent.is_on_floor():
 		return airState
