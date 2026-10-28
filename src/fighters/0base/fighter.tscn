@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
 [ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
 [ext_resource type="PackedScene" uid="uid://c22hdvtllxe2d" path="res://src/fighters/0base/off_screen_marker.tscn" id="17_kg1nh"]
+[ext_resource type="Script" uid="uid://5crs3p6y3kec" path="res://src/hitbox_and_hurtbox/scripts/hitboxe_manager.gd" id="19_xp0b5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(98, 138)
@@ -29,7 +30,7 @@ size = Vector2(150, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(132, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oluc5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ny5l"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_xp0b5"]
@@ -227,7 +228,9 @@ debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
 
 [node name="ModelCollisions" type="Node2D" parent="." unique_id=1051216412]
 
-[node name="Hitboxes" type="Node2D" parent="ModelCollisions" unique_id=1893075805]
+[node name="HitboxManager" type="Node2D" parent="ModelCollisions" unique_id=1893075805 node_paths=PackedStringArray("fighter")]
+script = ExtResource("19_xp0b5")
+fighter = NodePath("../..")
 
 [node name="Hurtboxes" type="Node2D" parent="ModelCollisions" unique_id=859993842]
 
@@ -256,7 +259,7 @@ onScreenOffset = Vector2(0.5, -134)
 parent = NodePath("..")
 
 [node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
-texture = SubResource("ViewportTexture_oluc5")
+texture = SubResource("ViewportTexture_2ny5l")
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
 anchors_preset = 8

@@ -29,6 +29,7 @@ const RUN_THRESHOLD: float = 0.8
 @export_range(0, 3) var playerID: int = 0
 
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var hitboxManager: HitboxManager = $ModelCollisions/HitboxManager
 @onready var inputComponent = $InputComponent
 @onready var ledgeGrabBox: Area2D = $ModelCollisions/LedgeGrabBox
 @onready var ledgePosition: Marker2D = $ModelCollisions/LedgePosition

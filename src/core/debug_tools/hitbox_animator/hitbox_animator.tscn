@@ -1,18 +1,26 @@
 [gd_scene format=3 uid="uid://dsvwuivoeji62"]
 
 [ext_resource type="Script" uid="uid://by78hrwgq80km" path="res://src/core/debug_tools/hitbox_animator/scripts/hitbox_animator.gd" id="1_16gd2"]
+[ext_resource type="Script" uid="uid://8d1ey8cyuswc" path="res://src/core/debug_tools/hitbox_animator/scripts/page_buttons.gd" id="2_x17mc"]
+[ext_resource type="Script" uid="uid://cwcfk82xgfs4x" path="res://src/core/debug_tools/hitbox_animator/scripts/page_one.gd" id="3_3286r"]
+[ext_resource type="Script" uid="uid://b5xns2l7gabpy" path="res://src/core/debug_tools/hitbox_animator/scripts/page_two.gd" id="4_ys5v2"]
+[ext_resource type="Script" uid="uid://dd0tv1f3ym2b1" path="res://src/core/debug_tools/hitbox_animator/scripts/page_three.gd" id="5_l8pyd"]
+[ext_resource type="Script" uid="uid://br7cj37co63ol" path="res://src/core/debug_tools/hitbox_animator/scripts/page_four.gd" id="6_7vr3r"]
 
 [node name="HitboxAnimator" type="Control" unique_id=1410462686]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_16gd2")
 
 [node name="FighterSpawn" type="Node2D" parent="." unique_id=1352176360]
 position = Vector2(960, 540)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=531057587]
-
-[node name="SelectedFighter" type="OptionButton" parent="CanvasLayer" unique_id=429266096]
+[node name="SelectedFighter" type="OptionButton" parent="." unique_id=429266096]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -23,7 +31,8 @@ offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 
-[node name="SelectedAnimation" type="OptionButton" parent="CanvasLayer" unique_id=1420274889]
+[node name="SelectedAnimation" type="OptionButton" parent="." unique_id=1420274889]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -34,7 +43,8 @@ offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 
-[node name="PlayAndHitboxSelect" type="VBoxContainer" parent="CanvasLayer" unique_id=1123431672]
+[node name="PlayAndHitboxSelect" type="VBoxContainer" parent="." unique_id=1123431672]
+layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 44.0
@@ -45,21 +55,22 @@ grow_vertical = 2
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=1675502618]
+[node name="PlayButton" type="Button" parent="PlayAndHitboxSelect" unique_id=1675502618]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Paused"
 
-[node name="CreateHitbox" type="Button" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=1050457713]
+[node name="CreateHitbox" type="Button" parent="PlayAndHitboxSelect" unique_id=1050457713]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Create Hitbox "
 
-[node name="Hitboxes" type="OptionButton" parent="CanvasLayer/PlayAndHitboxSelect" unique_id=595867887]
+[node name="Hitboxes" type="OptionButton" parent="PlayAndHitboxSelect" unique_id=595867887]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
 
-[node name="Frames" type="VBoxContainer" parent="CanvasLayer" unique_id=1846555047]
+[node name="Frames" type="VBoxContainer" parent="." unique_id=1846555047]
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -71,16 +82,374 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="FrameLabel" type="Label" parent="CanvasLayer/Frames" unique_id=1929501143]
+[node name="FrameLabel" type="Label" parent="Frames" unique_id=1929501143]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Frame: 60"
 horizontal_alignment = 1
 
-[node name="FrameSlider" type="HSlider" parent="CanvasLayer/Frames" unique_id=290284153]
+[node name="FrameSlider" type="HSlider" parent="Frames" unique_id=290284153]
 layout_mode = 2
 
-[connection signal="item_selected" from="CanvasLayer/SelectedFighter" to="." method="_on_selected_fighter_item_selected"]
-[connection signal="item_selected" from="CanvasLayer/SelectedAnimation" to="." method="_on_selected_animation_item_selected"]
-[connection signal="pressed" from="CanvasLayer/PlayAndHitboxSelect/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="value_changed" from="CanvasLayer/Frames/FrameSlider" to="." method="_on_frame_slider_value_changed"]
+[node name="HitboxProperties" type="VBoxContainer" parent="." unique_id=1672951191]
+layout_mode = 0
+offset_left = 1436.0
+offset_top = 199.0
+offset_right = 1750.0
+offset_bottom = 606.0
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="HitboxProperties" unique_id=1123493327]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Pages"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PageButtons" type="HBoxContainer" parent="HitboxProperties" unique_id=1413597627]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+script = ExtResource("2_x17mc")
+
+[node name="PageOne" type="Button" parent="HitboxProperties/PageButtons" unique_id=1065141644]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 1 "
+
+[node name="PageTwo" type="Button" parent="HitboxProperties/PageButtons" unique_id=1325387559]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 2 "
+
+[node name="PageThree" type="Button" parent="HitboxProperties/PageButtons" unique_id=1138972767]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 3 "
+
+[node name="PageFour" type="Button" parent="HitboxProperties/PageButtons" unique_id=169037004]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 4 "
+
+[node name="PageOne" type="VBoxContainer" parent="HitboxProperties" unique_id=647751744]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 40
+script = ExtResource("3_3286r")
+
+[node name="HitboxWidth" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1401756652]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageOne/HitboxWidth" unique_id=824332235]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hitbox Width"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/HitboxWidth" unique_id=1166258134]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxHeight" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1230038926]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageOne/HitboxHeight" unique_id=458867459]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hitbox Height"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/HitboxHeight" unique_id=125993762]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="PositionX" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1069637174]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageOne/PositionX" unique_id=1532279176]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "X Position"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/PositionX" unique_id=2025299651]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="PositionY" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1464506844]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageOne/PositionY" unique_id=291743178]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Y Position"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/PositionY" unique_id=501213722]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="PageTwo" type="VBoxContainer" parent="HitboxProperties" unique_id=1122886187 node_paths=PackedStringArray("hitboxAnimator")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 40
+script = ExtResource("4_ys5v2")
+hitboxAnimator = NodePath("../..")
+
+[node name="HitboxPriority" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=743127274]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageTwo/HitboxPriority" unique_id=1422076754]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Priority"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/HitboxPriority" unique_id=905574745]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxStart" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=1616129347]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageTwo/HitboxStart" unique_id=1657958644]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Start Frame"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/HitboxStart" unique_id=1017530763]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="FramesActive" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=41186429]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageTwo/FramesActive" unique_id=165094367]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Frames Active"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/FramesActive" unique_id=666986875]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="Damage" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=2040353300]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageTwo/Damage" unique_id=1933057979]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Damage"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/Damage" unique_id=1667363112]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="PageThree" type="VBoxContainer" parent="HitboxProperties" unique_id=231955508]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 40
+script = ExtResource("5_l8pyd")
+
+[node name="Angle" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=2038488911]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageThree/Angle" unique_id=1918521628]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Angle"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/Angle" unique_id=2114081059]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="BaseKB" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=2098205319]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageThree/BaseKB" unique_id=444044699]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Base KB"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/BaseKB" unique_id=674402662]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="KBScale" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=1401803012]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageThree/KBScale" unique_id=1090785778]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "KB Scale"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/KBScale" unique_id=1017226391]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="Hitstun" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=186331073]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageThree/Hitstun" unique_id=1737419907]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hitstun"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/Hitstun" unique_id=1539425941]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="PageFour" type="VBoxContainer" parent="HitboxProperties" unique_id=1117288243]
+layout_mode = 2
+theme_override_constants/separation = 40
+script = ExtResource("6_7vr3r")
+
+[node name="Hitlag" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=296672904]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageFour/Hitlag" unique_id=39101154]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hitlag"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/Hitlag" unique_id=1999538472]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxHeight" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=859171700]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageFour/HitboxHeight" unique_id=462026484]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Hitbox Height"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/HitboxHeight" unique_id=2076676289]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxX" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=1884515619]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageFour/HitboxX" unique_id=1958794819]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "X Position"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/HitboxX" unique_id=815867791]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxY" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=480970826]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageFour/HitboxY" unique_id=1368950538]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Y Position"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/HitboxY" unique_id=1975691597]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
+[node name="HitboxDeleteAndSave" type="VBoxContainer" parent="HitboxProperties" unique_id=706940386]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1935827916]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = " Delete Hitbox "
+
+[node name="CreateHitbox" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1452381629]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Save Hitboxes"
+
+[connection signal="item_selected" from="SelectedFighter" to="." method="_on_selected_fighter_item_selected"]
+[connection signal="item_selected" from="SelectedAnimation" to="." method="_on_selected_animation_item_selected"]
+[connection signal="pressed" from="PlayAndHitboxSelect/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PlayAndHitboxSelect/CreateHitbox" to="." method="_on_create_hitbox_pressed"]
+[connection signal="item_selected" from="PlayAndHitboxSelect/Hitboxes" to="." method="_on_hitboxes_item_selected"]
+[connection signal="value_changed" from="Frames/FrameSlider" to="." method="_on_frame_slider_value_changed"]
+[connection signal="pressed" from="HitboxProperties/PageButtons/PageOne" to="HitboxProperties/PageButtons" method="_on_page_one_pressed"]
+[connection signal="pressed" from="HitboxProperties/PageButtons/PageTwo" to="HitboxProperties/PageButtons" method="_on_page_two_pressed"]
+[connection signal="pressed" from="HitboxProperties/PageButtons/PageThree" to="HitboxProperties/PageButtons" method="_on_page_three_pressed"]
+[connection signal="pressed" from="HitboxProperties/PageButtons/PageFour" to="HitboxProperties/PageButtons" method="_on_page_four_pressed"]
+[connection signal="text_changed" from="HitboxProperties/PageOne/HitboxWidth/LineEdit" to="HitboxProperties/PageOne" method="_hitbox_width_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageOne/HitboxHeight/LineEdit" to="HitboxProperties/PageOne" method="_hitbox_height_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageOne/PositionX/LineEdit" to="HitboxProperties/PageOne" method="_position_x_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageOne/PositionY/LineEdit" to="HitboxProperties/PageOne" method="_position_y_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageTwo/HitboxPriority/LineEdit" to="HitboxProperties/PageTwo" method="_hitbox_priority_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageTwo/HitboxStart/LineEdit" to="HitboxProperties/PageTwo" method="_hitbox_start_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageTwo/FramesActive/LineEdit" to="HitboxProperties/PageTwo" method="_frames_active_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageTwo/Damage/LineEdit" to="HitboxProperties/PageTwo" method="_damage_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageThree/Angle/LineEdit" to="HitboxProperties/PageThree" method="_angle_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageThree/BaseKB/LineEdit" to="HitboxProperties/PageThree" method="_base_kb_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageThree/KBScale/LineEdit" to="HitboxProperties/PageThree" method="_kb_scale_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageThree/Hitstun/LineEdit" to="HitboxProperties/PageThree" method="_hitstun_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageFour/Hitlag/LineEdit" to="HitboxProperties/PageFour" method="_hit_lag_text_changed"]
