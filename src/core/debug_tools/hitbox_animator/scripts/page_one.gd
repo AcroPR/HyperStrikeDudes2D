@@ -17,12 +17,14 @@ func _set_values(_hitboxNode: Hitbox):
 func _hitbox_width_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
 		hitboxNode.shape.extents.x = int(new_text)
+		hitboxNode.queue_redraw()
 	else:
 		hitboxWidth.text = str(int(hitboxNode.shape.extents.x))
 
 func _hitbox_height_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
 		hitboxNode.shape.extents.y = int(new_text)
+		hitboxNode.queue_redraw()
 	else:
 		hitboxWidth.text = str(int(hitboxNode.shape.extents.y))
 

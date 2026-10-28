@@ -420,12 +420,12 @@ layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1935827916]
+[node name="DeleteHitbox" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1935827916]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = " Delete Hitbox "
 
-[node name="CreateHitbox" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1452381629]
+[node name="SaveHitboxes" type="Button" parent="HitboxProperties/HitboxDeleteAndSave" unique_id=1452381629]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Save Hitboxes"
@@ -453,3 +453,4 @@ text = "Save Hitboxes"
 [connection signal="text_changed" from="HitboxProperties/PageThree/KBScale/LineEdit" to="HitboxProperties/PageThree" method="_kb_scale_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageThree/Hitstun/LineEdit" to="HitboxProperties/PageThree" method="_hitstun_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageFour/Hitlag/LineEdit" to="HitboxProperties/PageFour" method="_hit_lag_text_changed"]
+[connection signal="pressed" from="HitboxProperties/HitboxDeleteAndSave/DeleteHitbox" to="." method="_on_delete_hitbox_pressed"]

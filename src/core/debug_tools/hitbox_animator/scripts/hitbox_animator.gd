@@ -75,6 +75,11 @@ func _on_create_hitbox_pressed() -> void:
 	
 	hitboxCount += 1
 
+func _on_delete_hitbox_pressed() -> void:
+	if hitboxes.selected >= 0:
+		fighterNode.hitboxManager.remove_child(fighterNode.hitboxManager.get_node(hitboxes.get_item_text(hitboxes.selected)))
+		hitboxes.remove_item(hitboxes.selected)
+
 func _on_frame_slider_value_changed(frame: float) -> void:
 	frameLabel.text = "Frame: " + str(int(frame)+1)
 	var frames_to_seconds = frame/60
