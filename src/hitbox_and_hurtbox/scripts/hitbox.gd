@@ -9,6 +9,7 @@ extends Area2D
 @export_category("Hitbox Data")
 @export_range(0,365) var angle: int = 0 : set = _update_angle
 @export_range(0,999) var baseKnockback: int = 0 : set = _update_bkb
+@export_range(0,999) var blockDamage: int = 0 : set = _update_block_damage
 @export_range(0,999) var damage: int = 0 : set = _update_damage
 @export_range(1,99) var framesActive: int = 1 : set = _update_frames
 @export_range(0,4) var hitboxId: int = 0 : set = _update_id
@@ -16,6 +17,8 @@ extends Area2D
 @export_range(0,5) var hitboxPriority: int = 0 : set = _update_priority
 @export_range(0,999) var hitStun: int = 0 : set = _update_hs
 @export_range(0,1) var knockbackScale: float = 0.0 : set = _update_kbs
+@export var reversable: bool = false : set = _update_reversable
+@export_enum("Normal", "Fire", "Electric") var type = 0 : set = _update_type
 
 @export_category("Extras")
 @export var paused: bool = false : set = _update_paused
@@ -30,6 +33,11 @@ func _update_angle(newVal):
 # Updates the base knockback
 func _update_bkb(newVal):
 	baseKnockback = newVal
+	queue_redraw()
+
+# Updates the hitbox damage
+func _update_block_damage(newVal):
+	blockDamage = newVal
 	queue_redraw()
 
 # Updates the hitbox color
@@ -88,8 +96,17 @@ func _update_shape(newVal):
 			collision.set_shape(newVal)
 	queue_redraw()
 
+func _update_reversable(newVal):
+	reversable = newVal
+	queue_redraw()
+
+# Updates the hitbox type
+func _update_type(newVal):
+	type = newVal
+	queue_redraw()
+
 # Custom constructor
-func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initId = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, initHitLag: int = 0):
+func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initId = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, initHitLag: int = 0, initBlockDamage: int = 0, initType: int = 0, initReversable: bool = false):
 	var rectangleShape = RectangleShape2D.new()
 	rectangleShape.extents.x = width
 	rectangleShape.extents.y = height
@@ -107,6 +124,9 @@ func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, init
 	baseKnockback = initBkb
 	knockbackScale = initKbs
 	hitLag = initHitLag
+	blockDamage = initBlockDamage
+	type = initType
+	reversable = initReversable
 
 func _ready() -> void:
 	frame = 0
