@@ -17,6 +17,7 @@ const RUN_THRESHOLD: float = 0.8
 @export var airSpeed: float = 7.4
 @export_range(0, 30) var dashFrames: int = 15
 @export var dashSpeed: float = 8.25
+@export var fastFallMultiplier: float = 2.0
 @export_range(0.0, 1.0) var groundFriction: float = 0.85
 @export var hopHeight: float = 7.45
 @export var jumpHeight: float = 12.25
@@ -41,6 +42,7 @@ const RUN_THRESHOLD: float = 0.8
 @onready var stateLabel = $StateLabel
 
 var airJumpCount: int = 0
+var isFastFalling: bool = false
 var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
@@ -88,6 +90,7 @@ func _set_face_with_move_dir(moveDir):
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	isFastFalling = false
 	ledgeHeld = null
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)

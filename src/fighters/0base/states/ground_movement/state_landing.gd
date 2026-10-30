@@ -8,6 +8,7 @@ func enter() -> void:
 	super()
 	parent.airJumpCount = 0
 	parent.ledgeGrabCount = 0
+	parent.isFastFalling = false
 
 func process_frame(_delta: float) -> State:
 	parent.landingFrames -= 1

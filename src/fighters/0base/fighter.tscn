@@ -28,7 +28,7 @@ size = Vector2(98, 138)
 size = Vector2(150, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
-size = Vector2(132, 54)
+size = Vector2(221, 54)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xp0b5"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
@@ -248,6 +248,7 @@ collision_layer = 0
 collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ModelCollisions/LedgeGrabBox" unique_id=537149702]
+position = Vector2(-44.5, 0)
 shape = SubResource("RectangleShape2D_p8qh6")
 
 [node name="LedgePosition" type="Marker2D" parent="ModelCollisions" unique_id=69393433]

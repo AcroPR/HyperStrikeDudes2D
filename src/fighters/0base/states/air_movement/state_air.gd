@@ -29,6 +29,7 @@ func process_frame(_delta: float) -> State:
 
 func process_physics(delta: float) -> State:
 	if inputComponent._just_pressed("jump") and parent.airJumpCount < parent.maxAirJumps and check_jump:
+		parent.isFastFalling = false
 		check_jump = false
 		var midAirMultiplier = 1.15 - (float(parent.airJumpCount) / float(parent.maxAirJumps))
 		if midAirMultiplier > 1.0: midAirMultiplier = 1.0
@@ -36,7 +37,14 @@ func process_physics(delta: float) -> State:
 		parent.airJumpCount += 1
 		parent.velocity.y = -parent._get_velocity(midAirJumpHeight)
 	
-	parent.velocity.y += parent._get_velocity(parent.weight) * delta
+	if inputComponent._just_pressed("move_down"):
+		parent.isFastFalling = true
+	
+	match parent.isFastFalling:
+		true:
+			parent.velocity.y += parent._get_velocity(parent.weight) * parent.fastFallMultiplier * delta
+		false:
+			parent.velocity.y += parent._get_velocity(parent.weight) * delta
 	
 	parent.ledgeGrabBox.monitoring = parent.velocity.y > 0
 
