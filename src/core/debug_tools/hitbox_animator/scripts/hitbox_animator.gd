@@ -62,7 +62,18 @@ func _process(_delta):
 			frameSlider.value = fighterNode.animationPlayer.current_animation_position * 60
 
 func _import_hitboxes(index: int = 0):
-	pass
+	var fighterName = fighterNames[selectedFighter.selected]
+	var savedHitboxes = HitboxImporter._load_csv(fighterName, animationName)
+	hitboxStartFrames.clear()
+	for currentHitbox in savedHitboxes:
+		hitboxes.add_item("Hitbox " + str(hitboxCount), hitboxCount)
+		hitboxStartFrames.append(currentHitbox[0])
+		fighterNode.hitboxManager.add_child(Hitbox.new()._build_from_array(currentHitbox,true,0))
+		for child in fighterNode.hitboxManager.get_children():
+			if !child.name.contains("Hitbox"):
+				child.name = "Hitbox " + str(hitboxCount)
+				hitboxCount += 1
+	_on_hitboxes_item_selected(0)
 
 func _on_create_hitbox_pressed() -> void:
 	hitboxes.add_item("Hitbox " + str(hitboxCount), hitboxCount)
@@ -120,6 +131,7 @@ func _on_selected_animation_item_selected(index: int) -> void:
 	frameSlider.value = 1
 	frameSlider.value -= 1
 	_reset_hitboxmanager()
+	_import_hitboxes(index)
 	_on_play_button_pressed()
 
 func _on_selected_fighter_item_selected(index: int) -> void:
