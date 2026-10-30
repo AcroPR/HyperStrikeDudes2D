@@ -105,9 +105,9 @@ func _update_type(newVal):
 	type = newVal
 	queue_redraw()
 
-func _build_from_array(current_hitbox: Array, paused: bool = false, hitboxId: int = 0) -> Hitbox:
+func _build_from_array(current_hitbox: Array, _paused: bool = false, _hitboxId: int = 0) -> Hitbox:
 	return Hitbox.new(current_hitbox[1],current_hitbox[2],current_hitbox[3],current_hitbox[4],
-	paused, hitboxId, current_hitbox[7], current_hitbox[6], current_hitbox[5], current_hitbox[10],
+	_paused, _hitboxId, current_hitbox[7], current_hitbox[6], current_hitbox[5], current_hitbox[10],
 	current_hitbox[8], current_hitbox[9], current_hitbox[11], current_hitbox[12], current_hitbox[13],
 	current_hitbox[14],current_hitbox[15])
 
