@@ -8,7 +8,8 @@ var hitboxAnimator = preload("uid://dsvwuivoeji62")
 
 func _run() -> void:
 	window = Window.new()
-	EditorInterface.popup_dialog(window, Rect2(Vector2(100,100), Vector2(1280,720)))
+	EditorInterface.popup_dialog(window)
+	window.mode = Window.MODE_MAXIMIZED
 	
 	window.close_requested.connect(func():
 		window.queue_free()
