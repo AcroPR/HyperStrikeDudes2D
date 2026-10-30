@@ -7,6 +7,7 @@ signal dead_fighter
 const WALK_THRESHOLD: float = 0.25
 const RUN_THRESHOLD: float = 0.8
 
+@export_tool_button("Open Hitbox Animator", "Callable") var openHitboxAnimator = _open_hitbox_animator
 @export_category("Fighter State Machine")
 @export var stateMachine: StateMachine
 
@@ -59,6 +60,10 @@ func _is_dashing_correctly() -> bool:
 	elif inputComponent._pressed("move_right") and facingRight:
 		return true
 	return false
+
+func _open_hitbox_animator():
+	var tool = HitboxAnimatorTool.new()
+	tool._run()
 
 func _set_face():
 	match facingRight:
