@@ -1,3 +1,4 @@
+@tool
 class_name Fighter
 extends CharacterBody2D
 
@@ -80,19 +81,27 @@ func _set_face_with_move_dir(moveDir):
 			modelCollisions.scale.x = 1
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		return
 	ledgeHeld = null
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	_set_face()
 
 func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	stateMachine.process_frame(delta)
 	stateLabel.text = "State: " + stateMachine._get_current_state_name()
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	stateMachine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
 	stateMachine.process_input(event)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

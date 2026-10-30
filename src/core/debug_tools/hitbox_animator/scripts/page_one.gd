@@ -1,3 +1,4 @@
+@tool
 extends VBoxContainer
 
 @onready var hitboxWidth: LineEdit = $HitboxWidth/LineEdit

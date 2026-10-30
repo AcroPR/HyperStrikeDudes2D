@@ -1,3 +1,4 @@
+@tool
 class_name HitboxAnimator
 extends Control
 
@@ -142,11 +143,11 @@ func _on_selected_fighter_item_selected(index: int) -> void:
 	var fighterInstance: Fighter = fighter.instantiate()
 	fighterSpawn.add_child(fighterInstance)
 	fighterNode = fighterInstance
-	fighterNode.set_process(false)
-	fighterNode.set_physics_process(false)
-	fighterNode.offScreenMarker.set_process(false)
+	#fighterNode.set_process(false)
+	#fighterNode.set_physics_process(false)
+	#fighterNode.offScreenMarker.set_process(false)
 	fighterNode.offScreenMarker.visible = false
-	fighterNode.hitboxManager._set_paused(true)
+	#fighterNode.hitboxManager._set_paused(true)
 	_add_selected_animations()
 
 func _on_save_hitboxes_pressed() -> void:
