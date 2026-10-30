@@ -3,6 +3,7 @@ extends Node2D
 
 @export var stage: Stage
 @export_range(-1,3) var playerID: int = -1
+@export var facingRight: bool = true
 
 func _on_dead_fighter(_playerID: int):
 	MatchGlobal.playerLives[_playerID] -= 1
@@ -16,6 +17,7 @@ func _spawn_fighter(_playerID: int = 0):
 		fighterInstance.playerID = _playerID
 	else:
 		fighterInstance.playerID = playerID
+	fighterInstance.facingRight = facingRight
 	add_child(fighterInstance)
 
 func _ready() -> void:

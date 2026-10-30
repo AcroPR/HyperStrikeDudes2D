@@ -70,6 +70,12 @@ position = Vector2(-543, -142)
 stage = NodePath("../..")
 playerID = 0
 
+[node name="1" parent="FighterSpawners" unique_id=1838962776 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
+position = Vector2(352, 35)
+stage = NodePath("../..")
+playerID = 1
+facingRight = false
+
 [node name="DeathZone" type="Node2D" parent="." unique_id=389067667]
 
 [node name="Left" type="Area2D" parent="DeathZone" unique_id=581965215]
