@@ -457,3 +457,4 @@ text = "Save Hitboxes"
 [connection signal="item_selected" from="HitboxProperties/PageFour/Type/OptionButton" to="HitboxProperties/PageFour" method="_on_type_selected"]
 [connection signal="toggled" from="HitboxProperties/PageFour/Reversable/CheckButton" to="HitboxProperties/PageFour" method="_on_reversable_toggled"]
 [connection signal="pressed" from="HitboxProperties/HitboxDeleteAndSave/DeleteHitbox" to="." method="_on_delete_hitbox_pressed"]
+[connection signal="pressed" from="HitboxProperties/HitboxDeleteAndSave/SaveHitboxes" to="." method="_on_save_hitboxes_pressed"]
