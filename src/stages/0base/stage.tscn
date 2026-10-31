@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://grnnlm6acnfl" path="res://src/stages/0base/script/stage.gd" id="1_onwow"]
 [ext_resource type="PackedScene" uid="uid://culor3dapbonn" path="res://src/stage_nodes/ledge.tscn" id="1_tg4du"]
+[ext_resource type="PackedScene" uid="uid://ce5q7wgo511mj" path="res://src/stage_nodes/stage_camera.tscn" id="2_bhq1v"]
 [ext_resource type="PackedScene" uid="uid://cmrxdvaryyov1" path="res://src/stage_nodes/fighter_spawner.tscn" id="2_onwow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
@@ -19,7 +20,11 @@ size = Vector2(4362, 414)
 [node name="TestTea" type="Node2D" unique_id=1771569870]
 script = ExtResource("1_onwow")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1656270395]
+[node name="StageCamera" parent="." unique_id=1119176383 instance=ExtResource("2_bhq1v")]
+limit_left = -1344
+limit_top = -772
+limit_right = 1344
+limit_bottom = 772
 
 [node name="Stage" type="Node2D" parent="." unique_id=1583683138]
 
@@ -79,7 +84,7 @@ facingRight = false
 [node name="DeathZone" type="Node2D" parent="." unique_id=389067667]
 
 [node name="Left" type="Area2D" parent="DeathZone" unique_id=581965215]
-position = Vector2(-1754, 0)
+position = Vector2(-2222, 4)
 collision_layer = 64
 collision_mask = 0
 
@@ -88,7 +93,7 @@ shape = SubResource("RectangleShape2D_j5tfj")
 debug_color = Color(1, 0, 0, 0.41960785)
 
 [node name="Right" type="Area2D" parent="DeathZone" unique_id=551808009]
-position = Vector2(1754, 0)
+position = Vector2(2222, 0)
 collision_layer = 64
 collision_mask = 0
 

@@ -256,8 +256,8 @@ position = Vector2(66, -59)
 
 [node name="OffScreenMarker" parent="." unique_id=1581201541 node_paths=PackedStringArray("parent") instance=ExtResource("17_kg1nh")]
 position = Vector2(0, -134)
-onScreenOffset = Vector2(0.5, -134)
 parent = NodePath("..")
+onScreenOffset = Vector2(0.5, -134)
 
 [node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
 texture = SubResource("ViewportTexture_xp0b5")
@@ -280,7 +280,12 @@ horizontal_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=221741732]
 libraries/ = SubResource("AnimationLibrary_j1xik")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=543976378]
+rect = Rect2(-59, -70, 118, 140)
+
 [connection signal="area_entered" from="ModelCollisions/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="ModelCollisions/LedgeGrabBox" to="." method="_on_ledge_grab_box_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 
 [editable path="OffScreenMarker"]

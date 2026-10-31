@@ -115,7 +115,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << 6):
 		emit_signal("dead_fighter",playerID)
-		queue_free()
 
 func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:
@@ -136,3 +135,10 @@ func _off_ledge():
 func _set_ledge_position():
 	var newPosition = ledgeHeld.global_position - ledgePosition.position
 	global_position = newPosition
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	offScreenMarker.visible = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	offScreenMarker.visible = true

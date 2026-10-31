@@ -6,6 +6,9 @@ extends Node2D
 @export var facingRight: bool = true
 
 func _on_dead_fighter(_playerID: int):
+	for fighter in get_children():
+		stage.stageCamera._remove_target(fighter)
+		fighter.queue_free()
 	MatchGlobal.playerLives[_playerID] -= 1
 	stage.call_deferred("_spawn_dead_player", _playerID)
 
@@ -18,6 +21,7 @@ func _spawn_fighter(_playerID: int = 0):
 	else:
 		fighterInstance.playerID = playerID
 	fighterInstance.facingRight = facingRight
+	stage.stageCamera._add_target(fighterInstance)
 	add_child(fighterInstance)
 
 func _ready() -> void:

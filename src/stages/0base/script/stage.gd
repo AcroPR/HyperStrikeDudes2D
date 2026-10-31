@@ -2,6 +2,7 @@ class_name Stage
 extends Node2D
 
 @onready var fighterSpawners = $FighterSpawners
+@onready var stageCamera : StageCamera = $StageCamera
 
 func _spawn_dead_player(_playerID: int):
 	var fighterSpawner: FighterSpawner = fighterSpawners.get_node("-1")
