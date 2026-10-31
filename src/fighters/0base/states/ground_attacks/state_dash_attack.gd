@@ -22,8 +22,11 @@ func enter() -> void:
 
 func process_frame(_delta: float) -> State:
 	frames += 1
-	if frames < 10 and inputComponent._just_pressed("heavy"):
-		return parent._return_heavy_state()
+	if frames < 10:
+		if inputComponent._just_pressed("heavy"):
+			return parent._return_heavy_state()
+		var attack_state = parent._return_attack_state_stick()
+		if attack_state != null: return attack_state
 	if !parent.animationPlayer.is_playing():
 		return idleState
 	return null
