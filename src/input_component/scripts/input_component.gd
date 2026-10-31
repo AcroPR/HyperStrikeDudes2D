@@ -3,6 +3,8 @@ extends Node
 
 const BUFFER_FRAMES := 6
 
+enum Stick { DOWN, LEFT, RIGHT, UP}
+
 var controllerID: int = 0
 
 var inputBuffer = {
@@ -46,6 +48,28 @@ func _just_released(action: String) -> bool:
 func _pressed(action: String) -> bool:
 	var inputAction = action+"_"+str(controllerID)
 	return Input.is_action_pressed(inputAction)
+
+func _get_attack_stick() -> int:
+	if _just_pressed("attack_left"):
+		return Stick.LEFT
+	elif _just_pressed("attack_right"):
+		return Stick.RIGHT
+	elif _just_pressed("attack_up"):
+		return Stick.UP
+	elif _just_pressed("attack_down"):
+		return Stick.DOWN
+	return -1
+
+func _get_move_stick() -> int:
+	if _pressed("move_left"):
+		return Stick.LEFT
+	elif _pressed("move_right"):
+		return Stick.RIGHT
+	elif _pressed("move_up"):
+		return Stick.UP
+	elif _pressed("move_down"):
+		return Stick.DOWN
+	return -1
 
 func _get_strength(action: String) -> float:
 	var inputAction = action+"_"+str(controllerID)

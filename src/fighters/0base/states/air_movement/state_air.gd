@@ -61,6 +61,12 @@ func process_physics(delta: float) -> State:
 	
 	_get_animation()
 	
+	if inputComponent._just_pressed("attack"):
+		return parent._return_air_attack_state()
+	
+	if inputComponent._just_pressed("special"):
+		return parent._return_special_state()
+	
 	if inputComponent._pressed("move_down"):
 		parent.set_collision_mask_value(3,false)
 	else:
@@ -73,4 +79,4 @@ func process_physics(delta: float) -> State:
 		parent.landingFrames = 4
 		return landingState
 	
-	return null
+	return parent._return_air_state_stick()

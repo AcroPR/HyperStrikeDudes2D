@@ -10,9 +10,6 @@ extends State
 @export var jumpSquatState: State
 @export var walkState: State
 
-@export_category("Attack States")
-@export var attackNState: State
-
 func enter() -> void:
 	super()
 	parent.airJumpCount = 0
@@ -32,7 +29,13 @@ func process_physics(delta: float) -> State:
 	parent.move_and_slide()
 	
 	if inputComponent._just_pressed("attack"):
-		return attackNState
+		return parent._return_attack_state()
+	
+	if inputComponent._just_pressed("heavy"):
+		return parent._return_heavy_state()
+	
+	if inputComponent._just_pressed("special"):
+		return parent._return_special_state()
 	
 	if inputComponent._just_pressed("jump"):
 		return jumpSquatState
@@ -52,4 +55,4 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return airState
 	
-	return null
+	return parent._return_attack_state_stick()

@@ -11,14 +11,31 @@ const RUN_THRESHOLD: float = 0.8
 @export_category("Fighter State Machine")
 @export var stateMachine: StateMachine
 
+@export_category("Attack States")
+@export var airAttackDownState: State
+@export var airAttackNeutralState: State
+@export var airAttackSideState: State
+@export var airAttackUpState: State
+@export var attackDownState: State
+@export var attackNeutralState: State
+@export var attackSideState: State
+@export var attackUpState: State
+@export var heavyDownState: State
+@export var heavySideState: State
+@export var heavyUpState: State
+@export var specialDownState: State
+@export var specialNeutralState: State
+@export var specialSideState: State
+@export var specialUpState: State
+
 @export_category("Fighter Attributes")
 @export var airDrift: float = 3.75
 @export var airJumpHeight: float = 12.25
 @export var airSpeed: float = 7.4
-@export_range(0, 30) var dashFrames: int = 15
+@export_range(8, 30) var dashFrames: int = 15
 @export var dashSpeed: float = 8.25
 @export var fastFallMultiplier: float = 2.0
-@export_range(0.0, 1.0) var groundFriction: float = 0.85
+@export_range(0.0, 1.0) var groundFriction: float = 0.35
 @export var hopHeight: float = 7.45
 @export var jumpHeight: float = 12.25
 @export_range(4, 10) var jumpSquatFrames: int = 4
@@ -74,6 +91,132 @@ func _is_dashing_correctly() -> bool:
 func _open_hitbox_animator():
 	var tool = HitboxAnimatorTool.new()
 	tool._run()
+
+func _return_air_attack_state() -> State:
+	match inputComponent._get_move_stick():
+		# Down
+		0:
+			return airAttackDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return airAttackSideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return airAttackSideState
+		# Up
+		3:
+			return airAttackUpState
+		_:
+			return airAttackNeutralState
+
+func _return_air_state_stick():
+	match inputComponent._get_attack_stick():
+		# Down
+		0:
+			return airAttackDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return airAttackSideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return airAttackSideState
+		# Up
+		3:
+			return airAttackUpState
+		_:
+			return null
+
+func _return_attack_state() -> State:
+	match inputComponent._get_move_stick():
+		# Down
+		0:
+			return attackDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return attackSideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return attackSideState
+		# Up
+		3:
+			return attackUpState
+		_:
+			return attackNeutralState
+
+func _return_attack_state_stick():
+	match inputComponent._get_attack_stick():
+		# Down
+		0:
+			return heavyDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return heavySideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return heavySideState
+		# Up
+		3:
+			return heavyUpState
+		_:
+			return null
+
+func _return_heavy_state() -> State:
+	match inputComponent._get_move_stick():
+		# Down
+		0:
+			return heavyDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return heavySideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return heavySideState
+		# Up
+		3:
+			return heavyUpState
+		_:
+			return heavySideState
+
+func _return_special_state() -> State:
+	match inputComponent._get_move_stick():
+		# Down
+		0:
+			return specialDownState
+		# Left
+		1:
+			facingRight = false
+			_set_face()
+			return specialSideState
+		# Right
+		2:
+			facingRight = true
+			_set_face()
+			return specialSideState
+		# Up
+		3:
+			return specialUpState
+		_:
+			return specialNeutralState
 
 func _set_face():
 	match facingRight:

@@ -2,8 +2,10 @@ extends State
 
 @export_category("States")
 @export var airState: State
+@export var attackSideState: State
 @export var blockState: State
 @export var crouchState: State
+@export var dashAttackState: State
 @export var emoteState: State
 @export var grabState: State
 @export var jumpSquatState: State
@@ -21,6 +23,20 @@ func enter() -> void:
 
 func process_frame(_delta: float) -> State:
 	frames += 1
+	
+	if inputComponent._just_pressed("attack"):
+		match frames < 3:
+			true:
+				return attackSideState
+			false:
+				return dashAttackState
+	
+	if inputComponent._just_pressed("heavy"):
+		return parent._return_heavy_state()
+	
+	if inputComponent._just_pressed("special"):
+		return parent._return_special_state()
+		
 	if frames >= parent.dashFrames:
 		return runState
 	return null
@@ -60,4 +76,4 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return airState
 	
-	return null
+	return parent._return_attack_state_stick()

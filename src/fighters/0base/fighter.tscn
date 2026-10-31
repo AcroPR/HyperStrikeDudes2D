@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dmaq2uqrdw6tm" path="res://src/input_component/input_component.tscn" id="2_jslxv"]
 [ext_resource type="Texture2D" uid="uid://cqts77y8ka3qg" path="res://assets/fighters/0base/Bot_Naked.png" id="2_oew5a"]
 [ext_resource type="Script" uid="uid://bx4b84r5vuyil" path="res://src/fighters/0base/states/ground_movement/state_idle.gd" id="4_rmkpu"]
+[ext_resource type="Script" uid="uid://cy74nuc4evhfl" path="res://src/fighters/0base/states/air_attacks/state_air_attack.gd" id="4_t3dxh"]
 [ext_resource type="Script" uid="uid://cbmdajejhd2ef" path="res://src/fighters/0base/states/ground_movement/state_dash.gd" id="5_bn4rd"]
 [ext_resource type="Script" uid="uid://dy20tb5nf8pu0" path="res://src/fighters/0base/states/air_movement/state_air.gd" id="5_j2vvu"]
 [ext_resource type="Script" uid="uid://dthq6p85ik0wp" path="res://src/fighters/0base/states/air_movement/state_ledge.gd" id="5_wi5nl"]
@@ -13,7 +14,8 @@
 [ext_resource type="Script" uid="uid://byvmyfkscs7sy" path="res://src/fighters/0base/states/ground_movement/state_landing.gd" id="7_j1xik"]
 [ext_resource type="Script" uid="uid://b3x2chrb218dd" path="res://src/fighters/0base/states/ground_movement/state_skid.gd" id="7_m5eah"]
 [ext_resource type="Script" uid="uid://dlnlnnyamxl86" path="res://src/fighters/0base/states/ground_movement/state_run.gd" id="7_sbl3l"]
-[ext_resource type="Script" uid="uid://bl525lpc5sfy0" path="res://src/fighters/0base/states/ground_attacks/state_attack_n.gd" id="9_oluc5"]
+[ext_resource type="Script" uid="uid://bl525lpc5sfy0" path="res://src/fighters/0base/states/ground_attacks/state_attack.gd" id="9_oluc5"]
+[ext_resource type="Script" uid="uid://sf3v8wi202q4" path="res://src/fighters/0base/states/ground_attacks/state_dash_attack.gd" id="10_2ny5l"]
 [ext_resource type="Script" uid="uid://btcekulraylpp" path="res://src/fighters/0base/states/ground_movement/state_jumpsquat.gd" id="10_3f8t4"]
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
@@ -30,8 +32,72 @@ size = Vector2(150, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(221, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xp0b5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_t3dxh"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
+
+[sub_resource type="Animation" id="Animation_yogdi"]
+resource_name = "AirAttackD"
+length = 0.7333367049131543
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7333367),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.347661e-06, 0.7454604, 0.54848593, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v2vu3"]
+resource_name = "AirAttackN"
+length = 0.6000033646259457
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0.6901961, 0.14901961, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_td5sc"]
+resource_name = "AirAttackS"
+length = 0.6000033646259457
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.95686275, 0.36078432, 0.8117647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_w8db5"]
+resource_name = "AirAttackU"
+length = 0.7333367049131543
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7333367),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.627451, 0.6431373, 0.5803922, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_cydth"]
 resource_name = "AirDodge"
@@ -79,6 +145,22 @@ tracks/0/keys = {
 "values": [Color(0.99215686, 0.39215687, 0.21568628, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_0h3s6"]
+resource_name = "AttackD"
+length = 0.40000335419513283
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.40000334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.0627451, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_xp0b5"]
 resource_name = "AttackN"
 length = 0.4000033541951328
@@ -93,6 +175,38 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hr3rm"]
+resource_name = "AttackS"
+length = 0.40000335419513283
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16528177, 0.40000334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.3254902, 0.23921569, 1), Color(0.524208, 0.5499074, 0.92524666, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1qhh1"]
+resource_name = "AttackU"
+length = 0.8000033750567586
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.80000335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.26666668, 0.34901962, 0.34901962, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_2g6j0"]
@@ -138,6 +252,68 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.13725491, 1, 0.4627451, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jrydo"]
+resource_name = "DashAttack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kvd4c"]
+resource_name = "HeavyD"
+length = 0.8666700452003628
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2581544, 0.8666701),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.627451, 0.6431373, 0.5803922, 1), Color(0.7372549, 0.03137255, 0.25882354, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mf27s"]
+resource_name = "HeavyS"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.37306458, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.627451, 0.6431373, 0.5803922, 1), Color(1, 0, 0.22352941, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jris0"]
+resource_name = "HeavyU"
+length = 1.400003406349197
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.37306458, 0.6666667, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.627451, 0.6431373, 0.5803922, 1), Color(2.0214916e-06, 0.60851043, 0.6744086, 1), Color(0.74509805, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_3f8t4"]
@@ -247,13 +423,24 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1xik"]
 _data = {
+&"AirAttackD": SubResource("Animation_yogdi"),
+&"AirAttackN": SubResource("Animation_v2vu3"),
+&"AirAttackS": SubResource("Animation_td5sc"),
+&"AirAttackU": SubResource("Animation_w8db5"),
 &"AirDodge": SubResource("Animation_cydth"),
 &"AirDown": SubResource("Animation_3pcfa"),
 &"AirUp": SubResource("Animation_6ujmc"),
+&"AttackD": SubResource("Animation_0h3s6"),
 &"AttackN": SubResource("Animation_xp0b5"),
+&"AttackS": SubResource("Animation_hr3rm"),
+&"AttackU": SubResource("Animation_1qhh1"),
 &"Block": SubResource("Animation_2g6j0"),
 &"Crouch": SubResource("Animation_r8ufq"),
 &"Dash": SubResource("Animation_2ny5l"),
+&"DashAttack": SubResource("Animation_jrydo"),
+&"HeavyD": SubResource("Animation_kvd4c"),
+&"HeavyS": SubResource("Animation_mf27s"),
+&"HeavyU": SubResource("Animation_jris0"),
 &"Idle": SubResource("Animation_3f8t4"),
 &"JumpSquat": SubResource("Animation_1ygvp"),
 &"Ledge": SubResource("Animation_sdgya"),
@@ -263,16 +450,61 @@ _data = {
 &"Walk": SubResource("Animation_7gilf")
 }
 
-[node name="Fighter" type="CharacterBody2D" unique_id=166561770 node_paths=PackedStringArray("stateMachine")]
+[node name="Fighter" type="CharacterBody2D" unique_id=166561770 node_paths=PackedStringArray("stateMachine", "airAttackDownState", "airAttackNeutralState", "airAttackSideState", "airAttackUpState", "attackDownState", "attackNeutralState", "attackSideState", "attackUpState", "heavyDownState", "heavySideState", "heavyUpState", "specialDownState", "specialNeutralState", "specialSideState", "specialUpState")]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_w38su")
 stateMachine = NodePath("FighterStateMachine")
+airAttackDownState = NodePath("FighterStateMachine/AirAttacks/AirD")
+airAttackNeutralState = NodePath("FighterStateMachine/AirAttacks/AirN")
+airAttackSideState = NodePath("FighterStateMachine/AirAttacks/AirS")
+airAttackUpState = NodePath("FighterStateMachine/AirAttacks/AirU")
+attackDownState = NodePath("FighterStateMachine/GroundAttacks/AttackD")
+attackNeutralState = NodePath("FighterStateMachine/GroundAttacks/AttackN")
+attackSideState = NodePath("FighterStateMachine/GroundAttacks/AttackS")
+attackUpState = NodePath("FighterStateMachine/GroundAttacks/AttackU")
+heavyDownState = NodePath("FighterStateMachine/HeavyAttacks/HeavyD")
+heavySideState = NodePath("FighterStateMachine/HeavyAttacks/HeavyS")
+heavyUpState = NodePath("FighterStateMachine/HeavyAttacks/HeavyU")
+specialDownState = NodePath("FighterStateMachine/SpecialAttacks/SpecialD")
+specialNeutralState = NodePath("FighterStateMachine/SpecialAttacks/SpecialN")
+specialSideState = NodePath("FighterStateMachine/SpecialAttacks/SpecialS")
+specialUpState = NodePath("FighterStateMachine/SpecialAttacks/SpecialU")
 
 [node name="InputComponent" parent="." unique_id=1274369590 instance=ExtResource("2_jslxv")]
 
 [node name="FighterStateMachine" parent="." unique_id=829114942 node_paths=PackedStringArray("startingState") instance=ExtResource("1_oew5a")]
 startingState = NodePath("GroundMovement/Idle")
+
+[node name="AirAttacks" type="Node" parent="FighterStateMachine" unique_id=233641764]
+
+[node name="AirD" type="Node" parent="FighterStateMachine/AirAttacks" unique_id=2142935841 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("4_t3dxh")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
+animationName = "AirAttackU"
+landingLag = 10
+
+[node name="AirN" type="Node" parent="FighterStateMachine/AirAttacks" unique_id=936165486 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("4_t3dxh")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
+animationName = "AirAttackN"
+landingLag = 6
+
+[node name="AirS" type="Node" parent="FighterStateMachine/AirAttacks" unique_id=825821034 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("4_t3dxh")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
+animationName = "AirAttackS"
+landingLag = 13
+
+[node name="AirU" type="Node" parent="FighterStateMachine/AirAttacks" unique_id=1142726932 node_paths=PackedStringArray("airState", "landingState")]
+script = ExtResource("4_t3dxh")
+airState = NodePath("../../AirMovement/Air")
+landingState = NodePath("../../GroundMovement/Landing")
+animationName = "AirAttackU"
+landingLag = 16
 
 [node name="AirMovement" type="Node" parent="FighterStateMachine" unique_id=1954974873]
 
@@ -306,8 +538,31 @@ landingState = NodePath("../../GroundMovement/Landing")
 
 [node name="GroundAttacks" type="Node" parent="FighterStateMachine" unique_id=497291418]
 
+[node name="AttackD" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=2064365152 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "AttackD"
+
 [node name="AttackN" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=363982879 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="AttackS" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=1807411129 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "AttackS"
+
+[node name="AttackU" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=561414115 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "AttackU"
+
+[node name="DashAttack" type="Node" parent="FighterStateMachine/GroundAttacks" unique_id=456947520 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("10_2ny5l")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../../GroundMovement/Idle")
 
@@ -321,16 +576,18 @@ idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
 
-[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "blockState", "crouchState", "jumpSquatState", "idleState", "runState")]
+[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState", "runState")]
 script = ExtResource("5_bn4rd")
 airState = NodePath("../../AirMovement/Air")
+attackSideState = NodePath("../../GroundAttacks/AttackS")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
+dashAttackState = NodePath("../../GroundAttacks/DashAttack")
 jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
 runState = NodePath("../Run")
 
-[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState", "attackNState")]
+[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState")]
 script = ExtResource("4_rmkpu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
@@ -338,7 +595,6 @@ crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
-attackNState = NodePath("../../GroundAttacks/AttackN")
 
 [node name="Landing" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1716248050 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("7_j1xik")
@@ -351,11 +607,12 @@ airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")
 
-[node name="Run" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1448795772 node_paths=PackedStringArray("airState", "blockState", "crouchState", "skidState", "jumpSquatState")]
+[node name="Run" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1448795772 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashAttackState", "skidState", "jumpSquatState")]
 script = ExtResource("7_sbl3l")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
+dashAttackState = NodePath("../../GroundAttacks/DashAttack")
 skidState = NodePath("../Skid")
 jumpSquatState = NodePath("../JumpSquat")
 
@@ -371,6 +628,48 @@ jumpSquatState = NodePath("../JumpSquat")
 [node name="JumpSquat" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1342271518 node_paths=PackedStringArray("airState")]
 script = ExtResource("10_3f8t4")
 airState = NodePath("../../AirMovement/Air")
+
+[node name="HeavyAttacks" type="Node" parent="FighterStateMachine" unique_id=123467302]
+
+[node name="HeavyD" type="Node" parent="FighterStateMachine/HeavyAttacks" unique_id=1247216270 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "HeavyD"
+
+[node name="HeavyS" type="Node" parent="FighterStateMachine/HeavyAttacks" unique_id=608826554 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "HeavyS"
+
+[node name="HeavyU" type="Node" parent="FighterStateMachine/HeavyAttacks" unique_id=669770086 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+animationName = "HeavyU"
+
+[node name="SpecialAttacks" type="Node" parent="FighterStateMachine" unique_id=813024464]
+
+[node name="SpecialD" type="Node" parent="FighterStateMachine/SpecialAttacks" unique_id=115646840 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="SpecialN" type="Node" parent="FighterStateMachine/SpecialAttacks" unique_id=1472227443 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="SpecialS" type="Node" parent="FighterStateMachine/SpecialAttacks" unique_id=743911253 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="SpecialU" type="Node" parent="FighterStateMachine/SpecialAttacks" unique_id=1510447386 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("9_oluc5")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1731486011]
 anchors_preset = 8
@@ -438,7 +737,7 @@ parent = NodePath("..")
 onScreenOffset = Vector2(0.5, -134)
 
 [node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
-texture = SubResource("ViewportTexture_xp0b5")
+texture = SubResource("ViewportTexture_t3dxh")
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
 anchors_preset = 8

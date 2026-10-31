@@ -4,6 +4,7 @@ extends State
 @export var airState: State
 @export var blockState: State
 @export var crouchState: State
+@export var dashAttackState: State
 @export var emoteState: State
 @export var grabState: State
 @export var skidState: State
@@ -34,6 +35,15 @@ func process_physics(delta: float) -> State:
 	
 	parent.move_and_slide()
 	
+	if inputComponent._just_pressed("attack"):
+		return dashAttackState
+	
+	if inputComponent._just_pressed("heavy"):
+		return parent._return_heavy_state()
+	
+	if inputComponent._just_pressed("special"):
+		return parent._return_special_state()
+	
 	if inputComponent._just_pressed("jump"):
 		return jumpSquatState
 	
@@ -55,4 +65,4 @@ func process_physics(delta: float) -> State:
 	if !parent.is_on_floor():
 		return airState
 	
-	return null
+	return parent._return_attack_state_stick()
