@@ -401,12 +401,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oew5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928045644]
-visible = false
 shape = SubResource("RectangleShape2D_s7spp")
 debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
 
 [node name="ModelCollisions" type="Node2D" parent="." unique_id=1051216412]
-visible = false
 
 [node name="HitboxManager" type="Node2D" parent="ModelCollisions" unique_id=1893075805 node_paths=PackedStringArray("fighter")]
 script = ExtResource("19_xp0b5")
@@ -461,7 +459,6 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_j1xik")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=543976378]
-visible = false
 rect = Rect2(-59, -70, 118, 140)
 
 [connection signal="area_entered" from="ModelCollisions/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]
