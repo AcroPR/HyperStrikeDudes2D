@@ -41,11 +41,19 @@ const RUN_THRESHOLD: float = 0.8
 @onready var offScreenMarker: OffScreenMarker = $OffScreenMarker
 @onready var stateLabel = $StateLabel
 
+var fighterIcon: FighterIcon
+
 var airJumpCount: int = 0
 var isFastFalling: bool = false
+var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
+
+func _update_percent(_percent: int):
+	percent = _percent
+	if fighterIcon != null:
+		fighterIcon._set_percent(percent)
 
 func _can_move() -> bool:
 	# Move Direction (Horizontal)

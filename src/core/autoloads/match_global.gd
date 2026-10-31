@@ -41,3 +41,7 @@ func _input(event: InputEvent) -> void:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 			else:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+
+func _start_match():
+	for index in playerLives.size():
+		playerLives[index] = startingLives

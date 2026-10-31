@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://2wxnm0v6fcf0"]
+
+[ext_resource type="Texture2D" uid="uid://d2uvqbiedbi5p" path="res://assets/ui/stock_battle/base/icon.png" id="1_12vof"]
+[ext_resource type="Texture2D" uid="uid://dcyf66cxrjvyv" path="res://assets/ui/stock_battle/base/iconBG.png" id="2_en277"]
+[ext_resource type="Script" uid="uid://bo7ep2o8pxh86" path="res://src/ui/stock_battle/scripts/fighter_icon.gd" id="2_viafd"]
+[ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="3_en277"]
+[ext_resource type="Texture2D" uid="uid://cvuesvksid0k1" path="res://assets/ui/stock_battle/fighters/0base/0.png" id="4_pcdcg"]
+
+[node name="FighterIcon" type="TextureRect" unique_id=1709777042]
+custom_minimum_size = Vector2(-1.135, 0)
+offset_right = 605.0
+offset_bottom = 383.0
+pivot_offset = Vector2(-300, -190)
+texture = ExtResource("1_12vof")
+script = ExtResource("2_viafd")
+
+[node name="BGColor" type="TextureRect" parent="." unique_id=528181736]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_en277")
+
+[node name="Fighter" type="TextureRect" parent="." unique_id=361704775]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_pcdcg")
+
+[node name="Player" type="Label" parent="." unique_id=152201830]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 261.0
+offset_right = 160.0
+offset_bottom = 393.0
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_en277")
+theme_override_font_sizes/font_size = 100
+text = "P1"
+
+[node name="Percent" type="Label" parent="." unique_id=1371251836]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 251.0
+offset_right = 590.0
+offset_bottom = 383.0
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_en277")
+theme_override_font_sizes/font_size = 75
+text = "999%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives" type="Label" parent="." unique_id=1612998054]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 178.0
+offset_right = 559.0
+offset_bottom = 278.0
+theme_override_constants/outline_size = 25
+theme_override_fonts/font = ExtResource("3_en277")
+theme_override_font_sizes/font_size = 75
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://culor3dapbonn" path="res://src/stage_nodes/ledge.tscn" id="1_tg4du"]
 [ext_resource type="PackedScene" uid="uid://ce5q7wgo511mj" path="res://src/stage_nodes/stage_camera.tscn" id="2_bhq1v"]
 [ext_resource type="PackedScene" uid="uid://cmrxdvaryyov1" path="res://src/stage_nodes/fighter_spawner.tscn" id="2_onwow"]
+[ext_resource type="PackedScene" uid="uid://2wxnm0v6fcf0" path="res://src/ui/stock_battle/fighterIcon.tscn" id="5_7d1hl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(1372, 240)
@@ -118,3 +119,31 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone/Bottom" unique_id=1388296877]
 shape = SubResource("RectangleShape2D_dc0mv")
 debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1282148418]
+
+[node name="Icons" type="HBoxContainer" parent="CanvasLayer" unique_id=1887077787]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -239.0
+offset_right = 1920.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="FighterIcon0" parent="CanvasLayer/Icons" unique_id=1709777042 instance=ExtResource("5_7d1hl")]
+layout_mode = 2
+
+[node name="FighterIcon1" parent="CanvasLayer/Icons" unique_id=639409044 instance=ExtResource("5_7d1hl")]
+layout_mode = 2
+
+[node name="FighterIcon2" parent="CanvasLayer/Icons" unique_id=868350673 instance=ExtResource("5_7d1hl")]
+layout_mode = 2
+
+[node name="FighterIcon3" parent="CanvasLayer/Icons" unique_id=1161210639 instance=ExtResource("5_7d1hl")]
+layout_mode = 2

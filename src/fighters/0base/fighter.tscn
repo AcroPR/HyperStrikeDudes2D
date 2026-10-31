@@ -35,7 +35,7 @@ viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_xp0b5"]
 resource_name = "AttackN"
-length = 0.40000335419513283
+length = 0.4000033541951328
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
