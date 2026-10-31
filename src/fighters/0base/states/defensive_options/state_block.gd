@@ -9,6 +9,7 @@ extends State
 
 func enter() -> void:
 	super()
+	parent.animationPlayer.play("Block")
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta

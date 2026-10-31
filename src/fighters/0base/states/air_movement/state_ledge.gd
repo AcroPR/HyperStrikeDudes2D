@@ -9,6 +9,7 @@ var check_jump: bool
 
 func enter() -> void:
 	super()
+	parent.animationPlayer.play("Ledge")
 	frames = 0
 	check_jump = false
 

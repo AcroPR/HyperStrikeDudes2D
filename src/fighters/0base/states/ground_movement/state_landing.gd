@@ -9,6 +9,7 @@ func enter() -> void:
 	parent.airJumpCount = 0
 	parent.ledgeGrabCount = 0
 	parent.isFastFalling = false
+	parent.animationPlayer.play("JumpSquat")
 
 func process_frame(_delta: float) -> State:
 	parent.landingFrames -= 1

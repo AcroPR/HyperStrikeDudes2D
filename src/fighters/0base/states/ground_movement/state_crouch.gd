@@ -13,6 +13,7 @@ func enter() -> void:
 	super()
 	parent.airJumpCount = 0
 	parent.ledgeGrabCount = 0
+	parent.animationPlayer.play("Crouch")
 
 func process_physics(delta: float) -> State:
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta

@@ -6,8 +6,10 @@ extends Node2D
 @export var onScreenOffset: Vector2 = Vector2(0.5, -5)
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var spriteBG: Sprite2D = $SpriteBG
 
 func _ready() -> void:
+	spriteBG.visible = false
 	sprite.texture = parent.get_node("SubViewportContainer/SubViewport").get_texture()
 
 func _process(_delta: float) -> void:
@@ -23,9 +25,11 @@ func _process(_delta: float) -> void:
 
 	if screenBounds.has_point(screenPosition):
 		sprite.visible = false
+		spriteBG.visible = false
 		return
 
 	sprite.visible = true
+	spriteBG.visible = true
 
 	# Clamp the player's screen position to the screen boundaries.
 	var clampedScreenPosition = Vector2(

@@ -6,6 +6,7 @@ extends State
 func enter() -> void:
 	super()
 	frames = 0
+	parent.animationPlayer.play("JumpSquat")
 
 func process_frame(_delta: float) -> State:
 	frames+=1

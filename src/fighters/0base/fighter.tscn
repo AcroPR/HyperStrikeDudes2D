@@ -33,6 +33,52 @@ size = Vector2(221, 54)
 [sub_resource type="ViewportTexture" id="ViewportTexture_xp0b5"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
+[sub_resource type="Animation" id="Animation_cydth"]
+resource_name = "AirDodge"
+length = 1.3333367362055928
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3333367),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.18823528, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3pcfa"]
+resource_name = "AirDown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.5176471, 0.23529412, 0.7176471, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6ujmc"]
+resource_name = "AirUp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.99215686, 0.39215687, 0.21568628, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_xp0b5"]
 resource_name = "AttackN"
 length = 0.4000033541951328
@@ -47,6 +93,51 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2g6j0"]
+resource_name = "Block"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.1882353, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r8ufq"]
+resource_name = "Crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.23805377, 0.4533707, 0.32377195, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2ny5l"]
+resource_name = "Dash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.13725491, 1, 0.4627451, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_3f8t4"]
@@ -64,6 +155,36 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_1ygvp"]
+resource_name = "JumpSquat"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.994031, 0.39214572, 0.66209334, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sdgya"]
+resource_name = "Ledge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.9602526, 0.4935407, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_oluc5"]
 length = 0.001
 tracks/0/type = "value"
@@ -79,11 +200,67 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ag4hq"]
+resource_name = "Roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.1882353, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t3dxh"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.24705882, 0.6745098, 0.972549, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7gilf"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 0.4627451, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1xik"]
 _data = {
+&"AirDodge": SubResource("Animation_cydth"),
+&"AirDown": SubResource("Animation_3pcfa"),
+&"AirUp": SubResource("Animation_6ujmc"),
 &"AttackN": SubResource("Animation_xp0b5"),
+&"Block": SubResource("Animation_2g6j0"),
+&"Crouch": SubResource("Animation_r8ufq"),
+&"Dash": SubResource("Animation_2ny5l"),
 &"Idle": SubResource("Animation_3f8t4"),
-&"RESET": SubResource("Animation_oluc5")
+&"JumpSquat": SubResource("Animation_1ygvp"),
+&"Ledge": SubResource("Animation_sdgya"),
+&"RESET": SubResource("Animation_oluc5"),
+&"Roll": SubResource("Animation_ag4hq"),
+&"Run": SubResource("Animation_t3dxh"),
+&"Walk": SubResource("Animation_7gilf")
 }
 
 [node name="Fighter" type="CharacterBody2D" unique_id=166561770 node_paths=PackedStringArray("stateMachine")]
@@ -224,10 +401,12 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_oew5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1928045644]
+visible = false
 shape = SubResource("RectangleShape2D_s7spp")
 debug_color = Color(0.87058824, 0.3529412, 0, 0.41960785)
 
 [node name="ModelCollisions" type="Node2D" parent="." unique_id=1051216412]
+visible = false
 
 [node name="HitboxManager" type="Node2D" parent="ModelCollisions" unique_id=1893075805 node_paths=PackedStringArray("fighter")]
 script = ExtResource("19_xp0b5")
@@ -282,6 +461,7 @@ horizontal_alignment = 1
 libraries/ = SubResource("AnimationLibrary_j1xik")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=543976378]
+visible = false
 rect = Rect2(-59, -70, 118, 140)
 
 [connection signal="area_entered" from="ModelCollisions/Hurtboxes/Hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -46,7 +46,7 @@ func process_physics(delta: float) -> State:
 	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
 		parent.set_collision_mask_value(3,false)
 	
-	if inputComponent._just_pressed("move_down"):
+	if inputComponent._pressed("move_down"):
 		return crouchState
 	
 	if !parent.is_on_floor():

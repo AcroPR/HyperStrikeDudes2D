@@ -11,6 +11,10 @@ func enter() -> void:
 	frames = 0
 	check_jump = false
 
+func _get_animation():
+	if parent.velocity.y > 0: parent.animationPlayer.play("AirDown")
+	else: parent.animationPlayer.play("AirUp")
+
 func _get_x_dir() -> int:
 	var moveDir = [inputComponent._pressed("move_left"),inputComponent._pressed("move_right")]
 	#parent._set_face_with_move_dir(moveDir)
@@ -54,6 +58,8 @@ func process_physics(delta: float) -> State:
 	parent.velocity.x = lerpf(parent.velocity.x, xDir * parent._get_velocity(parent.airSpeed), parent.airDrift*delta)
 	
 	parent.move_and_slide()
+	
+	_get_animation()
 	
 	if inputComponent._pressed("move_down"):
 		parent.set_collision_mask_value(3,false)

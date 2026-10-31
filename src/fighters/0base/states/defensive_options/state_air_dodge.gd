@@ -8,6 +8,7 @@ const AIR_DODGE_FRAMES = 40
 
 func enter() -> void:
 	super()
+	parent.animationPlayer.play("AirDodge")
 	frames = 0
 
 func _get_x_dir() -> int:
