@@ -10,6 +10,7 @@ extends State
 @export var grabState: State
 @export var jumpSquatState: State
 @export var idleState: State
+@export var moonWalkState: State
 @export var runState: State
 
 var moveDir
@@ -45,13 +46,13 @@ func process_physics(delta: float) -> State:
 	
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta
 	
-	var walkSpeed = parent._get_velocity(parent.dashSpeed)
+	var dashSpeed = parent._get_velocity(parent.dashSpeed)
 	
 	match parent.facingRight:
 		true:
-			parent.velocity.x = walkSpeed
+			parent.velocity.x = dashSpeed
 		false:
-			parent.velocity.x = -walkSpeed
+			parent.velocity.x = -dashSpeed
 	
 	if !parent._can_move() or !parent._is_dashing_correctly():
 		return idleState
@@ -69,9 +70,11 @@ func process_physics(delta: float) -> State:
 	
 	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
 		parent.set_collision_mask_value(3,false)
-	
-	if inputComponent._just_pressed("move_down"):
-		return crouchState
+		for i in parent.get_slide_collision_count():
+			var collision = parent.get_slide_collision(i)
+			var collider = collision.get_collider()
+			if !(collider is CollisionObject2D and collider.get_collision_layer_value(3)):
+				return moonWalkState
 	
 	if !parent.is_on_floor():
 		return airState

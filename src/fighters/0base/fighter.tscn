@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
 [ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
+[ext_resource type="Script" uid="uid://dsagxfa5tm0s" path="res://src/fighters/0base/states/ground_movement/state_moon_walk.gd" id="16_7gilf"]
 [ext_resource type="PackedScene" uid="uid://c22hdvtllxe2d" path="res://src/fighters/0base/off_screen_marker.tscn" id="17_kg1nh"]
 [ext_resource type="Script" uid="uid://5crs3p6y3kec" path="res://src/hitbox_and_hurtbox/scripts/hitbox_manager.gd" id="19_xp0b5"]
 
@@ -32,7 +33,7 @@ size = Vector2(150, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(221, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_t3dxh"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3pcfa"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_yogdi"]
@@ -147,7 +148,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0h3s6"]
 resource_name = "AttackD"
-length = 0.40000335419513283
+length = 0.4000033541951328
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -179,7 +180,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hr3rm"]
 resource_name = "AttackS"
-length = 0.40000335419513283
+length = 0.4000033541951328
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -576,7 +577,7 @@ idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
 
-[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState", "runState")]
+[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState", "moonWalkState", "runState")]
 script = ExtResource("5_bn4rd")
 airState = NodePath("../../AirMovement/Air")
 attackSideState = NodePath("../../GroundAttacks/AttackS")
@@ -585,6 +586,7 @@ crouchState = NodePath("../Crouch")
 dashAttackState = NodePath("../../GroundAttacks/DashAttack")
 jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
+moonWalkState = NodePath("../MoonWalk")
 runState = NodePath("../Run")
 
 [node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState")]
@@ -599,6 +601,16 @@ walkState = NodePath("../Walk")
 [node name="Landing" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1716248050 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("7_j1xik")
 airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../Idle")
+
+[node name="MoonWalk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1191162551 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState")]
+script = ExtResource("16_7gilf")
+airState = NodePath("../../AirMovement/Air")
+attackSideState = NodePath("../../GroundAttacks/AttackS")
+blockState = NodePath("../../DefensiveOptions/Block")
+crouchState = NodePath("../Crouch")
+dashAttackState = NodePath("../../GroundAttacks/DashAttack")
+jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
 
 [node name="Skid" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1121431532 node_paths=PackedStringArray("airState", "idleState", "jumpSquatState")]
@@ -737,7 +749,7 @@ parent = NodePath("..")
 onScreenOffset = Vector2(0.5, -134)
 
 [node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
-texture = SubResource("ViewportTexture_t3dxh")
+texture = SubResource("ViewportTexture_3pcfa")
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
 anchors_preset = 8
