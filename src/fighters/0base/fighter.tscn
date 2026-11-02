@@ -33,7 +33,7 @@ size = Vector2(150, 64)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(221, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3pcfa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7gilf"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_yogdi"]
@@ -471,6 +471,7 @@ specialDownState = NodePath("FighterStateMachine/SpecialAttacks/SpecialD")
 specialNeutralState = NodePath("FighterStateMachine/SpecialAttacks/SpecialN")
 specialSideState = NodePath("FighterStateMachine/SpecialAttacks/SpecialS")
 specialUpState = NodePath("FighterStateMachine/SpecialAttacks/SpecialU")
+moonWalkSpeed = null
 
 [node name="InputComponent" parent="." unique_id=1274369590 instance=ExtResource("2_jslxv")]
 
@@ -749,7 +750,7 @@ parent = NodePath("..")
 onScreenOffset = Vector2(0.5, -134)
 
 [node name="Sprite2D" parent="OffScreenMarker" index="1" unique_id=1817361776]
-texture = SubResource("ViewportTexture_3pcfa")
+texture = SubResource("ViewportTexture_7gilf")
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
 anchors_preset = 8

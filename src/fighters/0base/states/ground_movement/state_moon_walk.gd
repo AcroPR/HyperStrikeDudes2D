@@ -37,13 +37,13 @@ func process_physics(delta: float) -> State:
 	
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta
 	
-	var walkSpeed = parent._get_velocity(parent.dashSpeed)
+	var moonWalkSpeed = parent._get_velocity(parent.moonWalkSpeed)
 	
 	match parent.facingRight:
 		true:
-			parent.velocity.x = -walkSpeed * 0.75
+			parent.velocity.x = -moonWalkSpeed * 0.75
 		false:
-			parent.velocity.x = +walkSpeed * 0.75
+			parent.velocity.x = +moonWalkSpeed * 0.75
 	
 	parent.move_and_slide()
 	
@@ -61,5 +61,8 @@ func process_physics(delta: float) -> State:
 	
 	if !parent.is_on_floor():
 		return airState
+	
+	if !parent._can_move() and !inputComponent._pressed("move_down"):
+		return idleState
 	
 	return parent._return_attack_state_stick()

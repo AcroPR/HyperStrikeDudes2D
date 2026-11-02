@@ -40,6 +40,7 @@ const RUN_THRESHOLD: float = 0.8
 @export var jumpHeight: float = 12.25
 @export_range(4, 10) var jumpSquatFrames: int = 4
 @export_range(1, 99) var maxAirJumps: int = 1
+@export var moonWalkSpeed: float = 8.25
 @export var runSpeed: float = 6.75
 @export var weight: float = 27
 @export var walkSpeed: float = 4.80
