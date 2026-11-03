@@ -4,8 +4,9 @@ extends CharacterBody2D
 
 signal dead_fighter
 
-const WALK_THRESHOLD: float = 0.25
+const MAX_BLOCK_HEALTH: float = 55.0
 const RUN_THRESHOLD: float = 0.8
+const WALK_THRESHOLD: float = 0.25
 
 @export_tool_button("Open Hitbox Animator", "Callable") var openHitboxAnimator = _open_hitbox_animator
 @export_category("Fighter State Machine")
@@ -50,6 +51,8 @@ const RUN_THRESHOLD: float = 0.8
 @export_range(0, 3) var playerID: int = 0
 
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var blockBubble: BlockBubble = $BlockBubble
+@onready var blockHealthTimer: Timer = $BlockHealthTimer
 @onready var hitboxManager: HitboxManager = $ModelCollisions/HitboxManager
 @onready var inputComponent = $InputComponent
 @onready var ledgeGrabBox: Area2D = $ModelCollisions/LedgeGrabBox
@@ -62,6 +65,7 @@ const RUN_THRESHOLD: float = 0.8
 var fighterIcon: FighterIcon
 
 var airJumpCount: int = 0
+var blockHealth: float = 0.0
 var isFastFalling: bool = false
 var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
@@ -242,6 +246,7 @@ func _set_face_with_move_dir(moveDir):
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	blockHealth = MAX_BLOCK_HEALTH
 	isFastFalling = false
 	ledgeHeld = null
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
@@ -253,6 +258,12 @@ func _process(delta: float) -> void:
 		return
 	stateMachine.process_frame(delta)
 	stateLabel.text = "State: " + stateMachine._get_current_state_name()
+	match inputComponent._pressed("block"):
+		true:
+			blockHealthTimer.stop()
+		false:
+			if blockHealthTimer.is_stopped():
+				blockHealthTimer.start()
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -294,3 +305,9 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	offScreenMarker.visible = true
+
+func _on_block_health_timer_timeout() -> void:
+	if blockHealth < MAX_BLOCK_HEALTH:
+		blockHealth += 0.1
+	else:
+		blockHealth = MAX_BLOCK_HEALTH

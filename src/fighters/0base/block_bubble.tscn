@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://blnbh2m7maxq6"]
+
+[ext_resource type="Script" uid="uid://bq1g60dupvy5s" path="res://src/fighters/0base/scripts/block_bubble.gd" id="1_nh0l8"]
+[ext_resource type="Texture2D" uid="uid://dy7g1lamkru3t" path="res://icon.svg" id="2_1wl4q"]
+
+[node name="BlockBubble" type="Node2D" unique_id=1593646426]
+script = ExtResource("1_nh0l8")
+
+[node name="HitBubble" type="Sprite2D" parent="." unique_id=72221632]
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_1wl4q")
+
+[node name="MainBubble" type="Sprite2D" parent="." unique_id=2138015814]
+texture = ExtResource("2_1wl4q")
+
+[node name="SubBubble" type="Sprite2D" parent="." unique_id=737210306]
+modulate = Color(0.23137255, 0.23137255, 0.23137255, 0.5176471)
+scale = Vector2(0.645, 0.645)
+texture = ExtResource("2_1wl4q")
