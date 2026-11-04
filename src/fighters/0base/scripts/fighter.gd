@@ -9,6 +9,9 @@ const RUN_THRESHOLD: float = 0.8
 const WALK_THRESHOLD: float = 0.25
 
 @export_tool_button("Open Hitbox Animator", "Callable") var openHitboxAnimator = _open_hitbox_animator
+@export_category("Fighter Names")
+@export var fighterFolderName: String = "0base"
+@export var fighterName: String = "Fighter"
 @export_category("Fighter State Machine")
 @export var stateMachine: StateMachine
 
@@ -66,11 +69,19 @@ var fighterIcon: FighterIcon
 
 var airJumpCount: int = 0
 var blockHealth: float = 0.0
+var hitStop: int = 0
+var hitStun: int = 0
+var inHitStop: bool = false
 var isFastFalling: bool = false
 var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
+
+var hitboxAngle: int = 0
+var hitboxBKB: int = 0
+var hitboxKBS: float = 0.0
+var hitboxReversed: bool = false
 
 func _update_percent(_percent: int):
 	percent = _percent
@@ -248,14 +259,29 @@ func _ready() -> void:
 		return
 	blockHealth = MAX_BLOCK_HEALTH
 	isFastFalling = false
+	inHitStop = false
 	ledgeHeld = null
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	_set_face()
 
+func _is_in_hitstop() -> bool:
+	if hitStop > 0:
+		hitStop -= 1
+		if stateMachine._get_current_state_name() == "Hit":
+			animationPlayer.play("Hit")
+		else:
+			animationPlayer.pause()
+		return true
+	elif inHitStop:
+		animationPlayer.play()
+		inHitStop = false
+	return false
+
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
+	if _is_in_hitstop(): return
 	stateMachine.process_frame(delta)
 	stateLabel.text = "State: " + stateMachine._get_current_state_name()
 	match inputComponent._pressed("block"):
@@ -268,6 +294,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
+	if _is_in_hitstop(): return
 	stateMachine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -275,9 +302,39 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	stateMachine.process_input(event)
 
+func _set_hit_stop(hitbox: Hitbox, blocked: bool):
+	var _parent = hitbox.parent
+	var _hitstop = hitbox.hitStop
+	if blocked: _hitstop = int(_hitstop / 2.0)
+	hitStop = _hitstop
+	inHitStop = true
+	_parent.hitStop = _hitstop
+	_parent.inHitStop = true
+
+func _set_up_hit_state(hitbox: Hitbox):
+	hitboxAngle = hitbox.angle
+	hitboxBKB = hitbox.baseKnockback
+	hitboxKBS = hitbox.knockbackScale
+	percent += hitbox.damage
+	hitboxReversed = hitbox.reversed
+	hitStun = hitbox.hitStun
+	if percent > 999:
+		percent = 999
+	stateMachine.change_state($FighterStateMachine/DefensiveOptions/Hit)
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << 6):
 		emit_signal("dead_fighter",playerID)
+		return
+	var hitbox: Hitbox = area
+	match inputComponent._pressed("block"):
+		true:
+			blockHealth -= hitbox.blockDamage
+			_set_hit_stop(hitbox, true)
+		false:
+			if hitbox.parent != self:
+				_set_hit_stop(hitbox, false)
+				_set_up_hit_state(hitbox)
 
 func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:

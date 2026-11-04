@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://b5xns2l7gabpy" path="res://src/core/debug_tools/hitbox_animator/scripts/page_two.gd" id="4_ys5v2"]
 [ext_resource type="Script" uid="uid://dd0tv1f3ym2b1" path="res://src/core/debug_tools/hitbox_animator/scripts/page_three.gd" id="5_l8pyd"]
 [ext_resource type="Script" uid="uid://br7cj37co63ol" path="res://src/core/debug_tools/hitbox_animator/scripts/page_four.gd" id="6_7vr3r"]
+[ext_resource type="Script" uid="uid://uk66whtjolqd" path="res://src/core/debug_tools/hitbox_animator/scripts/page_five.gd" id="7_52tuu"]
 
 [node name="HitboxAnimator" type="Control" unique_id=1410462686]
 layout_mode = 3
@@ -30,6 +31,10 @@ offset_right = -595.0
 offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
+selected = 0
+item_count = 1
+popup/item_0/text = "0base"
+popup/item_0/id = 0
 
 [node name="SelectedAnimation" type="OptionButton" parent="." unique_id=1420274889]
 layout_mode = 1
@@ -42,6 +47,60 @@ offset_right = 345.0
 offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
+selected = 0
+item_count = 26
+popup/item_0/text = "AirAttackD"
+popup/item_0/id = 0
+popup/item_1/text = "AirAttackN"
+popup/item_1/id = 1
+popup/item_2/text = "AirAttackS"
+popup/item_2/id = 2
+popup/item_3/text = "AirAttackU"
+popup/item_3/id = 3
+popup/item_4/text = "AirDodge"
+popup/item_4/id = 4
+popup/item_5/text = "AirDown"
+popup/item_5/id = 5
+popup/item_6/text = "AirUp"
+popup/item_6/id = 6
+popup/item_7/text = "AttackD"
+popup/item_7/id = 7
+popup/item_8/text = "AttackN"
+popup/item_8/id = 8
+popup/item_9/text = "AttackS"
+popup/item_9/id = 9
+popup/item_10/text = "AttackU"
+popup/item_10/id = 10
+popup/item_11/text = "Block"
+popup/item_11/id = 11
+popup/item_12/text = "Crouch"
+popup/item_12/id = 12
+popup/item_13/text = "Dash"
+popup/item_13/id = 13
+popup/item_14/text = "DashAttack"
+popup/item_14/id = 14
+popup/item_15/text = "HeavyD"
+popup/item_15/id = 15
+popup/item_16/text = "HeavyS"
+popup/item_16/id = 16
+popup/item_17/text = "HeavyU"
+popup/item_17/id = 17
+popup/item_18/text = "Idle"
+popup/item_18/id = 18
+popup/item_19/text = "JumpSquat"
+popup/item_19/id = 19
+popup/item_20/text = "Ledge"
+popup/item_20/id = 20
+popup/item_21/text = "RESET"
+popup/item_21/id = 21
+popup/item_22/text = "Roll"
+popup/item_22/id = 22
+popup/item_23/text = "Run"
+popup/item_23/id = 23
+popup/item_24/text = "Stun"
+popup/item_24/id = 24
+popup/item_25/text = "Walk"
+popup/item_25/id = 25
 
 [node name="PlayAndHitboxSelect" type="VBoxContainer" parent="." unique_id=1123431672]
 layout_mode = 1
@@ -90,6 +149,7 @@ horizontal_alignment = 1
 
 [node name="FrameSlider" type="HSlider" parent="Frames" unique_id=290284153]
 layout_mode = 2
+max_value = 0.0
 
 [node name="HitboxProperties" type="VBoxContainer" parent="." unique_id=1672951191]
 layout_mode = 0
@@ -132,8 +192,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = " 4 "
 
+[node name="PageFive" type="Button" parent="HitboxProperties/PageButtons" unique_id=592677825]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = " 5 "
+
 [node name="PageOne" type="VBoxContainer" parent="HitboxProperties" unique_id=647751744]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 script = ExtResource("3_3286r")
@@ -344,21 +408,22 @@ text = "0"
 alignment = 1
 
 [node name="PageFour" type="VBoxContainer" parent="HitboxProperties" unique_id=1117288243]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 script = ExtResource("6_7vr3r")
 
-[node name="Hitlag" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=296672904]
+[node name="Hitstop" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=296672904]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 2
 
-[node name="Label" type="Label" parent="HitboxProperties/PageFour/Hitlag" unique_id=39101154]
+[node name="Label" type="Label" parent="HitboxProperties/PageFour/Hitstop" unique_id=39101154]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Hitlag"
+text = "Hit Stop"
 
-[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/Hitlag" unique_id=1999538472]
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/Hitstop" unique_id=1999538472]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "0"
@@ -415,6 +480,28 @@ text = "Reversable"
 [node name="CheckButton" type="CheckBox" parent="HitboxProperties/PageFour/Reversable" unique_id=51342667]
 layout_mode = 2
 
+[node name="PageFive" type="VBoxContainer" parent="HitboxProperties" unique_id=743214857]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 40
+script = ExtResource("7_52tuu")
+
+[node name="Group" type="HBoxContainer" parent="HitboxProperties/PageFive" unique_id=1108447431]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 2
+
+[node name="Label" type="Label" parent="HitboxProperties/PageFive/Group" unique_id=1879104363]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Group"
+
+[node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFive/Group" unique_id=1548570261]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+alignment = 1
+
 [node name="HitboxDeleteAndSave" type="VBoxContainer" parent="HitboxProperties" unique_id=706940386]
 layout_mode = 2
 theme_override_constants/separation = 25
@@ -440,6 +527,7 @@ text = "Save Hitboxes"
 [connection signal="pressed" from="HitboxProperties/PageButtons/PageTwo" to="HitboxProperties/PageButtons" method="_on_page_two_pressed"]
 [connection signal="pressed" from="HitboxProperties/PageButtons/PageThree" to="HitboxProperties/PageButtons" method="_on_page_three_pressed"]
 [connection signal="pressed" from="HitboxProperties/PageButtons/PageFour" to="HitboxProperties/PageButtons" method="_on_page_four_pressed"]
+[connection signal="pressed" from="HitboxProperties/PageButtons/PageFive" to="HitboxProperties/PageButtons" method="_on_page_five_pressed"]
 [connection signal="text_changed" from="HitboxProperties/PageOne/HitboxWidth/LineEdit" to="HitboxProperties/PageOne" method="_hitbox_width_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageOne/HitboxHeight/LineEdit" to="HitboxProperties/PageOne" method="_hitbox_height_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageOne/PositionX/LineEdit" to="HitboxProperties/PageOne" method="_position_x_text_changed"]
@@ -452,9 +540,10 @@ text = "Save Hitboxes"
 [connection signal="text_changed" from="HitboxProperties/PageThree/BaseKB/LineEdit" to="HitboxProperties/PageThree" method="_base_kb_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageThree/KBScale/LineEdit" to="HitboxProperties/PageThree" method="_kb_scale_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageThree/Hitstun/LineEdit" to="HitboxProperties/PageThree" method="_hitstun_text_changed"]
-[connection signal="text_changed" from="HitboxProperties/PageFour/Hitlag/LineEdit" to="HitboxProperties/PageFour" method="_hit_lag_text_changed"]
+[connection signal="text_changed" from="HitboxProperties/PageFour/Hitstop/LineEdit" to="HitboxProperties/PageFour" method="_hit_stop_text_changed"]
 [connection signal="text_changed" from="HitboxProperties/PageFour/BlockDamage/LineEdit" to="HitboxProperties/PageFour" method="_block_damage_text_changed"]
 [connection signal="item_selected" from="HitboxProperties/PageFour/Type/OptionButton" to="HitboxProperties/PageFour" method="_on_type_selected"]
 [connection signal="toggled" from="HitboxProperties/PageFour/Reversable/CheckButton" to="HitboxProperties/PageFour" method="_on_reversable_toggled"]
+[connection signal="text_changed" from="HitboxProperties/PageFive/Group/LineEdit" to="HitboxProperties/PageFive" method="_hit_lag_text_changed"]
 [connection signal="pressed" from="HitboxProperties/HitboxDeleteAndSave/DeleteHitbox" to="." method="_on_delete_hitbox_pressed"]
 [connection signal="pressed" from="HitboxProperties/HitboxDeleteAndSave/SaveHitboxes" to="." method="_on_save_hitboxes_pressed"]

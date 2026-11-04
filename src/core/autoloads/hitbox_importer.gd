@@ -57,15 +57,17 @@ func _save_csv(fighterName, attackType, hitBoxManager, hitboxStartFrames):
 			data += str(hitboxNode.baseKnockback) + ","
 			data += str(hitboxNode.hitStun) + ","
 			data += str(hitboxNode.knockbackScale) + ","
-			data += str(hitboxNode.hitLag) + ","
+			data += str(hitboxNode.hitStop) + ","
 			data += str(hitboxNode.blockDamage) + ","
 			data += str(hitboxNode.type) + ","
-			data += str(hitboxNode.reversable)
+			data += str(hitboxNode.reversable) + ","
+			data += str(hitboxNode.group)
 			file.store_line(data)
 			childCount += 1
-		
+			print(hitboxNode.blockDamage)
 		# Close the file
 		file.close()
+		
 		print("Data saved to CSV file.")
 	else:
 		print("Failed to open the file for writing.")

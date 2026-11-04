@@ -10,6 +10,7 @@ extends Control
 @onready var pageTwo: VBoxContainer = $HitboxProperties/PageTwo
 @onready var pageThree: VBoxContainer = $HitboxProperties/PageThree
 @onready var pageFour: VBoxContainer = $HitboxProperties/PageFour
+@onready var pageFive: VBoxContainer = $HitboxProperties/PageFive
 @onready var playButton: Button = $PlayAndHitboxSelect/PlayButton
 @onready var selectedFighter: OptionButton = $SelectedFighter
 @onready var selectedAnimation: OptionButton = $SelectedAnimation
@@ -109,6 +110,7 @@ func _on_hitboxes_item_selected(_index: int) -> void:
 		pageTwo._set_values(hitboxNode,_index)
 		pageThree._set_values(hitboxNode)
 		pageFour._set_values(hitboxNode)
+		pageFive._set_values(hitboxNode)
 
 func _on_play_button_pressed() -> void:
 	match paused:

@@ -12,8 +12,9 @@ extends Area2D
 @export_range(0,999) var blockDamage: int = 0 : set = _update_block_damage
 @export_range(0,999) var damage: int = 0 : set = _update_damage
 @export_range(1,99) var framesActive: int = 1 : set = _update_frames
+@export_range(1,99) var group: int = 1 : set = _update_group
 @export_range(0,4) var hitboxId: int = 0 : set = _update_id
-@export_range(0,999) var hitLag: int = 0 : set = _update_hl
+@export_range(0,999) var hitStop: int = 0 : set = _update_hl
 @export_range(0,5) var hitboxPriority: int = 0 : set = _update_priority
 @export_range(0,999) var hitStun: int = 0 : set = _update_hs
 @export_range(0,1) var knockbackScale: float = 0.0 : set = _update_kbs
@@ -22,6 +23,9 @@ extends Area2D
 
 @export_category("Extras")
 @export var paused: bool = false : set = _update_paused
+
+var parent: Fighter
+var reversed: bool
 
 var frame: int
 
@@ -58,6 +62,11 @@ func _update_frames(newVal):
 	framesActive = newVal
 	queue_redraw()
 
+# Updates the hitbox group
+func _update_group(newVal):
+	group = newVal
+	queue_redraw()
+
 # Updates hit stun value
 func _update_hs(newVal):
 	hitStun = newVal
@@ -70,7 +79,7 @@ func _update_id(newVal):
 
 # Updates hit lag value
 func _update_hl(newVal):
-	hitLag = newVal
+	hitStop = newVal
 	queue_redraw()
 
 # Updates the knockback scale
@@ -109,10 +118,10 @@ func _build_from_array(current_hitbox: Array, _paused: bool = false, _hitboxId: 
 	return Hitbox.new(current_hitbox[1],current_hitbox[2],current_hitbox[3],current_hitbox[4],
 	_paused, _hitboxId, current_hitbox[7], current_hitbox[6], current_hitbox[5], current_hitbox[10],
 	current_hitbox[8], current_hitbox[9], current_hitbox[11], current_hitbox[12], current_hitbox[13],
-	current_hitbox[14],current_hitbox[15])
+	current_hitbox[14],current_hitbox[15],current_hitbox[16])
 
 # Custom constructor
-func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initId: int = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, initHitLag: int = 0, initBlockDamage: int = 0, initType: int = 0, initReversable: bool = false):
+func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initHitboxId: int = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, inithitStop: int = 0, initBlockDamage: int = 0, initType: int = 0, initReversable: bool = false, initGroup: int = 1):
 	var rectangleShape = RectangleShape2D.new()
 	rectangleShape.extents.x = width
 	rectangleShape.extents.y = height
@@ -121,7 +130,7 @@ func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, init
 	position.x = initX
 	position.y = initY
 	paused = initPaused
-	hitboxId = initId
+	hitboxId = initHitboxId
 	hitboxPriority = initPriority
 	framesActive = initFrames
 	damage = initDamage
@@ -129,10 +138,17 @@ func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, init
 	angle = initAngle
 	baseKnockback = initBkb
 	knockbackScale = initKbs
-	hitLag = initHitLag
+	hitStop = inithitStop
 	blockDamage = initBlockDamage
 	type = initType
 	reversable = initReversable
+	group = initGroup
+
+func _set_collision_and_groups():
+	set_collision_layer_value(1,false)
+	set_collision_layer_value(4,true)
+	set_collision_mask_value(1,false)
+	set_collision_mask_value(4,true)
 
 func _ready() -> void:
 	frame = 0
@@ -140,6 +156,7 @@ func _ready() -> void:
 	collision.debug_color = hitbox_color
 	collision.set_shape(shape)
 	add_child(collision)
+	_set_collision_and_groups()
 
 func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint() and !paused:
@@ -160,12 +177,6 @@ func _get_launch_vector(launch_angle,force):
 	var fx = force * cos(launch_angle)
 	var fy = -force * sin(launch_angle)
 	
-	#Returns the vector of fx and fy
-	#match reverse:
-		#true:
-			#return Vector2(fx*-1,fy)
-		#false:
-			#return Vector2(fx,fy)
 	return Vector2(fx,fy)
 
 # Draws a line to show the knockback angle IN THE EDITOR
