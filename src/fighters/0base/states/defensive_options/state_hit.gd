@@ -49,7 +49,6 @@ func process_frame(_delta: float) -> State:
 
 func process_physics(delta: float) -> State:
 	var xDir = inputComponent._get_strength("move_right") - inputComponent._get_strength("move_left")
-	print(xDir)
 	parent.velocity.x += DRIFT * xDir
 	
 	parent.velocity.y += parent._get_velocity(parent.weight) * delta
