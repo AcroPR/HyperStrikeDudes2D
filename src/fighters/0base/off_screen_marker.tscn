@@ -7,9 +7,9 @@
 script = ExtResource("1_e2vcb")
 
 [node name="SpriteBG" type="Sprite2D" parent="." unique_id=1283008723]
+clip_children = 2
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_ulu1s")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1817361776]
-scale = Vector2(0.5, 0.5)
+[node name="SpriteFighter" type="Sprite2D" parent="SpriteBG" unique_id=1817361776]
 texture = ExtResource("1_ulu1s")
