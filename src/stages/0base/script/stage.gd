@@ -27,4 +27,3 @@ func _ready() -> void:
 			icons.get_child(fighterSpawner.playerID)._set_player(fighterSpawner.playerID+1)
 			icons.get_child(fighterSpawner.playerID)._set_lives(fighterSpawner.playerID)
 			fighterNode.fighterIcon.enableShake = true
-		

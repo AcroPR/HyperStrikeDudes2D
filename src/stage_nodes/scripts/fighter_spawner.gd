@@ -6,13 +6,14 @@ extends Node2D
 @export var facingRight: bool = true
 
 func _on_dead_fighter(_playerID: int):
-	for fighter in get_children():
-		if fighter is Fighter: 
+	for fighter: Fighter in get_children():
+		if fighter.playerID == _playerID:
 			stage.stageCamera._remove_target(fighter)
 			MatchGlobal.playerLives[_playerID] -= 1
 			fighter.fighterIcon._set_lives(_playerID)
 			fighter.queue_free()
-	stage.call_deferred("_spawn_dead_player", _playerID)
+	if MatchGlobal.playerLives[_playerID] > 0:
+		stage.call_deferred("_spawn_dead_player", _playerID)
 
 func _spawn_fighter(_playerID: int = 0) -> Fighter:
 	var fighter = preload("res://src/fighters/0base/fighter.tscn")
@@ -28,4 +29,4 @@ func _spawn_fighter(_playerID: int = 0) -> Fighter:
 	return fighterInstance
 
 func _ready() -> void:
-	$Sprite2D.visible = false
+	$Sprite2D.queue_free()

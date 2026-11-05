@@ -9,7 +9,8 @@ const DRIFT: int = 10
 
 # Knockback Formula
 func _knockback_calc(percent, baseKnockback, knockbackScale) -> float:
-	return baseKnockback/2 + ((percent*baseKnockback)*knockbackScale)
+	return (baseKnockback * 10) + ((percent*baseKnockback)*knockbackScale * 0.75)
+	#return (baseKnockback + ((percent*baseKnockback)*knockbackScale))
 
 # Calculates the launch vector to apply knockback
 # @param launchAngle - angle (int)

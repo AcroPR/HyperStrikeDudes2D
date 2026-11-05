@@ -383,7 +383,7 @@ func _off_ledge():
 	ledgeGrabCount = 0
 	ledgeHeld = null
 	hitboxAngle = 90
-	hitboxBKB = 2500
+	hitboxBKB = 125
 	hitboxKBS = 0.0
 	hitStun = 30
 	percent += 10
