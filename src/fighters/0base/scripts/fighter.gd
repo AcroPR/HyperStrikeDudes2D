@@ -8,6 +8,8 @@ const MAX_BLOCK_HEALTH: float = 55.0
 const RUN_THRESHOLD: float = 0.8
 const WALK_THRESHOLD: float = 0.25
 
+enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
+
 @export_tool_button("Open Hitbox Animator", "Callable") var openHitboxAnimator = _open_hitbox_animator
 @export_category("Fighter Names")
 @export var fighterFolderName: String = "0base"
@@ -77,6 +79,7 @@ var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
+var staleMoves: Array = ["","","","","",""]
 
 var hitboxAngle: int = 0
 var hitboxBKB: int = 0
@@ -87,6 +90,13 @@ func _update_percent(_percent: int):
 	percent = _percent
 	if fighterIcon != null:
 		fighterIcon._set_percent(percent)
+
+func _add_stale_move(move: String = ""):
+	var tempStaleMoves = staleMoves.duplicate()
+	tempStaleMoves.pop_back()
+	staleMoves.clear()
+	staleMoves.append(move)
+	for staleMove in tempStaleMoves: staleMoves.append(staleMove)
 
 func _can_move() -> bool:
 	# Move Direction (Horizontal)
@@ -311,11 +321,27 @@ func _set_hit_stop(hitbox: Hitbox, blocked: bool):
 	_parent.hitStop = _hitstop
 	_parent.inHitStop = true
 
+func _damage_calculation(parent: Fighter, hitbox: Hitbox) -> int:
+	var staleCount = parent.staleMoves.count(hitbox.attackName)
+	if staleCount <= StaleValue.FRESH: return hitbox.damage
+	var newDamage: float = 0
+	match staleCount:
+		StaleValue.LEVEL_THREE:
+			newDamage = hitbox.damage * 0.96
+		StaleValue.LEVEL_TWO:
+			newDamage = hitbox.damage * 0.89
+		StaleValue.LEVEL_ONE:
+			newDamage = hitbox.damage * 0.82
+		_:
+			newDamage = hitbox.damage * 0.75
+	if newDamage < 1: newDamage = 1.0
+	return int(newDamage)
+
 func _set_up_hit_state(hitbox: Hitbox):
 	hitboxAngle = hitbox.angle
 	hitboxBKB = hitbox.baseKnockback
 	hitboxKBS = hitbox.knockbackScale
-	percent += hitbox.damage
+	percent += _damage_calculation(hitbox.parent, hitbox)
 	hitboxReversed = hitbox.reversed
 	hitStun = hitbox.hitStun
 	if percent > 999:

@@ -25,6 +25,7 @@ extends Area2D
 @export var paused: bool = false : set = _update_paused
 
 var parent: Fighter
+var attackName: String = ""
 var reversed: bool
 
 var frame: int
