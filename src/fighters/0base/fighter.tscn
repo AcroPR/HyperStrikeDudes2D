@@ -535,7 +535,7 @@ script = ExtResource("4_t3dxh")
 airState = NodePath("../../AirMovement/Air")
 landingState = NodePath("../../GroundMovement/Landing")
 animationName = "AirAttackN"
-landingLag = 6
+landingLag = 60
 
 [node name="AirS" type="Node" parent="FighterStateMachine/AirAttacks" unique_id=825821034 node_paths=PackedStringArray("airState", "landingState")]
 script = ExtResource("4_t3dxh")

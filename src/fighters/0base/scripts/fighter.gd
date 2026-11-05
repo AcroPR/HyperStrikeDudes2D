@@ -80,6 +80,7 @@ var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
 var ledgeLock: bool
+var smoothLanding: bool = false
 var staleMoves: Array = ["","","","","",""]
 
 var hitboxAngle: int = 0
@@ -275,6 +276,7 @@ func _ready() -> void:
 	inHitStop = false
 	ledgeHeld = null
 	ledgeLock = false
+	smoothLanding = false
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	_set_face()
@@ -362,6 +364,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			_set_hit_stop(hitbox, true)
 		false:
 			if hitbox.parent != self:
+				hitbox.parent.smoothLanding = true
 				_set_hit_stop(hitbox, false)
 				_set_up_hit_state(hitbox)
 
