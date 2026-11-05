@@ -5,7 +5,7 @@ extends Node2D
 @export var screenMargin: float = 45.0
 @export var onScreenOffset: Vector2 = Vector2(0.5, -5)
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $SpriteBG/SpriteFighter
 @onready var spriteBG: Sprite2D = $SpriteBG
 
 func _ready() -> void:
