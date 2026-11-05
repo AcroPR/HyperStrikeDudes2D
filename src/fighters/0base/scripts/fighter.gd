@@ -79,6 +79,7 @@ var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
+var ledgeLock: bool
 var staleMoves: Array = ["","","","","",""]
 
 var hitboxAngle: int = 0
@@ -88,6 +89,8 @@ var hitboxReversed: bool = false
 
 func _update_percent(_percent: int):
 	percent = _percent
+	if percent > 999:
+		percent = 999
 	if fighterIcon != null:
 		fighterIcon._set_percent(percent)
 
@@ -271,6 +274,7 @@ func _ready() -> void:
 	isFastFalling = false
 	inHitStop = false
 	ledgeHeld = null
+	ledgeLock = false
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	_set_face()
@@ -344,11 +348,10 @@ func _set_up_hit_state(hitbox: Hitbox):
 	percent += _damage_calculation(hitbox.parent, hitbox)
 	hitboxReversed = hitbox.reversed
 	hitStun = hitbox.hitStun
-	if percent > 999:
-		percent = 999
 	stateMachine.change_state($FighterStateMachine/DefensiveOptions/Hit)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	ledgeLock = false
 	if area.collision_layer & (1 << 6):
 		emit_signal("dead_fighter",playerID)
 		return
@@ -366,6 +369,7 @@ func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:
 		ledgeGrabCount += 1
 		ledgeHeld = ledge
+		ledgeLock = true
 		facingRight = !ledgeHeld.facingRight
 		_set_face()
 		ledgeHeld._set_ledge_grab(self)
@@ -375,8 +379,12 @@ func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 func _off_ledge():
 	ledgeGrabCount = 0
 	ledgeHeld = null
-	velocity.y = -1250
-	stateMachine.change_state($FighterStateMachine/AirMovement/Air)
+	hitboxAngle = 90
+	hitboxBKB = 2500
+	hitboxKBS = 0.0
+	hitStun = 30
+	percent += 10
+	stateMachine.change_state($FighterStateMachine/DefensiveOptions/Hit)
 
 func _set_ledge_position():
 	var newPosition = ledgeHeld.global_position - ledgePosition.position

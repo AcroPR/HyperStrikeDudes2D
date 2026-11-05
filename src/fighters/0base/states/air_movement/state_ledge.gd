@@ -30,12 +30,14 @@ func process_physics(_delta: float) -> State:
 				parent.velocity.y = -parent._get_velocity(parent.airJumpHeight)
 				parent.ledgeHeld._set_ledge_grab(null)
 				parent.ledgeHeld = null
+				parent.ledgeLock = false
 				return airState
 			
 			if inputComponent._just_pressed("move_down"):
 				parent.airJumpCount = 0
 				parent.ledgeHeld._set_ledge_grab(null)
 				parent.ledgeHeld = null
+				parent.ledgeLock = false
 				return airState
 			
 			if parent._can_move():
@@ -43,6 +45,7 @@ func process_physics(_delta: float) -> State:
 				parent.velocity.y = -parent._get_velocity(parent.airJumpHeight)
 				parent.ledgeHeld._set_ledge_grab(null)
 				parent.ledgeHeld = null
+				parent.ledgeLock = false
 				return airState
 	
 	parent.velocity.x = 0

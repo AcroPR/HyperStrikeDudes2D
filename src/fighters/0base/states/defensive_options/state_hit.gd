@@ -51,7 +51,11 @@ func process_physics(delta: float) -> State:
 	var xDir = inputComponent._get_strength("move_right") - inputComponent._get_strength("move_left")
 	parent.velocity.x += DRIFT * xDir
 	
-	parent.velocity.y += parent._get_velocity(parent.weight) * delta
+	match parent.ledgeLock:
+		true:
+			parent.velocity.y += parent._get_velocity(27.0) * delta
+		false:
+			parent.velocity.y += parent._get_velocity(parent.weight) * delta
 	
 	parent.velocity.x = move_toward(parent.velocity.x, 0, HORIZONTAL_DRIFT)
 	
