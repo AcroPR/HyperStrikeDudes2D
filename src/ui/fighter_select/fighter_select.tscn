@@ -2,9 +2,17 @@
 
 [ext_resource type="Script" uid="uid://btdqxp4di3x72" path="res://src/ui/fighter_select/scripts/fighter_select.gd" id="1_fco0x"]
 [ext_resource type="PackedScene" uid="uid://xc0aa5kliq02" path="res://src/ui/fighter_select/fighter_button.tscn" id="2_oq6au"]
+[ext_resource type="PackedScene" uid="uid://ejguta17f0do" path="res://src/ui/buttons/button.tscn" id="2_p01q4"]
 [ext_resource type="Texture2D" uid="uid://bp63luaiar61" path="res://assets/ui/fighter_select/fighters/button/0base.png" id="3_7408u"]
+[ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="3_lav4d"]
 [ext_resource type="PackedScene" uid="uid://bundcp0ff7dxb" path="res://src/ui/mouse/mouse.tscn" id="4_iv4i6"]
 [ext_resource type="PackedScene" uid="uid://cyfaoklvweawx" path="res://src/ui/fighter_select/fighter_preview.tscn" id="5_jawwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwm3t"]
+size = Vector2(120, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lav4d"]
+size = Vector2(164, 76.22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
 size = Vector2(179, 1108)
@@ -36,6 +44,87 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 75
 text = "Go To Stage Select"
+
+[node name="RuleButtons" type="HBoxContainer" parent="." unique_id=182234145]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 24.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Lives" type="HBoxContainer" parent="RuleButtons" unique_id=897541182]
+layout_mode = 2
+
+[node name="LessLives" parent="RuleButtons/Lives" unique_id=397578078 instance=ExtResource("2_p01q4")]
+custom_minimum_size = Vector2(120, 76)
+layout_mode = 2
+text = "<"
+
+[node name="CollisionShape2D" parent="RuleButtons/Lives/LessLives/Area2D" parent_id_path=PackedInt32Array(397578078, 1321179478) index="0" unique_id=538199872]
+position = Vector2(60, 38)
+shape = SubResource("RectangleShape2D_rwm3t")
+
+[node name="Label" type="Label" parent="RuleButtons/Lives" unique_id=1407096375]
+custom_minimum_size = Vector2(318, 74)
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_lav4d")
+theme_override_font_sizes/font_size = 55
+text = " Lives: 99 "
+horizontal_alignment = 1
+
+[node name="MoreLives" parent="RuleButtons/Lives" unique_id=602198775 instance=ExtResource("2_p01q4")]
+custom_minimum_size = Vector2(120, 76)
+layout_mode = 2
+text = ">"
+
+[node name="CollisionShape2D" parent="RuleButtons/Lives/MoreLives/Area2D" parent_id_path=PackedInt32Array(602198775, 1321179478) index="0" unique_id=538199872]
+position = Vector2(60, 38)
+shape = SubResource("RectangleShape2D_rwm3t")
+
+[node name="Time" type="HBoxContainer" parent="RuleButtons" unique_id=1495782307]
+layout_mode = 2
+
+[node name="LessTime" parent="RuleButtons/Time" unique_id=1929682 instance=ExtResource("2_p01q4")]
+custom_minimum_size = Vector2(120, 76)
+layout_mode = 2
+text = "<"
+
+[node name="CollisionShape2D" parent="RuleButtons/Time/LessTime/Area2D" parent_id_path=PackedInt32Array(1929682, 1321179478) index="0" unique_id=538199872]
+position = Vector2(60, 38)
+shape = SubResource("RectangleShape2D_rwm3t")
+
+[node name="Label" type="Label" parent="RuleButtons/Time" unique_id=435810511]
+custom_minimum_size = Vector2(384, 74)
+layout_mode = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_lav4d")
+theme_override_font_sizes/font_size = 55
+text = "7 Minutes"
+horizontal_alignment = 1
+
+[node name="MoreTime" parent="RuleButtons/Time" unique_id=1648080120 instance=ExtResource("2_p01q4")]
+custom_minimum_size = Vector2(120, 76)
+layout_mode = 2
+text = ">"
+
+[node name="CollisionShape2D" parent="RuleButtons/Time/MoreTime/Area2D" parent_id_path=PackedInt32Array(1648080120, 1321179478) index="0" unique_id=538199872]
+position = Vector2(60, 38)
+shape = SubResource("RectangleShape2D_rwm3t")
+
+[node name="Exit" parent="." unique_id=2049676107 instance=ExtResource("2_p01q4")]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 34.0
+offset_right = 205.0
+offset_bottom = 110.0
+
+[node name="CollisionShape2D" parent="Exit/Area2D" parent_id_path=PackedInt32Array(2049676107, 1321179478) index="0" unique_id=538199872]
+position = Vector2(82, 37.89)
+shape = SubResource("RectangleShape2D_lav4d")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1601028934]
 custom_minimum_size = Vector2(3294, 1227)
@@ -215,3 +304,14 @@ fighterPreview = NodePath("../HBoxContainer/FighterPreview4")
 playerID = 3
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="_pressed" from="RuleButtons/Lives/LessLives" to="." method="_on_less_lives__pressed"]
+[connection signal="_pressed" from="RuleButtons/Lives/MoreLives" to="." method="_on_more_lives_pressed"]
+[connection signal="_pressed" from="RuleButtons/Time/LessTime" to="." method="_on_less_time_pressed"]
+[connection signal="_pressed" from="RuleButtons/Time/MoreTime" to="." method="_on_more_time_pressed"]
+[connection signal="_pressed" from="Exit" to="." method="_on_exit_label_pressed"]
+
+[editable path="RuleButtons/Lives/LessLives"]
+[editable path="RuleButtons/Lives/MoreLives"]
+[editable path="RuleButtons/Time/LessTime"]
+[editable path="RuleButtons/Time/MoreTime"]
+[editable path="Exit"]

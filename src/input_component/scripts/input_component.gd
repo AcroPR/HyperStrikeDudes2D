@@ -1,7 +1,7 @@
 class_name InputComponent
 extends Node
 
-const BUFFER_FRAMES := 6
+@export var BUFFER_FRAMES := 6
 
 enum Stick { DOWN, LEFT, RIGHT, UP}
 

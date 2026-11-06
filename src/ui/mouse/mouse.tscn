@@ -17,6 +17,7 @@ collision_layer = 0
 script = ExtResource("1_u5dxx")
 
 [node name="InputComponent" parent="." unique_id=1274369590 instance=ExtResource("2_5gl3h")]
+BUFFER_FRAMES = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=841752943]
 scale = Vector2(0.5, 0.5)

@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ejguta17f0do"]
+
+[ext_resource type="Theme" uid="uid://cb2hgtl2ggwof" path="res://src/ui/themes/button.tres" id="1_333en"]
+[ext_resource type="Script" uid="uid://duot5klgxf8mv" path="res://src/ui/buttons/scripts/button_universal.gd" id="2_eexqu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
+size = Vector2(164, 76)
+
+[node name="ButtonUniversal" type="Button" unique_id=2049676107]
+custom_minimum_size = Vector2(164, 76)
+offset_left = -82.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 38.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme = ExtResource("1_333en")
+button_mask = 0
+text = " Exit "
+script = ExtResource("2_eexqu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1321179478]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=538199872]
+position = Vector2(82, 38)
+shape = SubResource("RectangleShape2D_j5tfj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

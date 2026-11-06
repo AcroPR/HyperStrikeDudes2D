@@ -1,0 +1,25 @@
+[gd_resource type="Theme" format=3 uid="uid://cb2hgtl2ggwof"]
+
+[ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="1_5lhpv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eexqu"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.08235294, 0.1764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icvcr"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[resource]
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("1_5lhpv")
+Button/styles/hover = SubResource("StyleBoxFlat_eexqu")
+Button/styles/normal = SubResource("StyleBoxFlat_icvcr")

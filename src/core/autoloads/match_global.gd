@@ -2,13 +2,16 @@ extends Node
 
 enum gameModes {STOCK_BATTLE}
 
-const MAX_PLAYERS = 4
-const MIN_PLAYERS = 2
 const MAX_LIVES = 99
 const MIN_LIVES = 1
+const MAX_MINUTES = 99
+const MIN_MINUTES = 0
+const MAX_PLAYERS = 4
+const MIN_PLAYERS = 2
 
 # How many lives the players start with 
 var startingLives = 4
+var startingMinutes = 8
 
 var timer = true
 

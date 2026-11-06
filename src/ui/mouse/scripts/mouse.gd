@@ -9,6 +9,7 @@ var fighterID: String = ""
 var fighterName: String = ""
 var filePath: String = ""
 var selectedFighter: bool
+var buttonHovered: ButtonUniversal = null
 
 @onready var inputComponent: InputComponent = $InputComponent
 @onready var label: Label = $Label
@@ -58,6 +59,8 @@ func _process(_delta: float) -> void:
 	if inputComponent._just_pressed("accept") and fighterID != "":
 		selectedFighter = true
 		MatchGlobal.players[playerID].Fighter = fighterID
+	elif inputComponent._just_pressed("accept") and buttonHovered != null:
+		buttonHovered._press_button()
 	if inputComponent._just_pressed("cancel"):
 		selectedFighter = false
 		_update_fighter_id_and_name("","")
