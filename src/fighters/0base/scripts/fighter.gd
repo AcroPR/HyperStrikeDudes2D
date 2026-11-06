@@ -67,10 +67,16 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @onready var offScreenMarker: OffScreenMarker = $OffScreenMarker
 @onready var stateLabel = $StateLabel
 
+@onready var grabStunState = $FighterStateMachine/Extras/GrabStun
+@onready var hitState = $FighterStateMachine/Extras/Hit
+@onready var ledgeState = $FighterStateMachine/AirMovement/Ledge
+@onready var pummelState = $FighterStateMachine/Extras/Pummel
+
 var fighterIcon: FighterIcon
 
 var airJumpCount: int = 0
 var blockHealth: float = 0.0
+var grabLocation: Marker2D
 var hitStop: int = 0
 var hitStun: int = 0
 var inHitStop: bool = false
@@ -350,14 +356,27 @@ func _set_up_hit_state(hitbox: Hitbox):
 	percent += _damage_calculation(hitbox.parent, hitbox)
 	hitboxReversed = hitbox.reversed
 	hitStun = hitbox.hitStun
-	stateMachine.change_state($FighterStateMachine/DefensiveOptions/Hit)
+	stateMachine.change_state(hitState)
+
+func _is_valid_pummel(_fighter: Fighter):
+	return _fighter != self and _fighter.stateMachine._get_current_state_name() == "Pummel"
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	ledgeLock = false
 	if area.collision_layer & (1 << 6):
 		emit_signal("dead_fighter",playerID)
 		return
+	if area.collision_layer & (1 << 8):
+		var grabbox: GrabBox = area
+		if grabbox.parent != self:
+			grabLocation = grabbox.grabMarker
+			stateMachine.change_state(grabStunState)
+			grabbox.parent.stateMachine.change_state(grabbox.parent.pummelState)
+		return
 	var hitbox: Hitbox = area
+	if _is_valid_pummel(hitbox.parent):
+		percent += hitbox.damage
+		return
 	match inputComponent._pressed("block"):
 		true:
 			blockHealth -= hitbox.blockDamage
@@ -377,7 +396,7 @@ func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 		_set_face()
 		ledgeHeld._set_ledge_grab(self)
 		_set_ledge_position()
-		stateMachine.change_state($FighterStateMachine/AirMovement/Ledge)
+		stateMachine.change_state(ledgeState)
 
 func _off_ledge():
 	ledgeGrabCount = 0
@@ -387,7 +406,7 @@ func _off_ledge():
 	hitboxKBS = 0.0
 	hitStun = 30
 	percent += 10
-	stateMachine.change_state($FighterStateMachine/DefensiveOptions/Hit)
+	stateMachine.change_state(hitState)
 
 func _set_ledge_position():
 	var newPosition = ledgeHeld.global_position - ledgePosition.position

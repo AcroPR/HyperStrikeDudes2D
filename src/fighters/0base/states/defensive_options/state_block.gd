@@ -43,6 +43,10 @@ func process_physics(delta: float) -> State:
 		parent.blockBubble.visible = false
 		return jumpSquatState
 	
+	if inputComponent._just_pressed("grab"):
+		parent.blockBubble.visible = false
+		return grabState
+	
 	if !inputComponent._pressed("block"):
 		parent.blockBubble.visible = false
 		return idleState
