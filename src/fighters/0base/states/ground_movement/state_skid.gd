@@ -2,7 +2,6 @@ extends State
 
 @export_category("States")
 @export var airState: State
-@export var grabState: State
 @export var idleState: State
 @export var jumpSquatState: State
 

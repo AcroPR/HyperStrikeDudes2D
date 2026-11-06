@@ -64,9 +64,12 @@ func process_physics(delta: float) -> State:
 	
 	if inputComponent._pressed("block"):
 		return blockState
-	#
+	
 	#if inputComponent._just_pressed("emote"):
 		#return emoteState
+	
+	if inputComponent._just_pressed("grab"):
+		return grabState
 	
 	if inputComponent._get_strength("move_down") >= parent.RUN_THRESHOLD:
 		parent.set_collision_mask_value(3,false)

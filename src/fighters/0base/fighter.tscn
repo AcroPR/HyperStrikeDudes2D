@@ -794,32 +794,35 @@ idleState = NodePath("../../GroundMovement/Idle")
 
 [node name="GroundMovement" type="Node" parent="FighterStateMachine" unique_id=915885766]
 
-[node name="Crouch" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=813207645 node_paths=PackedStringArray("airState", "blockState", "idleState", "jumpSquatState", "walkState")]
+[node name="Crouch" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=813207645 node_paths=PackedStringArray("airState", "blockState", "idleState", "grabState", "jumpSquatState", "walkState")]
 script = ExtResource("6_jrev0")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 idleState = NodePath("../Idle")
+grabState = NodePath("../../Extras/Grab")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
 
-[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState", "moonWalkState", "runState")]
+[node name="Dash" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1735417321 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "grabState", "jumpSquatState", "idleState", "moonWalkState", "runState")]
 script = ExtResource("5_bn4rd")
 airState = NodePath("../../AirMovement/Air")
 attackSideState = NodePath("../../GroundAttacks/AttackS")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashAttackState = NodePath("../../GroundAttacks/DashAttack")
+grabState = NodePath("../../Extras/Grab")
 jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
 moonWalkState = NodePath("../MoonWalk")
 runState = NodePath("../Run")
 
-[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "jumpSquatState", "walkState")]
+[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "grabState", "jumpSquatState", "walkState")]
 script = ExtResource("4_rmkpu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
+grabState = NodePath("../../Extras/Grab")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
 
@@ -828,13 +831,14 @@ script = ExtResource("7_j1xik")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../Idle")
 
-[node name="MoonWalk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1191162551 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "jumpSquatState", "idleState")]
+[node name="MoonWalk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1191162551 node_paths=PackedStringArray("airState", "attackSideState", "blockState", "crouchState", "dashAttackState", "grabState", "jumpSquatState", "idleState")]
 script = ExtResource("16_7gilf")
 airState = NodePath("../../AirMovement/Air")
 attackSideState = NodePath("../../GroundAttacks/AttackS")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashAttackState = NodePath("../../GroundAttacks/DashAttack")
+grabState = NodePath("../../Extras/Grab")
 jumpSquatState = NodePath("../JumpSquat")
 idleState = NodePath("../Idle")
 
@@ -844,21 +848,23 @@ airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")
 
-[node name="Run" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1448795772 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashAttackState", "skidState", "jumpSquatState")]
+[node name="Run" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1448795772 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashAttackState", "grabState", "skidState", "jumpSquatState")]
 script = ExtResource("7_sbl3l")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashAttackState = NodePath("../../GroundAttacks/DashAttack")
+grabState = NodePath("../../Extras/Grab")
 skidState = NodePath("../Skid")
 jumpSquatState = NodePath("../JumpSquat")
 
-[node name="Walk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=140797622 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "idleState", "jumpSquatState")]
+[node name="Walk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=140797622 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "grabState", "idleState", "jumpSquatState")]
 script = ExtResource("6_xu1qu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
+grabState = NodePath("../../Extras/Grab")
 idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")
 
