@@ -14,6 +14,6 @@ func process_frame(_delta: float) -> State:
 	return null
 
 func process_physics(_delta: float) -> State:
-	parent.global_position = parent.grabLocation.global_position
+	parent.global_position = parent.grabLocation.grabMarker.global_position
 	
 	return null

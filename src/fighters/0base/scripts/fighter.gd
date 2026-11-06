@@ -69,6 +69,7 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 
 @onready var grabStunState = $FighterStateMachine/Extras/GrabStun
 @onready var hitState = $FighterStateMachine/Extras/Hit
+@onready var idleState = $FighterStateMachine/GroundMovement/Idle
 @onready var ledgeState = $FighterStateMachine/AirMovement/Ledge
 @onready var pummelState = $FighterStateMachine/Extras/Pummel
 
@@ -76,7 +77,7 @@ var fighterIcon: FighterIcon
 
 var airJumpCount: int = 0
 var blockHealth: float = 0.0
-var grabLocation: Marker2D
+var grabLocation: GrabBox
 var hitStop: int = 0
 var hitStun: int = 0
 var inHitStop: bool = false
@@ -369,14 +370,19 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << 8):
 		var grabbox: GrabBox = area
 		if grabbox.parent != self:
-			grabLocation = grabbox.grabMarker
+			grabLocation = grabbox
 			stateMachine.change_state(grabStunState)
 			grabbox.parent.stateMachine.change_state(grabbox.parent.pummelState)
+			grabLocation.grabbedFighter = self
 		return
 	var hitbox: Hitbox = area
 	if _is_valid_pummel(hitbox.parent):
 		percent += hitbox.damage
 		return
+	else:
+		if grabLocation != null:
+			grabLocation.grabbedFighter = null
+			grabLocation = null
 	match inputComponent._pressed("block"):
 		true:
 			blockHealth -= hitbox.blockDamage
