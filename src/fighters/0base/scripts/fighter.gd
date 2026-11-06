@@ -392,6 +392,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 				hitbox.parent.smoothLanding = true
 				_set_hit_stop(hitbox, false)
 				_set_up_hit_state(hitbox)
+				hitboxManager._delete_hitboxes()
 
 func _on_ledge_grab_box_area_entered(ledge: Ledge) -> void:
 	if ledgeGrabCount < GameModifiers.ledgeGrabLimit:
