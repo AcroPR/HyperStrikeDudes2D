@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hyper Strike Dudes"
-run/main_scene="uid://m8ufo6g8l4wv"
+run/main_scene="uid://mp0vd3blv3nh"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,7 @@ Controls="*uid://csr5tiec3wjck"
 GameModifiers="*uid://co5kyxwpssqh1"
 MatchGlobal="*uid://bvjqcqbgyj8ac"
 HitboxImporter="*uid://dehusrsxmnxqs"
+SceneLoader="*uid://bo4poffb562a3"
 
 [display]
 

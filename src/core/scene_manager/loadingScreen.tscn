@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cntf7lwawtgpm"]
+
+[ext_resource type="Script" uid="uid://b4p4uwrwqkuqx" path="res://src/core/scene_manager/scripts/loading_screen.gd" id="1_i8trf"]
+
+[node name="LoadingScreen" type="CanvasLayer" unique_id=811639631]
+script = ExtResource("1_i8trf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1136764585]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.43529412)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=996709772]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -836.0
+offset_top = -171.0
+offset_right = 836.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 50
+max_value = 1.0
