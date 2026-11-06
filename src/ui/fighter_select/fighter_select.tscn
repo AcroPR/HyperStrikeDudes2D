@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://bf4ga6arorhp1"]
+
+[ext_resource type="Script" uid="uid://btdqxp4di3x72" path="res://src/ui/fighter_select/scripts/fighter_select.gd" id="1_fco0x"]
+[ext_resource type="PackedScene" uid="uid://xc0aa5kliq02" path="res://src/ui/fighter_select/fighter_button.tscn" id="2_oq6au"]
+[ext_resource type="Texture2D" uid="uid://bp63luaiar61" path="res://assets/ui/fighter_select/fighters/button/0base.png" id="3_7408u"]
+[ext_resource type="PackedScene" uid="uid://bundcp0ff7dxb" path="res://src/ui/mouse/mouse.tscn" id="4_iv4i6"]
+[ext_resource type="PackedScene" uid="uid://cyfaoklvweawx" path="res://src/ui/fighter_select/fighter_preview.tscn" id="5_jawwu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
+size = Vector2(179, 1108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7408u"]
+size = Vector2(2444, 154.5)
+
+[node name="FighterSelect" type="Control" unique_id=562741498]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fco0x")
+
+[node name="Button" type="Button" parent="." unique_id=40464396]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 260.0
+offset_top = -527.0
+offset_right = 948.0
+offset_bottom = -394.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 75
+text = "Go To Stage Select"
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1601028934]
+custom_minimum_size = Vector2(3294, 1227)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.0
+offset_top = -380.0
+offset_right = 2695.0
+offset_bottom = 877.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.4, 0.4)
+theme_override_constants/h_separation = 45
+theme_override_constants/v_separation = 45
+columns = 6
+
+[node name="FighterButton" parent="GridContainer" unique_id=803240840 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+fighterIcon = ExtResource("3_7408u")
+fighterName = "Test"
+
+[node name="FighterButton2" parent="GridContainer" unique_id=2014996582 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton3" parent="GridContainer" unique_id=1848468662 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton4" parent="GridContainer" unique_id=1937201306 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton5" parent="GridContainer" unique_id=775434175 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton6" parent="GridContainer" unique_id=1141225954 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton7" parent="GridContainer" unique_id=1156378823 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton8" parent="GridContainer" unique_id=1744389394 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton9" parent="GridContainer" unique_id=2090871874 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton10" parent="GridContainer" unique_id=859914989 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton11" parent="GridContainer" unique_id=1252454247 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton12" parent="GridContainer" unique_id=2050286331 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton13" parent="GridContainer" unique_id=1045426902 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton14" parent="GridContainer" unique_id=1858439292 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton15" parent="GridContainer" unique_id=26675273 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton16" parent="GridContainer" unique_id=510747619 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton17" parent="GridContainer" unique_id=2113471282 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="FighterButton18" parent="GridContainer" unique_id=348171431 instance=ExtResource("2_oq6au")]
+layout_mode = 2
+texture_normal = null
+fighterName = "basew"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1000841847]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1848069082]
+position = Vector2(-89.5, 544)
+shape = SubResource("RectangleShape2D_s7spp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1480213376]
+position = Vector2(2009.5, 544)
+shape = SubResource("RectangleShape2D_s7spp")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=605438167]
+position = Vector2(958, -77.75)
+shape = SubResource("RectangleShape2D_7408u")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=559794562]
+position = Vector2(958, 1157.75)
+shape = SubResource("RectangleShape2D_7408u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1293992715]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -380.0
+offset_right = 2879.9995
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+theme_override_constants/separation = 250
+alignment = 1
+
+[node name="FighterPreview" parent="HBoxContainer" unique_id=1587805432 instance=ExtResource("5_jawwu")]
+layout_mode = 2
+
+[node name="FighterPreview2" parent="HBoxContainer" unique_id=2120506859 instance=ExtResource("5_jawwu")]
+layout_mode = 2
+playerID = 1
+
+[node name="FighterPreview3" parent="HBoxContainer" unique_id=1235210191 instance=ExtResource("5_jawwu")]
+layout_mode = 2
+playerID = 2
+
+[node name="FighterPreview4" parent="HBoxContainer" unique_id=567296190 instance=ExtResource("5_jawwu")]
+layout_mode = 2
+playerID = 3
+
+[node name="Mouse" parent="." unique_id=1866687069 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
+position = Vector2(484, 796)
+fighterPreview = NodePath("../HBoxContainer/FighterPreview")
+
+[node name="Mouse2" parent="." unique_id=404799393 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
+position = Vector2(787, 796)
+fighterPreview = NodePath("../HBoxContainer/FighterPreview2")
+playerID = 1
+
+[node name="Mouse3" parent="." unique_id=1448003312 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
+position = Vector2(1090, 791)
+fighterPreview = NodePath("../HBoxContainer/FighterPreview3")
+playerID = 2
+
+[node name="Mouse4" parent="." unique_id=197274936 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
+position = Vector2(1419, 788)
+fighterPreview = NodePath("../HBoxContainer/FighterPreview4")
+playerID = 3
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

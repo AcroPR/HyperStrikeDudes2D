@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bundcp0ff7dxb"]
+
+[ext_resource type="Texture2D" uid="uid://b0c3v40sqhep6" path="res://assets/ui/mouse/arrow.png" id="1_iamtg"]
+[ext_resource type="Script" uid="uid://dwa65cp318j0c" path="res://src/ui/mouse/scripts/mouse.gd" id="1_u5dxx"]
+[ext_resource type="PackedScene" uid="uid://dmaq2uqrdw6tm" path="res://src/input_component/input_component.tscn" id="2_5gl3h"]
+[ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="2_q66im"]
+[ext_resource type="Texture2D" uid="uid://bi83tht6herjr" path="res://assets/ui/mouse/arrow_outline.png" id="4_5gl3h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7spp"]
+radius = 58.077534
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5tfj"]
+radius = 1.0
+
+[node name="Mouse" type="CharacterBody2D" unique_id=1866687069]
+collision_layer = 0
+script = ExtResource("1_u5dxx")
+
+[node name="InputComponent" parent="." unique_id=1274369590 instance=ExtResource("2_5gl3h")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=841752943]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_iamtg")
+
+[node name="Outline" type="Sprite2D" parent="." unique_id=1606505675]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_5gl3h")
+
+[node name="Label" type="Label" parent="." unique_id=1624573323]
+offset_left = -70.0
+offset_top = -51.0
+offset_right = 41.0
+offset_bottom = 42.0
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("2_q66im")
+theme_override_font_sizes/font_size = 50
+text = "PX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=62793710]
+shape = SubResource("CircleShape2D_s7spp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1153820999]
+position = Vector2(-68, -38)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=300156644]
+shape = SubResource("CircleShape2D_j5tfj")

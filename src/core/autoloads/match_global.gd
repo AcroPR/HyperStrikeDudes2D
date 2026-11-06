@@ -1,5 +1,7 @@
 extends Node
 
+enum gameModes {STOCK_BATTLE}
+
 const MAX_PLAYERS = 4
 const MIN_PLAYERS = 2
 const MAX_LIVES = 99
@@ -11,7 +13,7 @@ var startingLives = 4
 var timer = true
 
 var playerValues = {
-	"Fighter": 0,
+	"Fighter": "0base",
 	"Color": 0,
 	"Team": 0,
 	"Controller_Index": 0,
@@ -24,6 +26,8 @@ var currentPlayers = 2
 
 #Int Array That Holds The Number Of Lives Of Each Player
 var playerLives = [0,0,0,0]
+
+var selectedGameMode = 0
 
 func _ready():
 	var playerCount = MAX_PLAYERS

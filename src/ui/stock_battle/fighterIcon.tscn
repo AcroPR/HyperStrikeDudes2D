@@ -6,13 +6,14 @@
 [ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="3_en277"]
 [ext_resource type="Texture2D" uid="uid://cvuesvksid0k1" path="res://assets/ui/stock_battle/fighters/0base/0.png" id="4_pcdcg"]
 
-[node name="FighterIcon" type="TextureRect" unique_id=1709777042]
+[node name="FighterIcon" type="TextureRect" unique_id=1709777042 node_paths=PackedStringArray("fighter")]
 custom_minimum_size = Vector2(-1.135, 0)
 offset_right = 605.0
 offset_bottom = 383.0
 pivot_offset = Vector2(-300, -190)
 texture = ExtResource("1_12vof")
 script = ExtResource("2_viafd")
+fighter = NodePath("Fighter")
 
 [node name="BGColor" type="TextureRect" parent="." unique_id=528181736]
 layout_mode = 0

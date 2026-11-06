@@ -38,5 +38,5 @@ func _process(_delta: float) -> void:
 		ResourceLoader.THREAD_LOAD_LOADED:
 			loadedResource = ResourceLoader.load_threaded_get(scenePath)
 			var instance = loadedResource.instantiate()
-			get_tree().current_scene.add_child(instance)
+			get_tree().current_scene._load_scene(instance)
 			load_finished.emit()

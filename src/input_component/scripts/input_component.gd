@@ -23,10 +23,13 @@ var inputBuffer = {
 	"block": 0,
 	"grab": 0,
 	"emote": 0,
-	"walk": 0
+	"walk": 0,
+	"pause": 0,
+	"accept": 0,
+	"cancel": 0,
 }
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	for action in inputBuffer.keys():
 		var inputAction = action+"_"+str(controllerID)
 		if Input.is_action_just_pressed(inputAction):

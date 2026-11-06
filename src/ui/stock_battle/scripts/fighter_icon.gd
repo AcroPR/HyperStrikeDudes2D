@@ -2,11 +2,16 @@ class_name FighterIcon
 extends TextureRect
 
 @onready var bgColor: TextureRect = $BGColor
+@export var fighter: TextureRect
 @onready var player: Label = $Player
 @onready var percent: Label = $Percent
 @onready var lives: Label = $Lives
 
 var enableShake: bool = false
+
+func _set_icon(_playerID: int):
+	var filePath: String = "res://assets/ui/stock_battle/fighters/"+MatchGlobal.players[_playerID].Fighter+"/"+str(MatchGlobal.players[_playerID].Color)+".png"
+	fighter.texture = load(filePath)
 
 func _set_player(_playerID: int):
 	player.text = "P" + str(_playerID)

@@ -18,7 +18,8 @@ func _on_dead_fighter(_playerID: int):
 		stage.call_deferred("_check_active_players")
 
 func _spawn_fighter(_playerID: int = 0) -> Fighter:
-	var fighter = preload("res://src/fighters/0base/fighter.tscn")
+	var filePath: String = "res://src/fighters/"+MatchGlobal.players[_playerID].Fighter+"/fighter.tscn"
+	var fighter = load(filePath)
 	var fighterInstance: Fighter = fighter.instantiate()
 	fighterInstance.dead_fighter.connect(_on_dead_fighter)
 	if playerID == -1:
