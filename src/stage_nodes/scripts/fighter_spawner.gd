@@ -14,6 +14,8 @@ func _on_dead_fighter(_playerID: int):
 			fighter.queue_free()
 	if MatchGlobal.playerLives[_playerID] > 0:
 		stage.call_deferred("_spawn_dead_player", _playerID)
+	else:
+		stage.call_deferred("_check_active_players")
 
 func _spawn_fighter(_playerID: int = 0) -> Fighter:
 	var fighter = preload("res://src/fighters/0base/fighter.tscn")

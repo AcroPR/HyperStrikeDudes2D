@@ -5,6 +5,13 @@ extends Node2D
 @onready var stageCamera : StageCamera = $StageCamera
 @onready var icons: HBoxContainer = $CanvasLayer/Icons
 
+func _check_active_players():
+	var playerCount: int = 0
+	for playerLives in MatchGlobal.playerLives:
+		if playerLives > 0: playerCount += 1
+	playerCount -= (MatchGlobal.MAX_PLAYERS - MatchGlobal.currentPlayers)
+	if playerCount <= 1: queue_free()
+
 func _hide_all_icons():
 	for icon in icons.get_children():
 		icon.visible = false

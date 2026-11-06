@@ -3,9 +3,10 @@ extends CanvasLayer
 signal loading_screen_ready
 
 @onready var progressBar = $ProgressBar
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
-	await get_tree().create_timer(2.0).timeout
+	await animationPlayer.animation_finished
 	loading_screen_ready.emit()
 
 func _on_progress_changed(newValue: float) -> void:
