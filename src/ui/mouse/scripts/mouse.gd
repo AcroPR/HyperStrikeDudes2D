@@ -57,7 +57,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if inputComponent._just_pressed("accept") and fighterID != "":
 		selectedFighter = true
-		MatchGlobal.players[playerID] = fighterID
+		MatchGlobal.players[playerID].Fighter = fighterID
 	if inputComponent._just_pressed("cancel"):
 		selectedFighter = false
 		_update_fighter_id_and_name("","")
