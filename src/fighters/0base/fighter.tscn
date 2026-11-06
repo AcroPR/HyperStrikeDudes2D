@@ -996,7 +996,7 @@ parent = NodePath("..")
 onScreenOffset = Vector2(0.5, -134)
 
 [node name="SpriteFighter" parent="OffScreenMarker/SpriteBG" parent_id_path=PackedInt32Array(1581201541, 1283008723) index="0" unique_id=1817361776]
-scale = Vector2(0.765, 0.765)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("ViewportTexture_sdgya")
 region_rect = Rect2(124, 118.5, 268, 241.5)
 

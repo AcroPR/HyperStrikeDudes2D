@@ -2,14 +2,24 @@
 
 [ext_resource type="Script" uid="uid://kr3kxqr2r1gg" path="res://src/fighters/0base/scripts/off_screen_marker.gd" id="1_e2vcb"]
 [ext_resource type="Texture2D" uid="uid://dy7g1lamkru3t" path="res://icon.svg" id="1_ulu1s"]
+[ext_resource type="Texture2D" uid="uid://dyd4xtbeyjpqr" path="res://assets/ui/stock_battle/base/off_screen_marker/outline.png" id="2_h35yi"]
+[ext_resource type="Texture2D" uid="uid://dqwrjjmcguw0r" path="res://assets/ui/stock_battle/base/off_screen_marker/inner_circle.png" id="3_ag765"]
 
 [node name="OffScreenMarker" type="Node2D" unique_id=1581201541]
 script = ExtResource("1_e2vcb")
 
+[node name="LocationIndicator" type="Sprite2D" parent="." unique_id=1834846751]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_h35yi")
+offset = Vector2(0, 5)
+
 [node name="SpriteBG" type="Sprite2D" parent="." unique_id=1283008723]
-clip_children = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ulu1s")
+clip_children = 1
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_ag765")
+offset = Vector2(0, 5)
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
 
 [node name="SpriteFighter" type="Sprite2D" parent="SpriteBG" unique_id=1817361776]
 texture = ExtResource("1_ulu1s")
