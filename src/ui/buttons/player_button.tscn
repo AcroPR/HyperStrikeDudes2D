@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dt6p5cnuvolwi"]
+
+[ext_resource type="Theme" uid="uid://cb2hgtl2ggwof" path="res://src/ui/themes/button.tres" id="1_odutb"]
+[ext_resource type="Script" uid="uid://b5kwf068u3d8f" path="res://src/ui/buttons/scripts/player_button.gd" id="2_l6rvc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7spp"]
+size = Vector2(146, 178)
+
+[node name="Button" type="Button" unique_id=355706752]
+offset_right = 147.0
+offset_bottom = 178.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme = ExtResource("1_odutb")
+button_mask = 0
+text = "TAG"
+script = ExtResource("2_l6rvc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1293603378]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1316160267]
+position = Vector2(74, 89)
+shape = SubResource("RectangleShape2D_s7spp")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

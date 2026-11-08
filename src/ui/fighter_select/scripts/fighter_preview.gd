@@ -5,6 +5,7 @@ extends TextureButton
 
 @onready var background = $Background
 @onready var label: Label = $Label
+@onready var tagButton: PlayerButton = $TagButton
 
 func _set_player(_playerID: int):
 	match _playerID:
@@ -19,5 +20,6 @@ func _set_player(_playerID: int):
 
 func _ready() -> void:
 	_set_player(playerID)
+	tagButton.playerID = playerID
 	texture_normal = null
 	label.text = ""

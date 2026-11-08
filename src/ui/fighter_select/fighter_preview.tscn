@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://davnxtd3776fe" path="res://src/ui/fighter_select/scripts/fighter_preview.gd" id="2_pvc6e"]
 [ext_resource type="Texture2D" uid="uid://b7lugr18ojgha" path="res://assets/ui/fighter_select/preivew_foreground.png" id="3_pvc6e"]
 [ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="4_i02tm"]
+[ext_resource type="PackedScene" uid="uid://dt6p5cnuvolwi" path="res://src/ui/buttons/player_button.tscn" id="5_oh347"]
 
 [node name="FighterPreview" type="TextureButton" unique_id=1587805432]
 custom_minimum_size = Vector2(642, 784)
@@ -23,21 +24,47 @@ offset_right = 642.0
 offset_bottom = 784.0
 texture = ExtResource("3_pvc6e")
 
+[node name="GameTag" type="Label" parent="." unique_id=2048806261]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = 574.0
+offset_right = 287.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("4_i02tm")
+theme_override_font_sizes/font_size = 60
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Label" type="Label" parent="." unique_id=1756828084]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -321.0
-offset_top = 574.0
-offset_right = 283.0
-offset_bottom = -16.0
+offset_left = -293.0
+offset_top = 472.0
+offset_right = 284.0
+offset_bottom = -212.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/outline_size = 30
+theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("4_i02tm")
-theme_override_font_sizes/font_size = 75
-text = "0base"
+theme_override_font_sizes/font_size = 50
+text = "Sergeant Hype Man"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="TagButton" parent="." unique_id=355706752 instance=ExtResource("5_oh347")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 573.0
+offset_right = 175.0
+offset_bottom = 751.0
