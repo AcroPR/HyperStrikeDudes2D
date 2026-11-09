@@ -289,21 +289,21 @@ layout_mode = 2
 playerID = 3
 
 [node name="Mouse" parent="." unique_id=1866687069 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
-position = Vector2(484, 796)
+position = Vector2(428, 820)
 fighterPreview = NodePath("../HBoxContainer/FighterPreview")
 
 [node name="Mouse2" parent="." unique_id=404799393 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
-position = Vector2(787, 796)
+position = Vector2(787, 822)
 fighterPreview = NodePath("../HBoxContainer/FighterPreview2")
 playerID = 1
 
 [node name="Mouse3" parent="." unique_id=1448003312 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
-position = Vector2(1090, 791)
+position = Vector2(1139, 822)
 fighterPreview = NodePath("../HBoxContainer/FighterPreview3")
 playerID = 2
 
 [node name="Mouse4" parent="." unique_id=197274936 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]
-position = Vector2(1419, 788)
+position = Vector2(1512, 822)
 fighterPreview = NodePath("../HBoxContainer/FighterPreview4")
 playerID = 3
 

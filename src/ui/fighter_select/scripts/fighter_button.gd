@@ -21,7 +21,6 @@ func _update_fighter_icon(newValue: Texture2D):
 func _ready() -> void:
 	_update_fighter_name(fighterName)
 
-
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	var mouse: MouseCustom = area.get_parent()
 	mouse._update_fighter_id_and_name(fighterID,fighterName)

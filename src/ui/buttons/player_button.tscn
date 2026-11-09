@@ -13,7 +13,7 @@ mouse_filter = 2
 mouse_behavior_recursive = 1
 theme = ExtResource("1_odutb")
 button_mask = 0
-text = "TAG"
+text = "CTRL"
 script = ExtResource("2_l6rvc")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1293603378]

@@ -5,6 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://b7lugr18ojgha" path="res://assets/ui/fighter_select/preivew_foreground.png" id="3_pvc6e"]
 [ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="4_i02tm"]
 [ext_resource type="PackedScene" uid="uid://dt6p5cnuvolwi" path="res://src/ui/buttons/player_button.tscn" id="5_oh347"]
+[ext_resource type="PackedScene" uid="uid://ejguta17f0do" path="res://src/ui/buttons/button.tscn" id="6_pvc6e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i02tm"]
+size = Vector2(150, 123)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oh347"]
+size = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvc6e"]
+size = Vector2(91, 68)
 
 [node name="FighterPreview" type="TextureButton" unique_id=1587805432]
 custom_minimum_size = Vector2(642, 784)
@@ -18,13 +28,21 @@ offset_right = 642.0
 offset_bottom = 784.0
 texture = ExtResource("2_oh347")
 
-[node name="Foreground" type="TextureRect" parent="." unique_id=1121415244]
+[node name="Page0" type="Control" parent="." unique_id=1779758754]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Foreground" type="TextureRect" parent="Page0" unique_id=1121415244]
 layout_mode = 0
 offset_right = 642.0
 offset_bottom = 784.0
 texture = ExtResource("3_pvc6e")
 
-[node name="GameTag" type="Label" parent="." unique_id=2048806261]
+[node name="GameTag" type="Label" parent="Page0" unique_id=2048806261]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -43,7 +61,7 @@ text = "Player"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="." unique_id=1756828084]
+[node name="Label" type="Label" parent="Page0" unique_id=1756828084]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -62,9 +80,339 @@ text = "Sergeant Hype Man"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TagButton" parent="." unique_id=355706752 instance=ExtResource("5_oh347")]
+[node name="ControlButton" parent="Page0" unique_id=355706752 instance=ExtResource("5_oh347")]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 573.0
 offset_right = 175.0
 offset_bottom = 751.0
+
+[node name="PlayerButton" parent="Page0" unique_id=2049676107 instance=ExtResource("6_pvc6e")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 33.0
+offset_right = 178.0
+offset_bottom = 156.0
+text = " HMN "
+
+[node name="CollisionShape2D" parent="Page0/PlayerButton/Area2D" parent_id_path=PackedInt32Array(2049676107, 1321179478) index="0" unique_id=538199872]
+position = Vector2(75, 61.5)
+shape = SubResource("RectangleShape2D_i02tm")
+
+[node name="Page1" type="Control" parent="." unique_id=1186089057]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Foreground" type="TextureRect" parent="Page1" unique_id=2128130239]
+layout_mode = 0
+offset_right = 642.0
+offset_bottom = 784.0
+texture = ExtResource("3_pvc6e")
+
+[node name="Label" type="Label" parent="Page1" unique_id=1729191085]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -148.0
+offset_top = 574.0
+offset_right = 287.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("4_i02tm")
+theme_override_font_sizes/font_size = 60
+text = "Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="Page1" unique_id=340846876]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 33.0
+offset_right = -15.0
+offset_bottom = -205.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Actions" type="VBoxContainer" parent="Page1/Buttons" unique_id=541533321]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Lights" parent="Page1/Buttons/Actions" unique_id=2003442033 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Light Attacks"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Lights" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Lights/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Heavies" parent="Page1/Buttons/Actions" unique_id=1119536788 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Heavy Attacks"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Heavies" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Heavies/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Specials" parent="Page1/Buttons/Actions" unique_id=1242656015 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Special Attacks"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Specials" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Specials/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Block" parent="Page1/Buttons/Actions" unique_id=1358727833 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Block"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Block" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Block/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Jump" parent="Page1/Buttons/Actions" unique_id=122623195 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Jump"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Jump" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Jump/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Grab" parent="Page1/Buttons/Actions" unique_id=903395659 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Grab"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Grab" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Grab/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Emote" parent="Page1/Buttons/Actions" unique_id=1672666962 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(382, 78)
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Emote"
+
+[node name="Area2D" parent="Page1/Buttons/Actions/Emote" index="0" unique_id=1293603378]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Actions/Emote/Area2D" index="0" unique_id=1316160267]
+shape = SubResource("RectangleShape2D_oh347")
+disabled = true
+
+[node name="Button1" type="VBoxContainer" parent="Page1/Buttons" unique_id=828290543]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Lights" parent="Page1/Buttons/Button1" unique_id=1826272059 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Lights/Area2D" parent_id_path=PackedInt32Array(1826272059, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Heavies" parent="Page1/Buttons/Button1" unique_id=2046428123 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Heavies/Area2D" parent_id_path=PackedInt32Array(2046428123, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Specials" parent="Page1/Buttons/Button1" unique_id=873251790 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Specials/Area2D" parent_id_path=PackedInt32Array(873251790, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Block" parent="Page1/Buttons/Button1" unique_id=1275583522 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Block/Area2D" parent_id_path=PackedInt32Array(1275583522, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Jump" parent="Page1/Buttons/Button1" unique_id=720929350 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Jump/Area2D" parent_id_path=PackedInt32Array(720929350, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Grab" parent="Page1/Buttons/Button1" unique_id=1132147348 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Grab/Area2D" parent_id_path=PackedInt32Array(1132147348, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Emote" parent="Page1/Buttons/Button1" unique_id=599073575 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button1/Emote/Area2D" parent_id_path=PackedInt32Array(599073575, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Button2" type="VBoxContainer" parent="Page1/Buttons" unique_id=2035590517]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Lights" parent="Page1/Buttons/Button2" unique_id=1199118467 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Lights/Area2D" parent_id_path=PackedInt32Array(1199118467, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Heavies" parent="Page1/Buttons/Button2" unique_id=133954339 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Heavies/Area2D" parent_id_path=PackedInt32Array(133954339, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Specials" parent="Page1/Buttons/Button2" unique_id=1872761189 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Specials/Area2D" parent_id_path=PackedInt32Array(1872761189, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Block" parent="Page1/Buttons/Button2" unique_id=1333013216 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Block/Area2D" parent_id_path=PackedInt32Array(1333013216, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Jump" parent="Page1/Buttons/Button2" unique_id=1416135340 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Jump/Area2D" parent_id_path=PackedInt32Array(1416135340, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Grab" parent="Page1/Buttons/Button2" unique_id=515685011 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Grab/Area2D" parent_id_path=PackedInt32Array(515685011, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="Emote" parent="Page1/Buttons/Button2" unique_id=1765666533 instance=ExtResource("5_oh347")]
+custom_minimum_size = Vector2(101, 78)
+layout_mode = 2
+text = " A "
+
+[node name="CollisionShape2D" parent="Page1/Buttons/Button2/Emote/Area2D" parent_id_path=PackedInt32Array(1765666533, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(50.5, 39)
+shape = SubResource("RectangleShape2D_pvc6e")
+
+[node name="ExitButton" parent="Page1" unique_id=405067300 instance=ExtResource("5_oh347")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 574.0
+offset_right = 175.0
+offset_bottom = 751.0
+text = "Exit"
+
+[connection signal="_pressed" from="Page0/ControlButton" to="." method="_on_control_button_pressed"]
+[connection signal="_pressed" from="Page1/ExitButton" to="." method="_on_exit_button_pressed"]
+
+[editable path="Page0/PlayerButton"]
+[editable path="Page1/Buttons/Actions/Lights"]
+[editable path="Page1/Buttons/Actions/Heavies"]
+[editable path="Page1/Buttons/Actions/Specials"]
+[editable path="Page1/Buttons/Actions/Block"]
+[editable path="Page1/Buttons/Actions/Jump"]
+[editable path="Page1/Buttons/Actions/Grab"]
+[editable path="Page1/Buttons/Actions/Emote"]
+[editable path="Page1/Buttons/Button1/Lights"]
+[editable path="Page1/Buttons/Button1/Heavies"]
+[editable path="Page1/Buttons/Button1/Specials"]
+[editable path="Page1/Buttons/Button1/Block"]
+[editable path="Page1/Buttons/Button1/Jump"]
+[editable path="Page1/Buttons/Button1/Grab"]
+[editable path="Page1/Buttons/Button1/Emote"]
+[editable path="Page1/Buttons/Button2/Lights"]
+[editable path="Page1/Buttons/Button2/Heavies"]
+[editable path="Page1/Buttons/Button2/Specials"]
+[editable path="Page1/Buttons/Button2/Block"]
+[editable path="Page1/Buttons/Button2/Jump"]
+[editable path="Page1/Buttons/Button2/Grab"]
+[editable path="Page1/Buttons/Button2/Emote"]

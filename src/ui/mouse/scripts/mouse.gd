@@ -45,10 +45,10 @@ func _update_file_path():
 func _update_preview():
 	if FileAccess.file_exists(filePath):
 		fighterPreview.texture_normal = load(filePath)
-		fighterPreview.label.text = fighterName
+		fighterPreview.labelPageZero.text = fighterName
 	else:
 		fighterPreview.texture_normal = null
-		fighterPreview.label.text = ""
+		fighterPreview.labelPageZero.text = ""
 
 func _ready() -> void:
 	selectedFighter = false
@@ -60,6 +60,7 @@ func _process(_delta: float) -> void:
 		selectedFighter = true
 		MatchGlobal.players[playerID].Fighter = fighterID
 	elif inputComponent._just_pressed("accept") and buttonHovered != null:
+		print(buttonHovered)
 		buttonHovered._press_button()
 	if inputComponent._just_pressed("cancel"):
 		selectedFighter = false
