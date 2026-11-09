@@ -295,10 +295,12 @@ func _is_in_hitstop() -> bool:
 			animationPlayer.play("Hit")
 		else:
 			animationPlayer.pause()
+		hitboxManager._set_paused(true)
 		return true
 	elif inHitStop:
 		animationPlayer.play()
 		inHitStop = false
+		hitboxManager._set_paused(false)
 	return false
 
 func _process(delta: float) -> void:
