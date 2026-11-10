@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqc2six3yrdon"
-path="res://.godot/imported/preivew_background.png-189de8b0a1b1e346e1adb1b67535f829.ctex"
+path="res://.godot/imported/preview_background.png-bd01343952336211c450b8f13ab7d510.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/fighter_select/preivew_background.png"
-dest_files=["res://.godot/imported/preivew_background.png-189de8b0a1b1e346e1adb1b67535f829.ctex"]
+source_file="res://assets/ui/fighter_select/preview_background.png"
+dest_files=["res://.godot/imported/preview_background.png-bd01343952336211c450b8f13ab7d510.ctex"]
 
 [params]
 

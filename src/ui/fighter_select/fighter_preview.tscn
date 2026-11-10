@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cyfaoklvweawx"]
 
-[ext_resource type="Texture2D" uid="uid://cqc2six3yrdon" path="res://assets/ui/fighter_select/preivew_background.png" id="2_oh347"]
+[ext_resource type="Script" uid="uid://b4i4wxt06gluh" path="res://src/ui/fighter_select/scripts/input_saver.gd" id="2_i02tm"]
+[ext_resource type="Texture2D" uid="uid://cqc2six3yrdon" path="res://assets/ui/fighter_select/preview_background.png" id="2_oh347"]
 [ext_resource type="Script" uid="uid://davnxtd3776fe" path="res://src/ui/fighter_select/scripts/fighter_preview.gd" id="2_pvc6e"]
-[ext_resource type="Texture2D" uid="uid://b7lugr18ojgha" path="res://assets/ui/fighter_select/preivew_foreground.png" id="3_pvc6e"]
+[ext_resource type="Texture2D" uid="uid://b7lugr18ojgha" path="res://assets/ui/fighter_select/preview_foreground.png" id="3_pvc6e"]
 [ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="4_i02tm"]
 [ext_resource type="PackedScene" uid="uid://dt6p5cnuvolwi" path="res://src/ui/buttons/player_button.tscn" id="5_oh347"]
 [ext_resource type="PackedScene" uid="uid://ejguta17f0do" path="res://src/ui/buttons/button.tscn" id="6_pvc6e"]
@@ -14,14 +15,18 @@ size = Vector2(150, 123)
 size = Vector2(0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pvc6e"]
-size = Vector2(91, 68)
+size = Vector2(75, 54)
 
 [node name="FighterPreview" type="TextureButton" unique_id=1587805432]
 custom_minimum_size = Vector2(642, 784)
 ignore_texture_size = true
 script = ExtResource("2_pvc6e")
 
+[node name="InputSaver" type="Node" parent="." unique_id=104766757]
+script = ExtResource("2_i02tm")
+
 [node name="Background" type="TextureRect" parent="." unique_id=1924783432]
+visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_right = 642.0
@@ -29,6 +34,7 @@ offset_bottom = 784.0
 texture = ExtResource("2_oh347")
 
 [node name="Page0" type="Control" parent="." unique_id=1779758754]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,7 +107,6 @@ position = Vector2(75, 61.5)
 shape = SubResource("RectangleShape2D_i02tm")
 
 [node name="Page1" type="Control" parent="." unique_id=1186089057]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -130,7 +135,7 @@ grow_vertical = 2
 theme_override_constants/outline_size = 20
 theme_override_fonts/font = ExtResource("4_i02tm")
 theme_override_font_sizes/font_size = 60
-text = "Player"
+text = "Controls"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -256,7 +261,7 @@ theme_override_constants/separation = 0
 [node name="Lights" parent="Page1/Buttons/Button1" unique_id=1826272059 instance=ExtResource("5_oh347")]
 custom_minimum_size = Vector2(101, 78)
 layout_mode = 2
-text = " A "
+text = "A"
 
 [node name="CollisionShape2D" parent="Page1/Buttons/Button1/Lights/Area2D" parent_id_path=PackedInt32Array(1826272059, 1293603378) index="0" unique_id=1316160267]
 position = Vector2(50.5, 39)
@@ -391,7 +396,85 @@ offset_right = 175.0
 offset_bottom = 751.0
 text = "Exit"
 
+[node name="Page2" type="Control" parent="." unique_id=1571852037]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Page2" unique_id=1531208598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="Foreground" type="TextureRect" parent="Page2" unique_id=138359634]
+layout_mode = 0
+offset_right = 642.0
+offset_bottom = 784.0
+texture = ExtResource("3_pvc6e")
+
+[node name="Label" type="Label" parent="Page2" unique_id=2097499701]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = 33.0
+offset_right = 292.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("4_i02tm")
+theme_override_font_sizes/font_size = 60
+text = "Press 
+Any
+Button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionLabel" type="Label" parent="Page2" unique_id=1450127815]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -291.0
+offset_top = 574.0
+offset_right = 290.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("4_i02tm")
+theme_override_font_sizes/font_size = 60
+text = "Special Attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="_pressed" from="Page0/ControlButton" to="." method="_on_control_button_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Lights" to="." method="_on_lights_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Heavies" to="." method="_on_heavies_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Specials" to="." method="_on_specials_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Block" to="." method="_on_block_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Jump" to="." method="_on_jump_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Grab" to="." method="_on_grab_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button1/Emote" to="." method="_on_emote_a_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Lights" to="." method="_on_lights_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Heavies" to="." method="_on_heavies_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Specials" to="." method="_on_specials_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Block" to="." method="_on_block_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Jump" to="." method="_on_jump_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Grab" to="." method="_on_grab_b_pressed"]
+[connection signal="_pressed" from="Page1/Buttons/Button2/Emote" to="." method="_on_emote_b_pressed"]
 [connection signal="_pressed" from="Page1/ExitButton" to="." method="_on_exit_button_pressed"]
 
 [editable path="Page0/PlayerButton"]

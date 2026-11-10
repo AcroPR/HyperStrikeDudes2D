@@ -273,19 +273,23 @@ scale = Vector2(0.4, 0.4)
 theme_override_constants/separation = 250
 alignment = 1
 
-[node name="FighterPreview" parent="HBoxContainer" unique_id=1587805432 instance=ExtResource("5_jawwu")]
+[node name="FighterPreview" parent="HBoxContainer" unique_id=1587805432 node_paths=PackedStringArray("mouse") instance=ExtResource("5_jawwu")]
 layout_mode = 2
+mouse = NodePath("../../Mouse")
 
-[node name="FighterPreview2" parent="HBoxContainer" unique_id=2120506859 instance=ExtResource("5_jawwu")]
+[node name="FighterPreview2" parent="HBoxContainer" unique_id=2120506859 node_paths=PackedStringArray("mouse") instance=ExtResource("5_jawwu")]
 layout_mode = 2
+mouse = NodePath("../../Mouse2")
 playerID = 1
 
-[node name="FighterPreview3" parent="HBoxContainer" unique_id=1235210191 instance=ExtResource("5_jawwu")]
+[node name="FighterPreview3" parent="HBoxContainer" unique_id=1235210191 node_paths=PackedStringArray("mouse") instance=ExtResource("5_jawwu")]
 layout_mode = 2
+mouse = NodePath("../../Mouse3")
 playerID = 2
 
-[node name="FighterPreview4" parent="HBoxContainer" unique_id=567296190 instance=ExtResource("5_jawwu")]
+[node name="FighterPreview4" parent="HBoxContainer" unique_id=567296190 node_paths=PackedStringArray("mouse") instance=ExtResource("5_jawwu")]
 layout_mode = 2
+mouse = NodePath("../../Mouse4")
 playerID = 3
 
 [node name="Mouse" parent="." unique_id=1866687069 node_paths=PackedStringArray("fighterPreview") instance=ExtResource("4_iv4i6")]

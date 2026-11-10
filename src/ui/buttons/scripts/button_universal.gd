@@ -21,6 +21,7 @@ func _ready() -> void:
 	_on_visibility_changed()
 
 func _process(_delta: float) -> void:
+	if !is_visible_in_tree(): return
 	if area.get_overlapping_areas().size() > 0:
 		add_theme_stylebox_override("normal", get_theme_stylebox("hover"))
 	else:

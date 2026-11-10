@@ -16,6 +16,13 @@ var buttonHovered: ButtonUniversal = null
 @onready var sprite: Sprite2D = $Sprite2D
 
 var mouseSpeed: int = 50000
+var pressBuffer: int
+
+func _set_enabled(_bool: bool) -> void:
+	visible = _bool
+	set_process(_bool)
+	set_physics_process(_bool)
+	inputComponent._hard_release("accept")
 
 func _set_player(_playerID: int):
 	label.text = "P"+str(playerID+1)
@@ -51,20 +58,27 @@ func _update_preview():
 		fighterPreview.labelPageZero.text = ""
 
 func _ready() -> void:
+	pressBuffer = 0
 	selectedFighter = false
 	_set_player(playerID)
-	inputComponent.controllerID = playerID
+	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 
 func _process(_delta: float) -> void:
+	if pressBuffer > 0:
+		pressBuffer -= 1
+		inputComponent._hard_release("accept")
+		return
 	if inputComponent._just_pressed("accept") and fighterID != "":
 		selectedFighter = true
 		MatchGlobal.players[playerID].Fighter = fighterID
+		pressBuffer = 5
 	elif inputComponent._just_pressed("accept") and buttonHovered != null:
-		print(buttonHovered)
 		buttonHovered._press_button()
+		pressBuffer = 5
 	if inputComponent._just_pressed("cancel"):
 		selectedFighter = false
 		_update_fighter_id_and_name("","")
+		pressBuffer = 5
 
 func _physics_process(delta: float) -> void:
 	var xDir = inputComponent._get_strength("move_right") - inputComponent._get_strength("move_left")
