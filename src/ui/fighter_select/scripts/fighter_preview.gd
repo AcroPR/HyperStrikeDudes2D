@@ -138,6 +138,40 @@ func _on_exit_button_pressed() -> void:
 	pageOne.visible = false
 	pageTwo.visible = false
 
+func _on_reset_button_pressed() -> void:
+	var controllerID: int = MatchGlobal.players[playerID]["Controller_Index"]
+	match controllerID:
+		0:
+			Controls.playOneInputsA = Controls.inputsA
+			Controls.playOneInputsB = Controls.inputsB
+		1:
+			Controls.playTwoInputsA = Controls.inputsA
+			Controls.playTwoInputsB = Controls.inputsB
+		2:
+			Controls.playThreeInputsA = Controls.inputsA
+			Controls.playThreeInputsB = Controls.inputsB
+		3:
+			Controls.playFourInputsA = Controls.inputsA
+			Controls.playFourInputsB = Controls.inputsB
+	Controls._save_input(controllerID)
+	for inputAction in InputMap.get_actions():
+		if inputAction.contains(str(controllerID)):
+			InputMap.action_erase_events(inputAction)
+	match controllerID:
+		0:
+			Controls._add_actions(Controls.playOneInputsA, 0)
+			Controls._add_actions(Controls.playOneInputsB, 0)
+		1:
+			Controls._add_actions(Controls.playTwoInputsA, 0)
+			Controls._add_actions(Controls.playTwoInputsB, 0)
+		2:
+			Controls._add_actions(Controls.playThreeInputsA, 0)
+			Controls._add_actions(Controls.playThreeInputsB, 0)
+		3:
+			Controls._add_actions(Controls.playFourInputsA, 0)
+			Controls._add_actions(Controls.playFourInputsB, 0)
+	_set_input_buttons()
+
 func _set_input_page(labelText: String, _actionName: String, _isAVersion: bool):
 	pageZero.visible = false
 	pageOne.visible = false

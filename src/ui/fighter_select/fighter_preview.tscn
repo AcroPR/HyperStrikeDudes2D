@@ -17,6 +17,12 @@ size = Vector2(0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pvc6e"]
 size = Vector2(75, 54)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hbb6"]
+size = Vector2(137, 79)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjdln"]
+size = Vector2(137, 79)
+
 [node name="FighterPreview" type="TextureButton" unique_id=1587805432]
 custom_minimum_size = Vector2(642, 784)
 ignore_texture_size = true
@@ -26,7 +32,6 @@ script = ExtResource("2_pvc6e")
 script = ExtResource("2_i02tm")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1924783432]
-visible = false
 show_behind_parent = true
 layout_mode = 0
 offset_right = 642.0
@@ -388,13 +393,31 @@ text = " A "
 position = Vector2(50.5, 39)
 shape = SubResource("RectangleShape2D_pvc6e")
 
-[node name="ExitButton" parent="Page1" unique_id=405067300 instance=ExtResource("5_oh347")]
+[node name="ExitButton" parent="Page1" unique_id=1203446069 instance=ExtResource("5_oh347")]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 664.0
+offset_right = 175.0
+offset_bottom = 753.0
+theme_override_font_sizes/font_size = 35
+text = "Exit"
+
+[node name="CollisionShape2D" parent="Page1/ExitButton/Area2D" parent_id_path=PackedInt32Array(1203446069, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(73.5, 44.5)
+shape = SubResource("RectangleShape2D_6hbb6")
+
+[node name="ResetButton" parent="Page1" unique_id=1678528409 instance=ExtResource("5_oh347")]
 layout_mode = 0
 offset_left = 28.0
 offset_top = 574.0
 offset_right = 175.0
-offset_bottom = 751.0
-text = "Exit"
+offset_bottom = 663.0
+theme_override_font_sizes/font_size = 35
+text = "Reset"
+
+[node name="CollisionShape2D" parent="Page1/ResetButton/Area2D" parent_id_path=PackedInt32Array(1678528409, 1293603378) index="0" unique_id=1316160267]
+position = Vector2(73.5, 44.5)
+shape = SubResource("RectangleShape2D_vjdln")
 
 [node name="Page2" type="Control" parent="." unique_id=1571852037]
 visible = false
@@ -476,6 +499,7 @@ vertical_alignment = 1
 [connection signal="_pressed" from="Page1/Buttons/Button2/Grab" to="." method="_on_grab_b_pressed"]
 [connection signal="_pressed" from="Page1/Buttons/Button2/Emote" to="." method="_on_emote_b_pressed"]
 [connection signal="_pressed" from="Page1/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="_pressed" from="Page1/ResetButton" to="." method="_on_reset_button_pressed"]
 
 [editable path="Page0/PlayerButton"]
 [editable path="Page1/Buttons/Actions/Lights"]
@@ -499,3 +523,5 @@ vertical_alignment = 1
 [editable path="Page1/Buttons/Button2/Jump"]
 [editable path="Page1/Buttons/Button2/Grab"]
 [editable path="Page1/Buttons/Button2/Emote"]
+[editable path="Page1/ExitButton"]
+[editable path="Page1/ResetButton"]
