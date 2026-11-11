@@ -11,6 +11,7 @@ extends Area2D
 @export_range(0,999) var baseKnockback: int = 0 : set = _update_bkb
 @export_range(0,999) var blockDamage: int = 0 : set = _update_block_damage
 @export_range(0,999) var damage: int = 0 : set = _update_damage
+@export_range(0,1) var diMultiplier: float = 1.0 : set = _update_di_multiplier
 @export_range(1,99) var framesActive: int = 1 : set = _update_frames
 @export_range(1,99) var group: int = 1 : set = _update_group
 @export_range(0,4) var hitboxId: int = 0 : set = _update_id
@@ -56,6 +57,11 @@ func _update_color(new_val: Color) -> void:
 # Updates the hitbox damage
 func _update_damage(newVal):
 	damage = newVal
+	queue_redraw()
+
+# Updates the hitbox di mulitplier
+func _update_di_multiplier(newVal):
+	diMultiplier = newVal
 	queue_redraw()
 
 # Updates the hitbox frame data
@@ -119,10 +125,10 @@ func _build_from_array(current_hitbox: Array, _paused: bool = false, _hitboxId: 
 	return Hitbox.new(current_hitbox[1],current_hitbox[2],current_hitbox[3],current_hitbox[4],
 	_paused, _hitboxId, current_hitbox[7], current_hitbox[6], current_hitbox[5], current_hitbox[10],
 	current_hitbox[8], current_hitbox[9], current_hitbox[11], current_hitbox[12], current_hitbox[13],
-	current_hitbox[14],current_hitbox[15],current_hitbox[16])
+	current_hitbox[14],current_hitbox[15],current_hitbox[16],current_hitbox[17])
 
 # Custom constructor
-func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initHitboxId: int = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, inithitStop: int = 0, initBlockDamage: int = 0, initType: int = 0, initReversable: bool = false, initGroup: int = 1):
+func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, initPaused: bool = false, initHitboxId: int = 0, initPriority: int = 0, initFrames: int = 1, initDamage: int = 0, initHitStun: int = 0, initAngle: int = 0, initBkb: int = 0, initKbs: float = 0.0, inithitStop: int = 0, initBlockDamage: int = 0, initType: int = 0, initReversable: bool = false, initGroup: int = 1, initDiMultiplier: float = 1.0):
 	var rectangleShape = RectangleShape2D.new()
 	rectangleShape.extents.x = width
 	rectangleShape.extents.y = height
@@ -144,6 +150,7 @@ func _init(width: int = 0, height: int = 0, initX: int = 0, initY: int = 0, init
 	type = initType
 	reversable = initReversable
 	group = initGroup
+	diMultiplier = initDiMultiplier
 
 func _set_collision_and_groups():
 	set_collision_layer_value(1,false)

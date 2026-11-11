@@ -77,6 +77,7 @@ var fighterIcon: FighterIcon
 
 var airJumpCount: int = 0
 var blockHealth: float = 0.0
+var diMulitplier: float = 1.0
 var grabLocation: GrabBox
 var hitStop: int = 0
 var hitStun: int = 0
@@ -359,6 +360,7 @@ func _set_up_hit_state(hitbox: Hitbox):
 	percent += _damage_calculation(hitbox.parent, hitbox)
 	hitboxReversed = hitbox.reversed
 	hitStun = hitbox.hitStun
+	diMulitplier = hitbox.diMultiplier
 	stateMachine.change_state(hitState)
 
 func _is_valid_pummel(_fighter: Fighter):

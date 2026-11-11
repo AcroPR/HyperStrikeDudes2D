@@ -13,6 +13,8 @@ func convert_to_hitbox_data(csv_line: PackedStringArray) -> Array:
 				newArray.append(float(splitArray[i])+0.0)
 			15:
 				newArray.append(bool(splitArray[i]=="true"))
+			17:
+				newArray.append(float(splitArray[i])+0.0)
 			_:
 				newArray.append(int(splitArray[i]))
 	
@@ -44,7 +46,7 @@ func _save_csv(fighterName, attackType, hitBoxManager, hitboxStartFrames):
 		var childCount = 0
 		# Write data to the file
 		var data = ""
-		for hitboxNode in hitBoxManager.get_children():
+		for hitboxNode: Hitbox in hitBoxManager.get_children():
 			data = str(hitboxStartFrames[childCount]) + ","
 			data += str(hitboxNode.shape.extents.x) + ","
 			data += str(hitboxNode.shape.extents.y) + ","
@@ -61,7 +63,8 @@ func _save_csv(fighterName, attackType, hitBoxManager, hitboxStartFrames):
 			data += str(hitboxNode.blockDamage) + ","
 			data += str(hitboxNode.type) + ","
 			data += str(hitboxNode.reversable) + ","
-			data += str(hitboxNode.group)
+			data += str(hitboxNode.group) + ","
+			data += str(hitboxNode.diMultiplier)
 			file.store_line(data)
 			childCount += 1
 			print(hitboxNode.blockDamage)
