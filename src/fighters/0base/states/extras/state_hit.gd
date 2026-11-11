@@ -86,6 +86,9 @@ func process_physics(delta: float) -> State:
 	
 	tech_check()
 	
+	if parent.is_on_wall() and (previousVelocity.x > SPEED_LIMIT or previousVelocity.x < -SPEED_LIMIT):
+		parent.velocity.x = previousVelocity.x * -0.5
+	
 	if parent.is_on_floor() and previousVelocity.y > SPEED_LIMIT:
 		if techFrames < TECH_WINDOW:
 			parent.velocity = Vector2.ZERO
