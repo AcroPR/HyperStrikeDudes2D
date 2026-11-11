@@ -9,10 +9,10 @@
 [node name="Explosion" type="Node2D" unique_id=2015657261]
 script = ExtResource("2_wf7j7")
 
-[node name="circle" type="CPUParticles2D" parent="." unique_id=1686763830]
+[node name="Circle" type="CPUParticles2D" parent="." unique_id=1686763830]
 emitting = false
 texture = ExtResource("2_4is6q")
-lifetime = 3.0
+lifetime = 8.0
 one_shot = true
 preprocess = 1.0
 speed_scale = 4.0
@@ -26,10 +26,10 @@ initial_velocity_max = 515.0
 scale_amount_min = 0.18
 scale_amount_max = 0.68
 
-[node name="poly" type="CPUParticles2D" parent="." unique_id=662795283]
+[node name="Poly" type="CPUParticles2D" parent="." unique_id=662795283]
 emitting = false
 texture = ExtResource("3_k1ls8")
-lifetime = 3.0
+lifetime = 8.0
 one_shot = true
 preprocess = 1.0
 speed_scale = 4.0
@@ -43,10 +43,10 @@ initial_velocity_max = 515.0
 scale_amount_min = 0.18
 scale_amount_max = 0.68
 
-[node name="stars" type="CPUParticles2D" parent="." unique_id=199985349]
+[node name="Stars" type="CPUParticles2D" parent="." unique_id=199985349]
 emitting = false
 texture = ExtResource("2_espon")
-lifetime = 3.0
+lifetime = 8.0
 one_shot = true
 preprocess = 1.0
 speed_scale = 4.0
@@ -60,10 +60,10 @@ initial_velocity_max = 515.0
 scale_amount_min = 0.18
 scale_amount_max = 0.68
 
-[node name="square" type="CPUParticles2D" parent="." unique_id=745041962]
+[node name="Square" type="CPUParticles2D" parent="." unique_id=745041962]
 emitting = false
 texture = ExtResource("5_dxecg")
-lifetime = 3.0
+lifetime = 8.0
 one_shot = true
 preprocess = 1.0
 speed_scale = 4.0

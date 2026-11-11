@@ -1,10 +1,10 @@
 class_name FighterExplosion
 extends Node2D
 
-@onready var circle: CPUParticles2D = $circle
-@onready var poly: CPUParticles2D = $poly
-@onready var stars: CPUParticles2D = $stars
-@onready var square: CPUParticles2D = $square
+@onready var circle: CPUParticles2D = $Circle
+@onready var poly: CPUParticles2D = $Poly
+@onready var stars: CPUParticles2D = $Stars
+@onready var square: CPUParticles2D = $Square
 
 var xVelocity = 0
 var yVelocity = 0

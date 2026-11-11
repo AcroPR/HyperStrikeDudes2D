@@ -11,8 +11,11 @@ extends State
 # Array of attack hitboxes
 var attackHitboxes
 
+var previousFrame: int
+
 func enter() -> void:
 	super()
+	previousFrame = -1
 	parent.animationPlayer.play(animationName)
 	attackHitboxes = HitboxImporter._load_csv(parent.fighterFolderName, animationName)
 	parent._add_stale_move(animationName)
@@ -39,8 +42,9 @@ func _create_hitbox(current_hitbox):
 func _check_for_hitboxes():
 	var currentFrame = int(parent.animationPlayer.current_animation_position * 60)
 	for currentHitbox in attackHitboxes:
-		if currentFrame == currentHitbox[0]:
+		if currentFrame == currentHitbox[0] and previousFrame < currentFrame:
 			_create_hitbox(currentHitbox)
+			previousFrame = currentFrame
 
 func process_frame(_delta: float) -> State:
 	_check_for_hitboxes()

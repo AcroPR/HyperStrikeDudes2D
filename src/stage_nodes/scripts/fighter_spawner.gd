@@ -22,7 +22,6 @@ func _on_dead_fighter(_playerID: int):
 		stage.call_deferred("_check_active_players")
 
 func _set_explosion(fighter: Fighter) -> void:
-	print(fighter.global_position)
 	var explosionInstance = EXPLOSION.instantiate()
 	explosionInstance.global_position = fighter.global_position
 	explosionInstance.xVelocity = fighter.global_position.x
