@@ -20,6 +20,10 @@ func _set_values(_hitboxNode: Hitbox, _startFrameIndex):
 	hitboxStart.text = str(hitboxAnimator.hitboxStartFrames[startFrameIndex]+1)
 
 func _damage_text_changed(new_text: String) -> void:
+	if !is_instance_valid(hitboxNode):
+		print(hitboxNode)
+		return
+		
 	if new_text.is_valid_int():
 		hitboxNode.damage = int(new_text)
 	else:

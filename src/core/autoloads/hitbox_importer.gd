@@ -67,7 +67,6 @@ func _save_csv(fighterName, attackType, hitBoxManager, hitboxStartFrames):
 			data += str(hitboxNode.diMultiplier)
 			file.store_line(data)
 			childCount += 1
-			print(hitboxNode.blockDamage)
 		# Close the file
 		file.close()
 		
