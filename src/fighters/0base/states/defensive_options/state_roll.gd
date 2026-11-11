@@ -7,7 +7,7 @@ const ROLL_MAX_FRAMES: int = 30
 @export var idleState: State
 
 var moveDir
-var friction: int
+var friction: float
 
 func _roll_start_up():
 	match parent.facingRight:
