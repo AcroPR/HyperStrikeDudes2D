@@ -4,6 +4,7 @@ extends Node2D
 const EXPLOSION = preload("uid://bk1r5yy5s2t6m")
 
 @export var stage: Stage
+@export var neutralFighterSpawner: FighterSpawner
 @export_range(-1,3) var playerID: int = -1
 @export var facingRight: bool = true
 
@@ -11,15 +12,20 @@ func _on_dead_fighter(_playerID: int):
 	for fighter in get_children():
 		if fighter is not Fighter: continue
 		if fighter.playerID == _playerID:
-			stage.stageCamera._remove_target(fighter)
+			
 			MatchGlobal.playerLives[_playerID] -= 1
 			fighter.fighterIcon._set_lives(_playerID)
 			_set_explosion(fighter)
-			fighter.queue_free()
-	if MatchGlobal.playerLives[_playerID] > 0:
-		stage.call_deferred("_spawn_dead_player", _playerID)
-	else:
-		stage.call_deferred("_check_active_players")
+			fighter._set_dead()
+		if MatchGlobal.playerLives[_playerID] < 1:
+			stage.stageCamera._remove_target(fighter)
+	stage.call_deferred("_check_active_players")
+
+func _on_respawn_fighter():
+	for fighter in get_children():
+		if fighter is not Fighter: continue
+		fighter.global_position = neutralFighterSpawner.global_position
+		fighter._ready()
 
 func _set_explosion(fighter: Fighter) -> void:
 	var explosionInstance = EXPLOSION.instantiate()
@@ -33,6 +39,7 @@ func _spawn_fighter(_playerID: int = 0) -> Fighter:
 	var fighter = load(filePath)
 	var fighterInstance: Fighter = fighter.instantiate()
 	fighterInstance.dead_fighter.connect(_on_dead_fighter)
+	fighterInstance.respawn_fighter.connect(_on_respawn_fighter)
 	if playerID == -1:
 		fighterInstance.playerID = _playerID
 	else:

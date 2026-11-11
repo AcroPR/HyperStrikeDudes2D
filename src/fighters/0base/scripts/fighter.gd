@@ -3,6 +3,7 @@ class_name Fighter
 extends CharacterBody2D
 
 signal dead_fighter
+signal respawn_fighter
 
 const MAX_BLOCK_HEALTH: float = 55.0
 const RUN_THRESHOLD: float = 0.8
@@ -70,11 +71,12 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @onready var shaker: Shaker = $Shaker
 @onready var stateLabel = $StateLabel
 
-@onready var grabStunState = $FighterStateMachine/Extras/GrabStun
-@onready var hitState = $FighterStateMachine/Extras/Hit
-@onready var idleState = $FighterStateMachine/GroundMovement/Idle
-@onready var ledgeState = $FighterStateMachine/AirMovement/Ledge
-@onready var pummelState = $FighterStateMachine/Extras/Pummel
+@onready var deadState: State = $FighterStateMachine/Extras/Dead
+@onready var grabStunState: State = $FighterStateMachine/Extras/GrabStun
+@onready var hitState: State = $FighterStateMachine/Extras/Hit
+@onready var idleState: State = $FighterStateMachine/GroundMovement/Idle
+@onready var ledgeState: State = $FighterStateMachine/AirMovement/Ledge
+@onready var pummelState: State = $FighterStateMachine/Extras/Pummel
 
 var fighterIcon: FighterIcon
 
@@ -259,6 +261,9 @@ func _return_special_state() -> State:
 		_:
 			return specialNeutralState
 
+func _set_dead():
+	stateMachine.change_state(deadState)
+
 func _set_face():
 	match facingRight:
 		true:
@@ -285,6 +290,9 @@ func _set_invisibility(_bool: bool) -> void:
 		hurtbox.monitoring = _bool
 		hurtbox.visible = _bool
 
+func _set_respawn():
+	emit_signal("respawn_fighter")
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -297,6 +305,7 @@ func _ready() -> void:
 	inputComponent.controllerID = MatchGlobal.players[playerID]["Controller_Index"]
 	stateMachine.init(self, model, inputComponent)
 	_set_face()
+	visible = true
 
 func _is_in_hitstop() -> bool:
 	if hitStop > 0:

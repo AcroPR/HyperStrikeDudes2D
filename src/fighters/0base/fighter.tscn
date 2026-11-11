@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://btcekulraylpp" path="res://src/fighters/0base/states/ground_movement/state_jumpsquat.gd" id="10_3f8t4"]
 [ext_resource type="Script" uid="uid://dao6v7dma12sj" path="res://src/fighters/0base/states/defensive_options/state_tech.gd" id="11_jrydo"]
 [ext_resource type="Script" uid="uid://bp4ukbbch2dgx" path="res://src/fighters/0base/states/extras/state_grab.gd" id="11_r8ufq"]
+[ext_resource type="Script" uid="uid://byx7ks8cugoq" path="res://src/fighters/0base/states/extras/state_dead.gd" id="12_1qhh1"]
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
 [ext_resource type="Script" uid="uid://dj5i1jhg5f6qk" path="res://src/fighters/0base/states/extras/state_pummel.gd" id="12_ag4hq"]
 [ext_resource type="Script" uid="uid://cjedmhuvcvmxb" path="res://src/fighters/0base/states/extras/state_grab_stun.gd" id="13_cydth"]
@@ -46,7 +47,7 @@ size = Vector2(115, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(221, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1qhh1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hr3rm"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_yogdi"]
@@ -755,6 +756,9 @@ idleState = NodePath("../../GroundMovement/Idle")
 
 [node name="Extras" type="Node" parent="FighterStateMachine" unique_id=2043699616]
 
+[node name="Dead" type="Node" parent="FighterStateMachine/Extras" unique_id=1862111084]
+script = ExtResource("12_1qhh1")
+
 [node name="Grab" type="Node" parent="FighterStateMachine/Extras" unique_id=665130700 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("11_r8ufq")
 airState = NodePath("../../AirMovement/Air")
@@ -1026,7 +1030,7 @@ onScreenOffset = Vector2(0.5, -134)
 
 [node name="SpriteFighter" parent="OffScreenMarker/SpriteBG" parent_id_path=PackedInt32Array(1581201541, 1283008723) index="0" unique_id=1817361776]
 scale = Vector2(0.5, 0.5)
-texture = SubResource("ViewportTexture_1qhh1")
+texture = SubResource("ViewportTexture_hr3rm")
 region_rect = Rect2(124, 118.5, 268, 241.5)
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]

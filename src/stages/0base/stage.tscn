@@ -71,14 +71,16 @@ facingRight = false
 [node name="-1" parent="FighterSpawners" unique_id=1296158006 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
 stage = NodePath("../..")
 
-[node name="0" parent="FighterSpawners" unique_id=1334782252 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
+[node name="0" parent="FighterSpawners" unique_id=1334782252 node_paths=PackedStringArray("stage", "neutralFighterSpawner") instance=ExtResource("2_onwow")]
 position = Vector2(-543, -142)
 stage = NodePath("../..")
+neutralFighterSpawner = NodePath("../-1")
 playerID = 0
 
-[node name="1" parent="FighterSpawners" unique_id=1838962776 node_paths=PackedStringArray("stage") instance=ExtResource("2_onwow")]
+[node name="1" parent="FighterSpawners" unique_id=1838962776 node_paths=PackedStringArray("stage", "neutralFighterSpawner") instance=ExtResource("2_onwow")]
 position = Vector2(352, 35)
 stage = NodePath("../..")
+neutralFighterSpawner = NodePath("../-1")
 playerID = 1
 facingRight = false
 
