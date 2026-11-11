@@ -47,6 +47,7 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @export_range(4, 10) var jumpSquatFrames: int = 4
 @export_range(1, 99) var maxAirJumps: int = 1
 @export var moonWalkSpeed: float = 8.25
+@export var rollSpeed: float = 750.0
 @export var runSpeed: float = 6.75
 @export var weight: float = 27
 @export var walkSpeed: float = 4.80
@@ -59,6 +60,7 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @onready var blockBubble: BlockBubble = $BlockBubble
 @onready var blockHealthTimer: Timer = $BlockHealthTimer
 @onready var hitboxManager: HitboxManager = $ModelCollisions/HitboxManager
+@onready var hurtboxes: Node2D = $ModelCollisions/Hurtboxes
 @onready var inputComponent = $InputComponent
 @onready var ledgeGrabBox: Area2D = $ModelCollisions/LedgeGrabBox
 @onready var ledgePosition: Marker2D = $ModelCollisions/LedgePosition
@@ -275,6 +277,12 @@ func _set_face_with_move_dir(moveDir):
 			facingRight = true
 			model.scale.x = 1
 			modelCollisions.scale.x = 1
+
+func _set_invisibility(_bool: bool) -> void:
+	for hurtbox: Area2D in hurtboxes.get_children():
+		hurtbox.monitorable = _bool
+		hurtbox.monitoring = _bool
+		hurtbox.visible = _bool
 
 func _ready() -> void:
 	if Engine.is_editor_hint():

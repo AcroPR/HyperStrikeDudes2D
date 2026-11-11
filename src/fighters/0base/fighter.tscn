@@ -672,6 +672,7 @@ specialDownState = NodePath("FighterStateMachine/SpecialAttacks/SpecialD")
 specialNeutralState = NodePath("FighterStateMachine/SpecialAttacks/SpecialN")
 specialSideState = NodePath("FighterStateMachine/SpecialAttacks/SpecialS")
 specialUpState = NodePath("FighterStateMachine/SpecialAttacks/SpecialU")
+rollSpeed = null
 
 [node name="InputComponent" parent="." unique_id=1274369590 instance=ExtResource("2_jslxv")]
 
