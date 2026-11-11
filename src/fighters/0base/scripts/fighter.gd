@@ -67,6 +67,7 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @onready var model = $SubViewportContainer/SubViewport/OffScreenCamera2D/Model
 @onready var modelCollisions: Node2D = $ModelCollisions
 @onready var offScreenMarker: OffScreenMarker = $OffScreenMarker
+@onready var shaker: Shaker = $Shaker
 @onready var stateLabel = $StateLabel
 
 @onready var grabStunState = $FighterStateMachine/Extras/GrabStun
@@ -302,6 +303,7 @@ func _is_in_hitstop() -> bool:
 		hitStop -= 1
 		if stateMachine._get_current_state_name() == "Hit":
 			animationPlayer.play("Hit")
+			shaker._shake(model)
 		else:
 			animationPlayer.pause()
 		hitboxManager._set_paused(true)
@@ -310,6 +312,7 @@ func _is_in_hitstop() -> bool:
 		animationPlayer.play()
 		inHitStop = false
 		hitboxManager._set_paused(false)
+	model.position = Vector2(0,0)
 	return false
 
 func _process(delta: float) -> void:
@@ -430,7 +433,6 @@ func _off_ledge():
 func _set_ledge_position():
 	var newPosition = ledgeHeld.global_position - ledgePosition.position
 	global_position = newPosition
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	offScreenMarker.visible = false
