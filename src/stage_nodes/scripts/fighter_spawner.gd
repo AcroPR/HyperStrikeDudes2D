@@ -19,6 +19,7 @@ func _on_dead_fighter(_playerID: int):
 			fighter._set_dead()
 		if MatchGlobal.playerLives[_playerID] < 1:
 			stage.stageCamera._remove_target(fighter)
+		fighter.percent = 0
 	stage.call_deferred("_check_active_players")
 
 func _on_respawn_fighter():

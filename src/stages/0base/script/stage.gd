@@ -10,17 +10,13 @@ func _check_active_players():
 	for playerLives in MatchGlobal.playerLives:
 		if playerLives > 0: playerCount += 1
 	playerCount -= (MatchGlobal.MAX_PLAYERS - MatchGlobal.currentPlayers)
-	if playerCount <= 1: SceneLoader._load_scene("res://src/ui/fighter_select/fighter_select.tscn")
+	if playerCount <= 1:
+		Engine.time_scale = 0.5
+		SceneLoader._load_scene("res://src/ui/fighter_select/fighter_select.tscn")
 
 func _hide_all_icons():
 	for icon in icons.get_children():
 		icon.visible = false
-
-func _spawn_dead_player(_playerID: int):
-	var fighterSpawner: FighterSpawner = fighterSpawners.get_node("-1")
-	var fighterNode = fighterSpawner._spawn_fighter(_playerID)
-	fighterNode.fighterIcon = icons.get_child(_playerID)
-	fighterNode.percent = 0
 
 func _ready() -> void:
 	MatchGlobal._start_match()
