@@ -90,7 +90,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity.x = previousVelocity.x * -0.5
 	
 	if parent.is_on_floor() and previousVelocity.y > SPEED_LIMIT:
-		if techFrames < TECH_WINDOW:
+		if techFrames < TECH_WINDOW and attemptingToTech:
 			parent.velocity = Vector2.ZERO
 			if inputComponent._just_pressed("move_left") or inputComponent._just_pressed("move_right"):
 				return rollState

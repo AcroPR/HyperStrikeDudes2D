@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://bk1r5yy5s2t6m"]
+
+[ext_resource type="Texture2D" uid="uid://cy07gjadnkoqa" path="res://assets/effects/fighter_explosion/circle.png" id="2_4is6q"]
+[ext_resource type="Texture2D" uid="uid://bg0herui41gac" path="res://assets/effects/fighter_explosion/star.png" id="2_espon"]
+[ext_resource type="Script" uid="uid://cujdb0acd0jgw" path="res://src/fighters/0base/scripts/explosion.gd" id="2_wf7j7"]
+[ext_resource type="Texture2D" uid="uid://3vjnsjo56842" path="res://assets/effects/fighter_explosion/poly.png" id="3_k1ls8"]
+[ext_resource type="Texture2D" uid="uid://b2oe2k6d5u0xs" path="res://assets/effects/fighter_explosion/square.png" id="5_dxecg"]
+
+[node name="Explosion" type="Node2D" unique_id=2015657261]
+script = ExtResource("2_wf7j7")
+
+[node name="circle" type="CPUParticles2D" parent="." unique_id=1686763830]
+emitting = false
+texture = ExtResource("2_4is6q")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+speed_scale = 4.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 35.0
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.68
+
+[node name="poly" type="CPUParticles2D" parent="." unique_id=662795283]
+emitting = false
+texture = ExtResource("3_k1ls8")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+speed_scale = 4.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 35.0
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.68
+
+[node name="stars" type="CPUParticles2D" parent="." unique_id=199985349]
+emitting = false
+texture = ExtResource("2_espon")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+speed_scale = 4.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 35.0
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.68
+
+[node name="square" type="CPUParticles2D" parent="." unique_id=745041962]
+emitting = false
+texture = ExtResource("5_dxecg")
+lifetime = 3.0
+one_shot = true
+preprocess = 1.0
+speed_scale = 4.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 35.0
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.68
