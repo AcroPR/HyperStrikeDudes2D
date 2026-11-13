@@ -30,10 +30,10 @@ func _on_respawn_fighter():
 
 func _set_explosion(fighter: Fighter) -> void:
 	var explosionInstance = EXPLOSION.instantiate()
-	explosionInstance.global_position = fighter.global_position
-	explosionInstance.xVelocity = fighter.global_position.x
-	explosionInstance.yVelocity = fighter.global_position.y
 	add_child(explosionInstance)
+	explosionInstance.global_position = fighter.global_position
+	explosionInstance.lastPosition = fighter.lastGlobalPosition
+	explosionInstance._set_explosion_direction()
 
 func _spawn_fighter(_playerID: int = 0) -> Fighter:
 	var filePath: String = "res://src/fighters/"+MatchGlobal.players[_playerID].Fighter+"/fighter.tscn"

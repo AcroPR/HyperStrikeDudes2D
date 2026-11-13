@@ -90,6 +90,7 @@ var inHitStop: bool = false
 var isFastFalling: bool = false
 var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
+var lastGlobalPosition: Vector2
 var ledgeGrabCount: int = 0
 var ledgeHeld: Ledge
 var ledgeLock: bool
@@ -341,6 +342,7 @@ func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	if _is_in_hitstop(): return
+	lastGlobalPosition = global_position
 	stateMachine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:

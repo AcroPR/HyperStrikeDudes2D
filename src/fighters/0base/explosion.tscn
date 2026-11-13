@@ -10,71 +10,139 @@
 script = ExtResource("2_wf7j7")
 
 [node name="Circle" type="CPUParticles2D" parent="." unique_id=1686763830]
-emitting = false
+amount = 12
 texture = ExtResource("2_4is6q")
 lifetime = 8.0
-one_shot = true
 preprocess = 1.0
-speed_scale = 4.0
+speed_scale = 10.0
 randomness = 0.15
 emission_shape = 1
-emission_sphere_radius = 35.0
-spread = 15.0
+emission_sphere_radius = 50.0
+spread = 2.5
 gravity = Vector2(0, 0)
 initial_velocity_min = 515.0
 initial_velocity_max = 515.0
 scale_amount_min = 0.18
-scale_amount_max = 0.68
+scale_amount_max = 0.6
+color = Color(0.27058825, 0.7372549, 0.9137255, 1)
 
 [node name="Poly" type="CPUParticles2D" parent="." unique_id=662795283]
-emitting = false
+amount = 12
 texture = ExtResource("3_k1ls8")
 lifetime = 8.0
-one_shot = true
 preprocess = 1.0
-speed_scale = 4.0
+speed_scale = 10.0
 randomness = 0.15
 emission_shape = 1
-emission_sphere_radius = 35.0
-spread = 15.0
+emission_sphere_radius = 50.0
+spread = 2.5
 gravity = Vector2(0, 0)
 initial_velocity_min = 515.0
 initial_velocity_max = 515.0
 scale_amount_min = 0.18
-scale_amount_max = 0.68
+scale_amount_max = 0.6
+color = Color(0.34117648, 0.59607846, 0.39215687, 1)
 
 [node name="Stars" type="CPUParticles2D" parent="." unique_id=199985349]
-emitting = false
+amount = 12
 texture = ExtResource("2_espon")
 lifetime = 8.0
-one_shot = true
 preprocess = 1.0
-speed_scale = 4.0
+speed_scale = 10.0
 randomness = 0.15
 emission_shape = 1
-emission_sphere_radius = 35.0
-spread = 15.0
+emission_sphere_radius = 50.0
+spread = 2.5
 gravity = Vector2(0, 0)
 initial_velocity_min = 515.0
 initial_velocity_max = 515.0
 scale_amount_min = 0.18
-scale_amount_max = 0.68
+scale_amount_max = 0.6
+color = Color(0.6862745, 0.101960786, 0.3647059, 1)
 
 [node name="Square" type="CPUParticles2D" parent="." unique_id=745041962]
-emitting = false
+amount = 12
 texture = ExtResource("5_dxecg")
 lifetime = 8.0
-one_shot = true
 preprocess = 1.0
-speed_scale = 4.0
+speed_scale = 10.0
 randomness = 0.15
 emission_shape = 1
-emission_sphere_radius = 35.0
-spread = 15.0
+emission_sphere_radius = 50.0
+spread = 2.5
 gravity = Vector2(0, 0)
 initial_velocity_min = 515.0
 initial_velocity_max = 515.0
 scale_amount_min = 0.18
-scale_amount_max = 0.68
+scale_amount_max = 0.6
+color = Color(0.34901962, 0.22352941, 0.39215687, 1)
+
+[node name="Circle2" type="CPUParticles2D" parent="." unique_id=874034340]
+amount = 12
+texture = ExtResource("2_4is6q")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 10.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 2.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.6
+color = Color(1, 0.32941177, 0.3137255, 1)
+
+[node name="Poly2" type="CPUParticles2D" parent="." unique_id=334524743]
+amount = 12
+texture = ExtResource("3_k1ls8")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 10.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 2.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.6
+color = Color(0.81960785, 0.2, 0.60784316, 1)
+
+[node name="Stars2" type="CPUParticles2D" parent="." unique_id=820561485]
+amount = 12
+texture = ExtResource("2_espon")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 10.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 2.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.6
+color = Color(0.80784315, 0.8352941, 0.21568628, 1)
+
+[node name="Square2" type="CPUParticles2D" parent="." unique_id=11551071]
+amount = 12
+texture = ExtResource("5_dxecg")
+lifetime = 8.0
+preprocess = 1.0
+speed_scale = 10.0
+randomness = 0.15
+emission_shape = 1
+emission_sphere_radius = 50.0
+spread = 2.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 515.0
+initial_velocity_max = 515.0
+scale_amount_min = 0.18
+scale_amount_max = 0.6
+color = Color(0.59607846, 0.75686276, 0.8235294, 1)
 
 [connection signal="finished" from="Circle" to="." method="_on_finished"]
