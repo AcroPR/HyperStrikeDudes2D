@@ -26,6 +26,7 @@
 [ext_resource type="Script" uid="uid://dj5i1jhg5f6qk" path="res://src/fighters/0base/states/extras/state_getup.gd" id="12_ag4hq"]
 [ext_resource type="Script" uid="uid://cjedmhuvcvmxb" path="res://src/fighters/0base/states/extras/state_grab_stun.gd" id="13_cydth"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
+[ext_resource type="Script" uid="uid://b4rgiqgg206tg" path="res://src/fighters/0base/states/extras/state_emote.gd" id="13_jris0"]
 [ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
 [ext_resource type="Script" uid="uid://blmlo080lg4eh" path="res://src/fighters/0base/states/extras/state_getup_attack.gd" id="14_kvd4c"]
 [ext_resource type="Script" uid="uid://c331kcvpodmxf" path="res://src/fighters/0base/states/extras/state_throw.gd" id="15_sdgya"]
@@ -42,7 +43,7 @@
 size = Vector2(98, 138)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j5tfj"]
-size = Vector2(150, 64)
+size = Vector2(150, 124)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ef5v"]
 size = Vector2(115, 74)
@@ -289,6 +290,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8jwig"]
+resource_name = "Emote"
+length = 0.7500017057823017
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.21666667, 0.41666666, 0.75000006),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.14901961, 1), Color(1, 1, 1, 1), Color(1, 1, 0.1490196, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qbqgm"]
@@ -717,6 +735,7 @@ _data = {
 &"Crouch": SubResource("Animation_r8ufq"),
 &"Dash": SubResource("Animation_2ny5l"),
 &"DashAttack": SubResource("Animation_jrydo"),
+&"Emote": SubResource("Animation_8jwig"),
 &"Getup": SubResource("Animation_qbqgm"),
 &"GetupAttack": SubResource("Animation_qqneo"),
 &"GetupReset": SubResource("Animation_xwaw1"),
@@ -844,6 +863,11 @@ idleState = NodePath("../../GroundMovement/Idle")
 [node name="Dead" type="Node" parent="FighterStateMachine/Extras" unique_id=1862111084]
 script = ExtResource("12_1qhh1")
 
+[node name="Emote" type="Node" parent="FighterStateMachine/Extras" unique_id=651679509 node_paths=PackedStringArray("idleState", "airState")]
+script = ExtResource("13_jris0")
+idleState = NodePath("../../GroundMovement/Idle")
+airState = NodePath("../../AirMovement/Air")
+
 [node name="Getup" type="Node" parent="FighterStateMachine/Extras" unique_id=949610046 node_paths=PackedStringArray("idleState", "airState")]
 script = ExtResource("12_ag4hq")
 idleState = NodePath("../../GroundMovement/Idle")
@@ -950,12 +974,13 @@ idleState = NodePath("../Idle")
 moonWalkState = NodePath("../MoonWalk")
 runState = NodePath("../Run")
 
-[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "grabState", "jumpSquatState", "walkState")]
+[node name="Idle" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=1922047399 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "emoteState", "grabState", "jumpSquatState", "walkState")]
 script = ExtResource("4_rmkpu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
+emoteState = NodePath("../../Extras/Emote")
 grabState = NodePath("../../Extras/Grab")
 jumpSquatState = NodePath("../JumpSquat")
 walkState = NodePath("../Walk")
@@ -992,12 +1017,13 @@ grabState = NodePath("../../Extras/Grab")
 skidState = NodePath("../Skid")
 jumpSquatState = NodePath("../JumpSquat")
 
-[node name="Walk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=140797622 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "grabState", "idleState", "jumpSquatState")]
+[node name="Walk" type="Node" parent="FighterStateMachine/GroundMovement" unique_id=140797622 node_paths=PackedStringArray("airState", "blockState", "crouchState", "dashState", "emoteState", "grabState", "idleState", "jumpSquatState")]
 script = ExtResource("6_xu1qu")
 airState = NodePath("../../AirMovement/Air")
 blockState = NodePath("../../DefensiveOptions/Block")
 crouchState = NodePath("../Crouch")
 dashState = NodePath("../Dash")
+emoteState = NodePath("../../Extras/Emote")
 grabState = NodePath("../../Extras/Grab")
 idleState = NodePath("../Idle")
 jumpSquatState = NodePath("../JumpSquat")

@@ -55,6 +55,9 @@ func process_physics(delta: float) -> State:
 	if inputComponent._pressed("move_down"):
 		return crouchState
 	
+	if inputComponent._pressed("emote"):
+		return emoteState
+	
 	if !parent.is_on_floor():
 		return airState
 	
