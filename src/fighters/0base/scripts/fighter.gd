@@ -88,6 +88,7 @@ var grabLocation: GrabBox
 var hitStop: int = 0
 var hitStun: int = 0
 var inHitStop: bool = false
+var invisibileFrames: int = 0
 var isFastFalling: bool = false
 var isJabReset: bool = false
 var percent: int = 0 : set = _update_percent
@@ -287,7 +288,11 @@ func _set_face_with_move_dir(moveDir):
 			model.scale.x = 1
 			modelCollisions.scale.x = 1
 
-func _set_invisibility(_bool: bool) -> void:
+func _set_invisibility(frames: int):
+	invisibileFrames = frames
+	_enable_invisibility(false)
+
+func _enable_invisibility(_bool: bool) -> void:
 	for hurtbox: Area2D in hurtboxes.get_children():
 		hurtbox.monitorable = _bool
 		hurtbox.monitoring = _bool
@@ -334,6 +339,10 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	if _is_in_hitstop(): return
+	if invisibileFrames > 0:
+		invisibileFrames -= 1
+		_enable_invisibility(false)
+	else: _enable_invisibility(true)
 	stateMachine.process_frame(delta)
 	stateLabel.text = "State: " + stateMachine._get_current_state_name()
 	match inputComponent._pressed("block"):

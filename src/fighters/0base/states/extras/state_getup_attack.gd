@@ -17,6 +17,7 @@ func enter() -> void:
 	parent.animationPlayer.play(animationName)
 	attackHitboxes = HitboxImporter._load_csv(parent.fighterFolderName, animationName)
 	parent._add_stale_move(animationName)
+	parent._set_invisibility(50)
 
 func _create_hitbox(current_hitbox):
 	var new_hitbox = Hitbox.new()._build_from_array(current_hitbox,false,0)

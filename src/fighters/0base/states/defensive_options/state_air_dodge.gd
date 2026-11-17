@@ -23,6 +23,8 @@ func _get_x_dir() -> int:
 
 func process_frame(_delta: float) -> State:
 	frames += 1
+	if frames == 5:
+		parent._set_invisibility(20)
 	if frames >= AIR_DODGE_FRAMES:
 		return airState
 	return null
@@ -42,6 +44,7 @@ func process_physics(delta: float) -> State:
 	
 	if parent.is_on_floor():
 		parent.landingFrames = 30
+		parent.invisibileFrames = 0
 		return landingState
 	
 	return null

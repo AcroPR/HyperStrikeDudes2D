@@ -11,8 +11,10 @@ func enter() -> void:
 	match parent.isJabReset:
 		true:
 			animationName = "GetupReset"
+			parent._set_invisibility(150)
 		false:
 			animationName = "Getup"
+			parent._set_invisibility(50)
 	parent.animationPlayer.play(animationName)
 
 func process_frame(_delta: float) -> State:
