@@ -72,6 +72,7 @@ enum StaleValue { NONE, FRESH, LEVEL_THREE, LEVEL_TWO, LEVEL_ONE, STALE}
 @onready var stateLabel = $StateLabel
 
 @onready var deadState: State = $FighterStateMachine/Extras/Dead
+@onready var getupState: State = $FighterStateMachine/Extras/Getup
 @onready var grabStunState: State = $FighterStateMachine/Extras/GrabStun
 @onready var hitState: State = $FighterStateMachine/Extras/Hit
 @onready var idleState: State = $FighterStateMachine/GroundMovement/Idle
@@ -88,6 +89,7 @@ var hitStop: int = 0
 var hitStun: int = 0
 var inHitStop: bool = false
 var isFastFalling: bool = false
+var isJabReset: bool = false
 var percent: int = 0 : set = _update_percent
 var landingFrames: int = 0
 var lastGlobalPosition: Vector2
@@ -314,6 +316,9 @@ func _is_in_hitstop() -> bool:
 		if stateMachine._get_current_state_name() == "Hit":
 			animationPlayer.play("Hit")
 			shaker._shake(model)
+		elif stateMachine._get_current_state_name() == "Getup":
+			animationPlayer.play("HitFloor")
+			shaker._shake(model, 1.5)
 		else:
 			animationPlayer.pause()
 		hitboxManager._set_paused(true)
@@ -388,6 +393,10 @@ func _set_up_hit_state(hitbox: Hitbox):
 func _is_valid_pummel(_fighter: Fighter):
 	return _fighter != self and _fighter.stateMachine._get_current_state_name() == "Pummel"
 
+func is_soft_hit(hitbox: Hitbox) -> bool:
+	var distance = (hitbox.baseKnockback * 10) + ((percent*hitbox.baseKnockback)*hitbox.knockbackScale * 0.75)
+	return distance < 800
+
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	ledgeLock = false
 	if area.collision_layer & (1 << 6):
@@ -409,7 +418,14 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		if grabLocation != null:
 			grabLocation.grabbedFighter = null
 			grabLocation = null
-	match inputComponent._pressed("block"):
+	if stateMachine._get_current_state_name() == "Tumble" and is_soft_hit(hitbox) and stateMachine._get_current_state().frames <= 60:
+		if hitbox.parent != self:
+			isJabReset = true
+			_set_hit_stop(hitbox, false)
+			percent += hitbox.damage
+			stateMachine.change_state(getupState)
+			return
+	match stateMachine._get_current_state_name() == "Block":
 		true:
 			blockHealth -= hitbox.blockDamage
 			_set_hit_stop(hitbox, true)

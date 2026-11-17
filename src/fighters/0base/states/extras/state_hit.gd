@@ -2,16 +2,20 @@ extends State
 
 const HORIZONTAL_DRIFT: int = 10
 const DRIFT: int = 10
+const REELING_THRESHOLD: int = 1500
 const SPEED_LIMIT: int = 1500
 const TECH_WINDOW: int = 10
+const WALL_BOUNCE_RESISTANCE: float = -0.25
 
 @export_category("States")
 @export var airState: State
 @export var idleState: State
 @export var rollState: State
+@export var tumbleState: State
 
-var previousVelocity: Vector2
 var attemptingToTech: bool
+var previousVelocity: Vector2
+var reeling: bool
 var techFrames: int
 
 # Knockback Formula
@@ -46,10 +50,11 @@ func enter() -> void:
 	attemptingToTech = false
 	techFrames = 0
 	var distance = _knockback_calc(parent.percent, parent.hitboxBKB, parent.hitboxKBS)
+	reeling = distance >= REELING_THRESHOLD
 	parent.velocity = _get_launch_vector(parent.hitboxAngle, distance)
 	frames = 0
 	if parent.is_on_floor() and parent.velocity.y > SPEED_LIMIT:
-		parent.velocity.y *= -0.5
+		parent.velocity.y *= WALL_BOUNCE_RESISTANCE
 
 func process_frame(_delta: float) -> State:
 	frames += 1
@@ -87,7 +92,7 @@ func process_physics(delta: float) -> State:
 	tech_check()
 	
 	if parent.is_on_wall() and (previousVelocity.x > SPEED_LIMIT or previousVelocity.x < -SPEED_LIMIT):
-		parent.velocity.x = previousVelocity.x * -0.5
+		parent.velocity.x = previousVelocity.x * WALL_BOUNCE_RESISTANCE
 	
 	if parent.is_on_floor() and previousVelocity.y > SPEED_LIMIT:
 		if techFrames < TECH_WINDOW and attemptingToTech:
@@ -96,6 +101,8 @@ func process_physics(delta: float) -> State:
 				return rollState
 			return idleState
 		else:
-			parent.velocity.y = previousVelocity.y * -0.5
+			if reeling:
+				return tumbleState
+			parent.velocity.y = previousVelocity.y * WALL_BOUNCE_RESISTANCE
 	
 	return null

@@ -19,6 +19,7 @@ func enter() -> void:
 	super()
 	previousFrame = -1
 	frames = 0
+	attackHitboxes = HitboxImporter._load_csv(parent.fighterFolderName, animationName)
 	parent.animationPlayer.play(animationName)
 	match parent.facingRight:
 		true:

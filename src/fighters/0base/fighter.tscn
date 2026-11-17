@@ -23,13 +23,16 @@
 [ext_resource type="Script" uid="uid://bp4ukbbch2dgx" path="res://src/fighters/0base/states/extras/state_grab.gd" id="11_r8ufq"]
 [ext_resource type="Script" uid="uid://byx7ks8cugoq" path="res://src/fighters/0base/states/extras/state_dead.gd" id="12_1qhh1"]
 [ext_resource type="Script" uid="uid://v2v1kuexnvnm" path="res://src/fighters/0base/states/defensive_options/state_block.gd" id="12_5xqg6"]
-[ext_resource type="Script" uid="uid://dj5i1jhg5f6qk" path="res://src/fighters/0base/states/extras/state_pummel.gd" id="12_ag4hq"]
+[ext_resource type="Script" uid="uid://dj5i1jhg5f6qk" path="res://src/fighters/0base/states/extras/state_getup.gd" id="12_ag4hq"]
 [ext_resource type="Script" uid="uid://cjedmhuvcvmxb" path="res://src/fighters/0base/states/extras/state_grab_stun.gd" id="13_cydth"]
 [ext_resource type="Script" uid="uid://cqkapsaigwdv3" path="res://src/fighters/0base/states/defensive_options/state_roll.gd" id="13_ggk8k"]
 [ext_resource type="Script" uid="uid://8gladtr412ya" path="res://src/fighters/0base/states/defensive_options/state_air_dodge.gd" id="14_ffpro"]
+[ext_resource type="Script" uid="uid://blmlo080lg4eh" path="res://src/fighters/0base/states/extras/state_getup_attack.gd" id="14_kvd4c"]
 [ext_resource type="Script" uid="uid://c331kcvpodmxf" path="res://src/fighters/0base/states/extras/state_throw.gd" id="15_sdgya"]
 [ext_resource type="Script" uid="uid://dsagxfa5tm0s" path="res://src/fighters/0base/states/ground_movement/state_moon_walk.gd" id="16_7gilf"]
 [ext_resource type="PackedScene" uid="uid://c22hdvtllxe2d" path="res://src/fighters/0base/off_screen_marker.tscn" id="17_kg1nh"]
+[ext_resource type="Script" uid="uid://b80ye4krsv4ud" path="res://src/fighters/0base/states/extras/state_tumble.gd" id="18_0h3s6"]
+[ext_resource type="Script" uid="uid://tubrn7lb6g30" path="res://src/fighters/0base/states/extras/state_pummel.gd" id="18_mf27s"]
 [ext_resource type="Script" uid="uid://5crs3p6y3kec" path="res://src/hitbox_and_hurtbox/scripts/hitbox_manager.gd" id="19_xp0b5"]
 [ext_resource type="PackedScene" uid="uid://blnbh2m7maxq6" path="res://src/fighters/0base/block_bubble.tscn" id="24_3pcfa"]
 [ext_resource type="Script" uid="uid://dfb5jifme5jf" path="res://src/hitbox_and_hurtbox/scripts/grab_box.gd" id="26_2g6j0"]
@@ -47,7 +50,7 @@ size = Vector2(115, 74)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8qh6"]
 size = Vector2(221, 54)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1qhh1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_mf27s"]
 viewport_path = NodePath("../SubViewportContainer/SubViewport")
 
 [sub_resource type="Animation" id="Animation_yogdi"]
@@ -211,7 +214,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_1qhh1"]
 resource_name = "AttackU"
-length = 0.8000033750567586
+length = 0.6000033646259457
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -219,7 +222,7 @@ tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Mod
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.80000335),
+"times": PackedFloat32Array(0, 0.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.26666668, 0.34901962, 0.34901962, 1), Color(1, 1, 1, 1)]
@@ -286,6 +289,53 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qbqgm"]
+resource_name = "Getup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qqneo"]
+resource_name = "GetupAttack"
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.047058824, 1, 0.4392157, 1), Color(0.047058824, 0.20392157, 0.7490196, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xwaw1"]
+resource_name = "GetupReset"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.42352942, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_nv61x"]
@@ -403,6 +453,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 0.13333334, 0.13333334, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h45g4"]
+resource_name = "HitFloor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.4235294, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_3f8t4"]
@@ -604,6 +669,21 @@ resource_name = "ThrowF"
 length = 0.5000016927437857
 step = 0.016666668
 
+[sub_resource type="Animation" id="Animation_e0mmg"]
+resource_name = "Tumble"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/OffScreenCamera2D/Model/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_7gilf"]
 resource_name = "Walk"
 loop_mode = 1
@@ -637,11 +717,15 @@ _data = {
 &"Crouch": SubResource("Animation_r8ufq"),
 &"Dash": SubResource("Animation_2ny5l"),
 &"DashAttack": SubResource("Animation_jrydo"),
+&"Getup": SubResource("Animation_qbqgm"),
+&"GetupAttack": SubResource("Animation_qqneo"),
+&"GetupReset": SubResource("Animation_xwaw1"),
 &"Grab": SubResource("Animation_nv61x"),
 &"HeavyD": SubResource("Animation_kvd4c"),
 &"HeavyS": SubResource("Animation_mf27s"),
 &"HeavyU": SubResource("Animation_jris0"),
 &"Hit": SubResource("Animation_ta0eq"),
+&"HitFloor": SubResource("Animation_h45g4"),
 &"Idle": SubResource("Animation_3f8t4"),
 &"JumpSquat": SubResource("Animation_1ygvp"),
 &"Ledge": SubResource("Animation_sdgya"),
@@ -653,6 +737,7 @@ _data = {
 &"Tech": SubResource("Animation_44iw0"),
 &"ThrowB": SubResource("Animation_d4jq0"),
 &"ThrowF": SubResource("Animation_w72jc"),
+&"Tumble": SubResource("Animation_e0mmg"),
 &"Walk": SubResource("Animation_7gilf")
 }
 
@@ -759,6 +844,16 @@ idleState = NodePath("../../GroundMovement/Idle")
 [node name="Dead" type="Node" parent="FighterStateMachine/Extras" unique_id=1862111084]
 script = ExtResource("12_1qhh1")
 
+[node name="Getup" type="Node" parent="FighterStateMachine/Extras" unique_id=949610046 node_paths=PackedStringArray("idleState", "airState")]
+script = ExtResource("12_ag4hq")
+idleState = NodePath("../../GroundMovement/Idle")
+airState = NodePath("../../AirMovement/Air")
+
+[node name="GetupAttack" type="Node" parent="FighterStateMachine/Extras" unique_id=1590767274 node_paths=PackedStringArray("airState", "idleState")]
+script = ExtResource("14_kvd4c")
+airState = NodePath("../../AirMovement/Air")
+idleState = NodePath("../../GroundMovement/Idle")
+
 [node name="Grab" type="Node" parent="FighterStateMachine/Extras" unique_id=665130700 node_paths=PackedStringArray("airState", "idleState")]
 script = ExtResource("11_r8ufq")
 airState = NodePath("../../AirMovement/Air")
@@ -769,14 +864,15 @@ script = ExtResource("13_cydth")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../../GroundMovement/Idle")
 
-[node name="Hit" type="Node" parent="FighterStateMachine/Extras" unique_id=307182024 node_paths=PackedStringArray("airState", "idleState", "rollState")]
+[node name="Hit" type="Node" parent="FighterStateMachine/Extras" unique_id=307182024 node_paths=PackedStringArray("airState", "idleState", "rollState", "tumbleState")]
 script = ExtResource("8_1ygvp")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../../GroundMovement/Idle")
 rollState = NodePath("../../DefensiveOptions/Roll")
+tumbleState = NodePath("../Tumble")
 
 [node name="Pummel" type="Node" parent="FighterStateMachine/Extras" unique_id=505301017 node_paths=PackedStringArray("throwFState", "throwBState")]
-script = ExtResource("12_ag4hq")
+script = ExtResource("18_mf27s")
 throwFState = NodePath("../ThrowF")
 throwBState = NodePath("../ThrowB")
 
@@ -791,6 +887,14 @@ flipFighter = true
 script = ExtResource("15_sdgya")
 airState = NodePath("../../AirMovement/Air")
 idleState = NodePath("../../GroundMovement/Idle")
+
+[node name="Tumble" type="Node" parent="FighterStateMachine/Extras" unique_id=699442077 node_paths=PackedStringArray("airState", "getupAttackState", "getupState", "idleState", "rollState")]
+script = ExtResource("18_0h3s6")
+airState = NodePath("../../AirMovement/Air")
+getupAttackState = NodePath("../GetupAttack")
+getupState = NodePath("../Getup")
+idleState = NodePath("../../GroundMovement/Idle")
+rollState = NodePath("../../DefensiveOptions/Roll")
 
 [node name="GroundAttacks" type="Node" parent="FighterStateMachine" unique_id=497291418]
 
@@ -1030,7 +1134,7 @@ onScreenOffset = Vector2(0.5, -134)
 
 [node name="SpriteFighter" parent="OffScreenMarker/SpriteBG" parent_id_path=PackedInt32Array(1581201541, 1283008723) index="0" unique_id=1817361776]
 scale = Vector2(0.5, 0.5)
-texture = SubResource("ViewportTexture_1qhh1")
+texture = SubResource("ViewportTexture_mf27s")
 region_rect = Rect2(124, 118.5, 268, 241.5)
 
 [node name="StateLabel" type="Label" parent="." unique_id=466181871]
