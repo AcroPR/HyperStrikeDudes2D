@@ -11,6 +11,7 @@ const WALL_BOUNCE_RESISTANCE: float = -0.25
 @export var airState: State
 @export var idleState: State
 @export var rollState: State
+@export var techState: State
 @export var tumbleState: State
 
 var attemptingToTech: bool
@@ -92,6 +93,9 @@ func process_physics(delta: float) -> State:
 	tech_check()
 	
 	if parent.is_on_wall() and (previousVelocity.x > SPEED_LIMIT or previousVelocity.x < -SPEED_LIMIT):
+		if techFrames < TECH_WINDOW and attemptingToTech:
+			parent.velocity = Vector2.ZERO
+			return techState
 		parent.velocity.x = previousVelocity.x * WALL_BOUNCE_RESISTANCE
 	
 	if parent.is_on_floor() and previousVelocity.y > SPEED_LIMIT:
@@ -99,7 +103,7 @@ func process_physics(delta: float) -> State:
 			parent.velocity = Vector2.ZERO
 			if inputComponent._just_pressed("move_left") or inputComponent._just_pressed("move_right"):
 				return rollState
-			return idleState
+			return techState
 		else:
 			if reeling:
 				return tumbleState
