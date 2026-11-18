@@ -98,6 +98,12 @@ func process_physics(delta: float) -> State:
 			return techState
 		parent.velocity.x = previousVelocity.x * WALL_BOUNCE_RESISTANCE
 	
+	if parent.is_on_ceiling() and previousVelocity.y < -SPEED_LIMIT:
+		if techFrames < TECH_WINDOW and attemptingToTech:
+			parent.velocity = Vector2.ZERO
+			return techState
+		parent.velocity.y = previousVelocity.y * WALL_BOUNCE_RESISTANCE
+	
 	if parent.is_on_floor() and previousVelocity.y > SPEED_LIMIT:
 		if techFrames < TECH_WINDOW and attemptingToTech:
 			parent.velocity = Vector2.ZERO
