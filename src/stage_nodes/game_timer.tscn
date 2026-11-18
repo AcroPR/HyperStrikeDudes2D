@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://rpv5fmiq4jw5"]
+
+[ext_resource type="FontFile" uid="uid://cxg0hkjqanmmw" path="res://assets/fonts/Bungee-Regular.ttf" id="1_1bi1k"]
+[ext_resource type="Script" uid="uid://d1gssyfbhr7wg" path="res://src/stage_nodes/scripts/game_timer.gd" id="2_b4e21"]
+
+[node name="GameTimer" type="Label" unique_id=15675134]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 41.0
+offset_bottom = 107.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_1bi1k")
+theme_override_font_sizes/font_size = 50
+text = "8:00"
+horizontal_alignment = 1
+script = ExtResource("2_b4e21")
+
+[node name="Timer" type="Timer" parent="." unique_id=406847200]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

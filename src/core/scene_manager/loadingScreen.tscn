@@ -42,14 +42,6 @@ _data = {
 [node name="LoadingScreen" type="CanvasLayer" unique_id=811639631]
 script = ExtResource("1_i8trf")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1136764585]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.43529412)
-
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=996709772]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 7

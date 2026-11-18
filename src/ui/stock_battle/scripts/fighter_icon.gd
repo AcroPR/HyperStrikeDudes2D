@@ -1,6 +1,9 @@
 class_name FighterIcon
 extends TextureRect
 
+signal damageTaken
+signal liveTaken
+
 @onready var bgColor: TextureRect = $BGColor
 @export var fighter: TextureRect
 @onready var player: Label = $Player
@@ -8,6 +11,12 @@ extends TextureRect
 @onready var lives: Label = $Lives
 
 var enableShake: bool = false
+
+func _get_percent() -> int:
+	return int(percent.text)
+
+func _get_lives() -> int:
+	return int(lives.text)
 
 func _set_icon(_playerID: int):
 	var filePath: String = "res://assets/ui/stock_battle/fighters/"+MatchGlobal.players[_playerID].Fighter+"/"+str(MatchGlobal.players[_playerID].Color)+".png"
@@ -28,10 +37,12 @@ func _set_player(_playerID: int):
 func _set_percent(_percent: int):
 	percent.text = str(_percent) + "%"
 	if enableShake: _shake_text(percent, 251.0)
+	emit_signal("damageTaken")
 
 func _set_lives(_playerID: int):
 	lives.text = str(MatchGlobal.playerLives[_playerID])
 	if enableShake: _shake_text(lives, 178.0)
+	emit_signal("liveTaken")
 
 func _shake_text(_label: Label, defaultPostion: float):
 	var tweenValues = [defaultPostion,defaultPostion+5,defaultPostion-5,defaultPostion]
