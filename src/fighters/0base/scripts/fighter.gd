@@ -427,6 +427,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		if grabLocation != null:
 			grabLocation.grabbedFighter = null
 			grabLocation = null
+	if hitStop > 0: return
 	if stateMachine._get_current_state_name() == "Tumble" and is_soft_hit(hitbox) and stateMachine._get_current_state().frames <= 60:
 		if hitbox.parent != self:
 			isJabReset = true

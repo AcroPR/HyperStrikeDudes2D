@@ -30,10 +30,15 @@ func _create_hitbox(current_hitbox):
 
 func _check_for_hitboxes():
 	var currentFrame = int(parent.animationPlayer.current_animation_position * 60)
+	
+	if currentFrame == previousFrame:
+		return
+	
+	previousFrame = currentFrame
+	
 	for currentHitbox in attackHitboxes:
-		if currentFrame == currentHitbox[0] and previousFrame < currentFrame:
+		if currentFrame == currentHitbox[0]:
 			_create_hitbox(currentHitbox)
-			previousFrame = currentFrame
 
 func process_frame(_delta: float) -> State:
 	_check_for_hitboxes()

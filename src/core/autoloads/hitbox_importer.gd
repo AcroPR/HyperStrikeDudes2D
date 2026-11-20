@@ -54,7 +54,7 @@ func _save_csv(fighterName, attackType, hitBoxManager, hitboxStartFrames):
 			data += str(hitboxNode.position.y) + ","
 			data += str(hitboxNode.damage) + ","
 			data += str(hitboxNode.framesActive) + ","
-			data += str(hitboxNode.priority) + ","
+			data += str(hitboxNode.hitboxPriority) + ","
 			data += str(hitboxNode.angle) + ","
 			data += str(hitboxNode.baseKnockback) + ","
 			data += str(hitboxNode.hitStun) + ","

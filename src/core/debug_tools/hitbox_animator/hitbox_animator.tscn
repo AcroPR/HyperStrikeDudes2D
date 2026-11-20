@@ -32,11 +32,17 @@ offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 selected = 0
-item_count = 2
+item_count = 5
 popup/item_0/text = "0base"
 popup/item_0/id = 0
 popup/item_1/text = "0base"
 popup/item_1/id = 0
+popup/item_2/text = "0base"
+popup/item_2/id = 0
+popup/item_3/text = "0base"
+popup/item_3/id = 0
+popup/item_4/text = "0base"
+popup/item_4/id = 0
 
 [node name="SelectedAnimation" type="OptionButton" parent="." unique_id=1420274889]
 layout_mode = 1
@@ -50,7 +56,7 @@ offset_bottom = 112.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 30
 selected = 0
-item_count = 31
+item_count = 38
 popup/item_0/text = "AirAttackD"
 popup/item_0/id = 0
 popup/item_1/text = "AirAttackN"
@@ -81,38 +87,52 @@ popup/item_13/text = "Dash"
 popup/item_13/id = 13
 popup/item_14/text = "DashAttack"
 popup/item_14/id = 14
-popup/item_15/text = "Grab"
+popup/item_15/text = "Emote"
 popup/item_15/id = 15
-popup/item_16/text = "HeavyD"
+popup/item_16/text = "Getup"
 popup/item_16/id = 16
-popup/item_17/text = "HeavyS"
+popup/item_17/text = "GetupAttack"
 popup/item_17/id = 17
-popup/item_18/text = "HeavyU"
+popup/item_18/text = "GetupReset"
 popup/item_18/id = 18
-popup/item_19/text = "Hit"
+popup/item_19/text = "Grab"
 popup/item_19/id = 19
-popup/item_20/text = "Idle"
+popup/item_20/text = "HeavyD"
 popup/item_20/id = 20
-popup/item_21/text = "JumpSquat"
+popup/item_21/text = "HeavyS"
 popup/item_21/id = 21
-popup/item_22/text = "Ledge"
+popup/item_22/text = "HeavyU"
 popup/item_22/id = 22
-popup/item_23/text = "Pummel"
+popup/item_23/text = "Hit"
 popup/item_23/id = 23
-popup/item_24/text = "RESET"
+popup/item_24/text = "HitFloor"
 popup/item_24/id = 24
-popup/item_25/text = "Roll"
+popup/item_25/text = "Idle"
 popup/item_25/id = 25
-popup/item_26/text = "Run"
+popup/item_26/text = "JumpSquat"
 popup/item_26/id = 26
-popup/item_27/text = "Stun"
+popup/item_27/text = "Ledge"
 popup/item_27/id = 27
-popup/item_28/text = "ThrowB"
+popup/item_28/text = "Pummel"
 popup/item_28/id = 28
-popup/item_29/text = "ThrowF"
+popup/item_29/text = "RESET"
 popup/item_29/id = 29
-popup/item_30/text = "Walk"
+popup/item_30/text = "Roll"
 popup/item_30/id = 30
+popup/item_31/text = "Run"
+popup/item_31/id = 31
+popup/item_32/text = "Stun"
+popup/item_32/id = 32
+popup/item_33/text = "Tech"
+popup/item_33/id = 33
+popup/item_34/text = "ThrowB"
+popup/item_34/id = 34
+popup/item_35/text = "ThrowF"
+popup/item_35/id = 35
+popup/item_36/text = "Tumble"
+popup/item_36/id = 36
+popup/item_37/text = "Walk"
+popup/item_37/id = 37
 
 [node name="PlayAndHitboxSelect" type="VBoxContainer" parent="." unique_id=1123431672]
 layout_mode = 1
@@ -139,6 +159,10 @@ text = " Create Hitbox "
 [node name="Hitboxes" type="OptionButton" parent="PlayAndHitboxSelect" unique_id=595867887]
 layout_mode = 2
 theme_override_font_sizes/font_size = 75
+selected = 0
+item_count = 1
+popup/item_0/text = "Hitbox 0"
+popup/item_0/id = 0
 
 [node name="Frames" type="VBoxContainer" parent="." unique_id=1846555047]
 layout_mode = 1
@@ -210,7 +234,6 @@ theme_override_font_sizes/font_size = 30
 text = " 5 "
 
 [node name="PageOne" type="VBoxContainer" parent="HitboxProperties" unique_id=647751744]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 script = ExtResource("3_3286r")
@@ -228,7 +251,7 @@ text = "Hitbox Width"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/HitboxWidth" unique_id=1166258134]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "75"
 alignment = 1
 
 [node name="HitboxHeight" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1230038926]
@@ -244,7 +267,7 @@ text = "Hitbox Height"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/HitboxHeight" unique_id=125993762]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "50"
 alignment = 1
 
 [node name="PositionX" type="HBoxContainer" parent="HitboxProperties/PageOne" unique_id=1069637174]
@@ -276,7 +299,7 @@ text = "Y Position"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageOne/PositionY" unique_id=501213722]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "75"
 alignment = 1
 
 [node name="PageTwo" type="VBoxContainer" parent="HitboxProperties" unique_id=1122886187 node_paths=PackedStringArray("hitboxAnimator")]
@@ -315,7 +338,7 @@ text = "Start Frame"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/HitboxStart" unique_id=1017530763]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "1"
 alignment = 1
 
 [node name="FramesActive" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=41186429]
@@ -331,7 +354,7 @@ text = "Frames Active"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/FramesActive" unique_id=666986875]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "6"
 alignment = 1
 
 [node name="Damage" type="HBoxContainer" parent="HitboxProperties/PageTwo" unique_id=2040353300]
@@ -347,7 +370,7 @@ text = "Damage"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageTwo/Damage" unique_id=1667363112]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "7"
 alignment = 1
 
 [node name="PageThree" type="VBoxContainer" parent="HitboxProperties" unique_id=231955508]
@@ -369,7 +392,7 @@ text = "Angle"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/Angle" unique_id=2114081059]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "295"
 alignment = 1
 
 [node name="BaseKB" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=2098205319]
@@ -385,7 +408,7 @@ text = "Base KB"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/BaseKB" unique_id=674402662]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "200"
 alignment = 1
 
 [node name="KBScale" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=1401803012]
@@ -401,7 +424,7 @@ text = "KB Scale"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/KBScale" unique_id=1017226391]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "0.75"
 alignment = 1
 
 [node name="Hitstun" type="HBoxContainer" parent="HitboxProperties/PageThree" unique_id=186331073]
@@ -417,7 +440,7 @@ text = "Hitstun"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageThree/Hitstun" unique_id=1539425941]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "20"
 alignment = 1
 
 [node name="PageFour" type="VBoxContainer" parent="HitboxProperties" unique_id=1117288243]
@@ -439,7 +462,7 @@ text = "Hit Stop"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/Hitstop" unique_id=1999538472]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "7"
 alignment = 1
 
 [node name="BlockDamage" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=859171700]
@@ -455,7 +478,7 @@ text = "Block Damage"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFour/BlockDamage" unique_id=2076676289]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "2"
 alignment = 1
 
 [node name="Type" type="HBoxContainer" parent="HitboxProperties/PageFour" unique_id=1884515619]
@@ -494,6 +517,7 @@ text = "Reversable"
 layout_mode = 2
 
 [node name="PageFive" type="VBoxContainer" parent="HitboxProperties" unique_id=743214857]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 script = ExtResource("7_52tuu")
@@ -511,7 +535,7 @@ text = "Group"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFive/Group" unique_id=1548570261]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "1"
 alignment = 1
 
 [node name="DIMultiplier" type="HBoxContainer" parent="HitboxProperties/PageFive" unique_id=535325522]
@@ -527,7 +551,7 @@ text = "DI Multiplier"
 [node name="LineEdit" type="LineEdit" parent="HitboxProperties/PageFive/DIMultiplier" unique_id=2048330169]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "0"
+text = "1.0"
 alignment = 1
 
 [node name="HitboxDeleteAndSave" type="VBoxContainer" parent="HitboxProperties" unique_id=706940386]

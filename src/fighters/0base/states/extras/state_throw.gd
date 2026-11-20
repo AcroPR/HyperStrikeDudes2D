@@ -17,6 +17,7 @@ func enter() -> void:
 	super()
 	parent.animationPlayer.play(animationName)
 	attackHitboxes = HitboxImporter._load_csv(parent.fighterFolderName, animationName)
+	previousFrame = -1
 
 func _create_hitbox(current_hitbox):
 	var new_hitbox = Hitbox.new()._build_from_array(current_hitbox,false,0)

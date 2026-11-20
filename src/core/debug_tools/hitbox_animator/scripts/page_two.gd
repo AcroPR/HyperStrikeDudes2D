@@ -16,7 +16,7 @@ func _set_values(_hitboxNode: Hitbox, _startFrameIndex):
 	startFrameIndex = _startFrameIndex
 	damage.text = str(int(hitboxNode.damage))
 	framesActive.text = str(int(hitboxNode.framesActive))
-	hitboxPriority.text = str(int(hitboxNode.priority))
+	hitboxPriority.text = str(int(hitboxNode.hitboxPriority))
 	hitboxStart.text = str(hitboxAnimator.hitboxStartFrames[startFrameIndex]+1)
 
 func _damage_text_changed(new_text: String) -> void:
@@ -27,19 +27,19 @@ func _damage_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
 		hitboxNode.damage = int(new_text)
 	else:
-		hitboxPriority.text = str(int(hitboxNode.damage))
+		damage.text = str(int(hitboxNode.damage))
 
 func _frames_active_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
 		hitboxNode.framesActive = int(new_text)
 	else:
-		hitboxPriority.text = str(int(hitboxNode.framesActive))
+		framesActive.text = str(int(hitboxNode.framesActive))
 
 func _hitbox_priority_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():
-		hitboxNode.priority = int(new_text)
+		hitboxNode.hitboxPriority = int(new_text)
 	else:
-		hitboxPriority.text = str(int(hitboxNode.priority))
+		hitboxPriority.text = str(int(hitboxNode.hitboxPriority))
 
 func _hitbox_start_text_changed(new_text: String) -> void:
 	if new_text.is_valid_int():

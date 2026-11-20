@@ -6,6 +6,8 @@ extends State
 
 var animationName: String = "Pummel"
 
+var previousFrame: int = -1
+
 # Array of attack hitboxes
 var attackHitboxes
 
@@ -13,6 +15,7 @@ func enter() -> void:
 	super()
 	parent.animationPlayer.play(animationName)
 	attackHitboxes = HitboxImporter._load_csv(parent.fighterFolderName, animationName)
+	previousFrame = -1
 
 func _create_hitbox(current_hitbox):
 	var new_hitbox = Hitbox.new()._build_from_array(current_hitbox,false,0)
@@ -23,9 +26,16 @@ func _create_hitbox(current_hitbox):
 
 func _check_for_hitboxes():
 	var currentFrame = int(parent.animationPlayer.current_animation_position * 60)
+	
+	if currentFrame == previousFrame:
+		return
+	
+	previousFrame = currentFrame
+	
 	for currentHitbox in attackHitboxes:
 		if currentFrame == currentHitbox[0]:
 			_create_hitbox(currentHitbox)
+	
 
 func _throw_state() -> State:
 	var xDir = inputComponent._get_strength("move_right") - inputComponent._get_strength("move_left")

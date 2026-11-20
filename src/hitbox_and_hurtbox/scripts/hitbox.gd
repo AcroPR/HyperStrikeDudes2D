@@ -165,6 +165,7 @@ func _ready() -> void:
 	collision.set_shape(shape)
 	add_child(collision)
 	_set_collision_and_groups()
+	collision_priority = hitboxPriority
 
 func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint() and !paused:
