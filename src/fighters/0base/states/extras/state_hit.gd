@@ -48,6 +48,7 @@ func _get_launch_vector(launchAngle,force):
 func enter() -> void:
 	super()
 	parent.animationPlayer.play("Hit")
+	parent._reset_used_specials()
 	attemptingToTech = false
 	techFrames = 0
 	var distance = _knockback_calc(parent.percent, parent.hitboxBKB, parent.hitboxKBS)

@@ -100,6 +100,13 @@ var ledgeLock: bool
 var smoothLanding: bool = false
 var staleMoves: Array = ["","","","","",""]
 
+var usedSpecials = {
+	"down": false,
+	"neutral": false,
+	"side": false,
+	"up": false,
+	}
+
 var hitboxAngle: int = 0
 var hitboxBKB: int = 0
 var hitboxKBS: float = 0.0
@@ -138,6 +145,10 @@ func _is_dashing_correctly() -> bool:
 func _open_hitbox_animator():
 	var tool = HitboxAnimatorTool.new()
 	tool._run()
+
+func _reset_used_specials() -> void:
+	for key in usedSpecials:
+		usedSpecials[key] = false
 
 func _return_air_attack_state() -> State:
 	match inputComponent._get_move_stick():
@@ -248,22 +259,28 @@ func _return_special_state() -> State:
 	match inputComponent._get_move_stick():
 		# Down
 		0:
-			return specialDownState
+			if !usedSpecials["down"]:
+				return specialDownState
 		# Left
 		1:
-			facingRight = false
-			_set_face()
-			return specialSideState
+			if !usedSpecials["side"]:
+				facingRight = false
+				_set_face()
+				return specialSideState
 		# Right
 		2:
-			facingRight = true
-			_set_face()
-			return specialSideState
+			if !usedSpecials["side"]:
+				facingRight = true
+				_set_face()
+				return specialSideState
 		# Up
 		3:
-			return specialUpState
+			if !usedSpecials["up"]:
+				return specialUpState
 		_:
-			return specialNeutralState
+			if !usedSpecials["neutral"]:
+				return specialNeutralState
+	return null
 
 func _set_dead():
 	stateMachine.change_state(deadState)
@@ -357,6 +374,7 @@ func _physics_process(delta: float) -> void:
 		return
 	if _is_in_hitstop(): return
 	lastGlobalPosition = global_position
+	ledgeGrabBox.monitoring = velocity.y > 0 and !inputComponent._pressed("move_down")
 	stateMachine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:

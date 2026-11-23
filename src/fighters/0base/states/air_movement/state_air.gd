@@ -50,8 +50,6 @@ func process_physics(delta: float) -> State:
 		false:
 			parent.velocity.y += parent._get_velocity(parent.weight) * delta
 	
-	parent.ledgeGrabBox.monitoring = parent.velocity.y > 0
-
 	# Move Direction (Horizontal)
 	var xDir = _get_x_dir()
 	
